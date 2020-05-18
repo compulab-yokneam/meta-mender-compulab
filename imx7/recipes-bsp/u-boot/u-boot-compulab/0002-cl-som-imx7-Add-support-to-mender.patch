@@ -1,0 +1,46 @@
+From ed74de13f2068edab4dbfde9ffedba89d1e96e7c Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Sun, 17 May 2020 21:44:07 +0300
+Subject: [PATCH 2/5] cl-som-imx7: Add support to mender
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ configs/cl-som-imx7_defconfig | 2 ++
+ include/configs/cl-som-imx7.h | 3 ++-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/configs/cl-som-imx7_defconfig b/configs/cl-som-imx7_defconfig
+index 15022c3..d419c6d 100644
+--- a/configs/cl-som-imx7_defconfig
++++ b/configs/cl-som-imx7_defconfig
+@@ -49,6 +49,8 @@ CONFIG_CMD_FAT=y
+ CONFIG_CMD_FS_GENERIC=y
+ # CONFIG_ENV_IS_IN_MMC is not set
+ CONFIG_ENV_IS_IN_SPI_FLASH=y
++CONFIG_BOOTCOUNT_LIMIT=y
++CONFIG_BOOTCOUNT_ENV=y
+ CONFIG_LED_STATUS=y
+ CONFIG_LED_STATUS_GPIO=y
+ CONFIG_LED_STATUS0=y
+diff --git a/include/configs/cl-som-imx7.h b/include/configs/cl-som-imx7.h
+index 50b3538..29573bb 100644
+--- a/include/configs/cl-som-imx7.h
++++ b/include/configs/cl-som-imx7.h
+@@ -165,7 +165,6 @@
+ 
+ /* FLASH and environment organization */
+ #define CONFIG_ENV_SIZE			SZ_8K
+-#define CONFIG_ENV_OFFSET		(768 * 1024)
+ #define CONFIG_ENV_SECT_SIZE		(64 * 1024)
+ #define CONFIG_ENV_SPI_BUS		CONFIG_SF_DEFAULT_BUS
+ #define CONFIG_ENV_SPI_CS		CONFIG_SF_DEFAULT_CS
+@@ -227,4 +226,6 @@
+ #define CONFIG_ENV_CALLBACK_LIST_STATIC "displaytype:displaytype"
+ #endif /* CONFIG_VIDEO */
+ 
++#define CONFIG_SYS_REDUNDAND_ENVIRONMENT
++
+ #endif	/* __CONFIG_H */
+-- 
+1.9.1
+

@@ -1,0 +1,110 @@
+#!/bin/bash
+
+declare -A SUPPORTED_MACHINE=([cl-som-imx7]=1)
+
+get_meta() {
+if [[ -d ${dir} ]];then
+git -C ${dir} remote update
+git -C ${dir} pull
+else
+git clone ${url} ${branch} ${dir}
+fi
+}
+
+get_meta_compulab() {
+dir="../sources/meta-compulab"
+branch="-b devel"
+url="https://github.com/compulab-yokneam/meta-compulab"
+get_meta ${url} ${branch} ${dir}
+}
+
+get_meta_compulab_bsp() {
+dir="../sources/meta-compulab-bsp"
+branch="-b master"
+url="https://github.com/compulab-yokneam/meta-compulab-bsp"
+get_meta ${url} ${branch} ${dir}
+}
+
+get_meta_bsp_imx7() {
+dir="../sources/meta-bsp-imx7"
+branch="-b devel-warrior"
+url="https://github.com/compulab-yokneam/meta-bsp-imx7"
+get_meta ${url} ${branch} ${dir}
+}
+
+mod_bblayer() {
+# Get CompuLab Main meta layer
+get_meta_compulab
+get_meta_compulab_bsp
+get_meta_bsp_imx7
+# A mandatory bsp layer: kernel, u-boot, imx-boot
+cat << eof | tee -a ${BBLAYERS_CONF} > /dev/null
+BBLAYERS += " \\
+	\${TOPDIR}/../sources/meta-compulab \\
+	\${TOPDIR}/../sources/meta-compulab-bsp/meta-bsp \\
+	\${TOPDIR}/../sources/meta-bsp-imx7 \\
+	\${TOPDIR}/../sources/meta-mender-compulab/imx7 \\
+"
+eof
+sed -i '/meta-boundary/d' ${BBLAYERS_CONF}
+}
+
+mod_local() {
+# Modify local.conf
+cat << eof | tee -a ${LOCAL_CONF} > /dev/null
+
+# Specific Configuration for CompuLab cl-som-imx7
+IMAGE_BOOT_FILES_cl-som-imx7 = "boot.scr"
+MENDER_UBOOT_STORAGE_DEVICE_cl-som-imx7 = "0"
+MENDER_UBOOT_ENV_STORAGE_DEVICE_OFFSET_1_cl-som-imx7 = "0xC0000"
+MENDER_UBOOT_ENV_STORAGE_DEVICE_OFFSET_2_cl-som-imx7 = "0xE0000"
+
+CORE_IMAGE_EXTRA_INSTALL += "cl-uboot cl-deploy"
+
+ACCEPT_FSL_EULA = "1"
+HOSTTOOLS += " bison"
+eof
+sed -i '/^MACHINE/d;1 i MACHINE = "cl-som-imx7"' ${LOCAL_CONF}
+}
+
+CWD=$(pwd)
+PROGNAME=${BASH_SOURCE[0]}
+[ $(basename -- $BASH_SOURCE) == $(basename -- $0) ] && EXIT="exit" || EXIT="return"
+
+if [[ $(id -u) -eq 0 ]]; then
+    echo "ERROR: do not use the BSP as root. Exiting..."
+    ${EXIT}
+fi
+
+BBLAYERS_CONF=conf/bblayers.conf
+BB_CL_CONF_DONE=conf/bb_cl_conf.done
+LOCAL_CONF=conf/local.conf
+
+if ([ ! -f ${BBLAYERS_CONF} ] || [ ! -f ${LOCAL_CONF} ]);then
+cat << eom
+    Warning: Files ${BBLAYERS_CONF} and ${LOCAL_CONF} not found.
+    Make sure that the scritp issued at a correct location.
+eom
+    ${EXIT} 2
+fi
+
+[[ -n ${FORCE} ]] && rm -rf ${BB_CL_CONF_DONE}
+
+if [ -f ${BB_CL_CONF_DONE} ];then
+cat << eom
+    Note: Already issued.
+    Nothing to be done.
+eom
+    ${EXIT} 0
+fi
+
+eval $(awk '(/MACHINE|DISTRO/)&&(gsub(/'"'"'/,"")&&($0=$1"="$NF))' ORS=";" ${LOCAL_CONF})
+
+cat << eom
+    Prepare: ${MACHINE}:${DISTRO} ...
+eom
+
+mod_bblayer
+mod_local
+
+${EXIT} 0
