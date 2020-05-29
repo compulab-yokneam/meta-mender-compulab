@@ -38,21 +38,28 @@ source sources/meta-mender-compulab/imx7/tools/setup-env
 bitbake -k core-image-base
 </pre>
 
-## Create a bootable sd card
+## Deployment
+### Create an image file
 * Goto the `tmp/deploy/images/cl-som-imx7` directory:
 <pre>
 cd tmp/deploy/images/cl-som-imx7
 </pre>
 
+* Deploy the image:
+<pre>
+bmaptool copy core-image-base-cl-som-imx7.sdimg /path/to/mender.sd.img
+</pre>
+
+* Deploy the u-boot.imx:
+<pre>
+dd if=u-boot.imx of=/path/to/mender.sd.img bs=1k seek=1 conv=notrunc
+</pre>
+
+### Create a bootable sd card
 * Deploy the image to sd card:
 <pre>
-sudo bmaptool copy core-image-base-cl-som-imx7.sdimg /dev/sdX
+sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
 </pre>
 
-* Deploy the u-boot.imx to sd card:
-<pre>
-sudo dd if=u-boot.imx of=/dev/sdX bs=1k seek=1; sync
-</pre>
-
-## References:
+## References
 * https://hub.mender.io/t/nxp-i-mx7d-sabre/1279
