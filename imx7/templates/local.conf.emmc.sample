@@ -1,0 +1,3 @@
+# eMMC
+MENDER_UBOOT_STORAGE_DEVICE_cl-som-imx7 = "1"
+MENDER_STORAGE_DEVICE_BASE_cl-som-imx7 = "/dev/mmcblk2p"

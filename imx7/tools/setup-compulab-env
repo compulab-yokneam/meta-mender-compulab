@@ -38,33 +38,14 @@ get_meta_compulab
 get_meta_compulab_bsp
 get_meta_bsp_imx7
 # A mandatory bsp layer: kernel, u-boot, imx-boot
-cat << eof | tee -a ${BBLAYERS_CONF} > /dev/null
-BBLAYERS += " \\
-	\${TOPDIR}/../sources/meta-compulab \\
-	\${TOPDIR}/../sources/meta-compulab-bsp/meta-bsp \\
-	\${TOPDIR}/../sources/meta-bsp-imx7 \\
-	\${TOPDIR}/../sources/meta-mender-compulab/imx7 \\
-"
-eof
+awk '!/^#/' ${TEMPL}/bblayers.conf.append | tee -a ${BBLAYERS_CONF} > /dev/null
 sed -i '/meta-boundary/d' ${BBLAYERS_CONF}
 }
 
 mod_local() {
 # Modify local.conf
-cat << eof | tee -a ${LOCAL_CONF} > /dev/null
-
-# Specific Configuration for CompuLab cl-som-imx7
-IMAGE_BOOT_FILES_cl-som-imx7 = "boot.scr"
-MENDER_UBOOT_STORAGE_DEVICE_cl-som-imx7 = "0"
-MENDER_UBOOT_ENV_STORAGE_DEVICE_OFFSET_1_cl-som-imx7 = "0xC0000"
-MENDER_UBOOT_ENV_STORAGE_DEVICE_OFFSET_2_cl-som-imx7 = "0xE0000"
-
-CORE_IMAGE_EXTRA_INSTALL += "cl-uboot cl-deploy"
-
-ACCEPT_FSL_EULA = "1"
-HOSTTOOLS += " bison"
-eof
-sed -i '/^MACHINE/d;1 i MACHINE = "cl-som-imx7"' ${LOCAL_CONF}
+sed -i '/^MACHINE/d' ${LOCAL_CONF}
+cat ${TEMPL}/local.conf.append | tee -a ${LOCAL_CONF} > /dev/null
 }
 
 CWD=$(pwd)

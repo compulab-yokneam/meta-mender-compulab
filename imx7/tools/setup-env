@@ -1,10 +1,12 @@
 MACHINE=${MACHINE:-cl-som-imx7}
 TOOLS=../sources/meta-mender-compulab/imx7/tools
+TEMPL=../sources/meta-mender-compulab/imx7/templates
 EULA=1
 
 . setup-environment nxp
 
-declare -a ENVIRONMENT=("${TOOLS}/setup-compulab-env")
+declare -a ENVIRONMENT=("${TOOLS}/setup-compulab-env \
+			 ${TOOLS}/setup-user-env")
 
 for env in ${ENVIRONMENT[@]};do
 [ -f ${env} ] && FORCE=Yes source ${env}

@@ -1,0 +1,55 @@
+#!/bin/bash -xv
+
+user_local_conf=$(mktemp --dry-run --tmpdir=/tmp userXXX)
+local_conf="conf/local.conf"
+
+declare -A MENDER_UBOOT_STORAGE_DEVICE=( [sd]="0" [emmc]="1" )
+declare -A MENDER_STORAGE_DEVICE_BASE=( [sd]="/dev/mmcblk0p" [emmc]="/dev/mmcblk2p" )
+media=( sd emmc )
+cfg_media() {
+cat << EOF >> ${user_local_conf}
+MENDER_UBOOT_STORAGE_DEVICE_cl-som-imx7 = "${MENDER_UBOOT_STORAGE_DEVICE[$1]}"
+MENDER_STORAGE_DEVICE_BASE_cl-som-imx7 = "${MENDER_STORAGE_DEVICE_BASE[$1]}"
+EOF
+}
+
+declare -A ARRAYNAME=( [media]="sd" )
+
+cat << EOF
+--- Users' Configurations started ---
+EOF
+
+cat << EOF >> ${user_local_conf}
+# Users' Configurations
+EOF
+
+for ARRAY in ${!ARRAYNAME[@]}; do
+select_string='default '
+eval array=\${${ARRAY}[@]}
+for value in ${array[@]}; do
+select_string+=${value}" "
+done
+PS3="${ARRAY} configuration [ ${ARRAYNAME[${ARRAY}]} ] (Ctrl^C -- exit) : "
+select i in $select_string; do
+[[ -z ${i} ]] && echo "Invalid option -(" || case $i in
+	default)
+	break
+	;;
+	*)
+	ARRAYNAME[${ARRAY}]=${i}
+	break
+	;;
+esac
+done # select
+done # for
+
+for ARRAY in ${!ARRAYNAME[@]}; do
+command -v cfg_${ARRAY} &>/dev/null
+[[ $? -eq 0 ]] && cfg_${ARRAY} ${ARRAYNAME[${ARRAY}]}
+done
+
+if [[ -f ${local_conf} ]];then
+cat ${user_local_conf} >> ${local_conf}
+fi
+
+rm -rf ${user_local_conf}
