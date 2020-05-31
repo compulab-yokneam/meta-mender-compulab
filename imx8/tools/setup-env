@@ -1,0 +1,13 @@
+MACHINE=${MACHINE:-cl-som-imx8}
+DISTRO=${DISTRO:-fsl-imx-xwayland}
+TOOLS=../sources/meta-mender-compulab/imx8/tools
+TEMPL=../sources/meta-mender-compulab/imx8/templates
+EULA=1
+
+. fsl-setup-mender.sh $@
+
+declare -a ENVIRONMENT=("${TOOLS}/setup-compulab-env")
+
+for env in ${ENVIRONMENT[@]};do
+[ -f ${env} ] && FORCE=Yes source ${env}
+done
