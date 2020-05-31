@@ -1,0 +1,10 @@
+MACHINE = 'ucm-imx8m-mini'
+
+# Boot from SD
+MENDER_STORAGE_DEVICE_ucm-imx8m-mini = "/dev/mmcblk1"
+
+# Boot from eMMC on ucm-imx8m-mini
+# MENDER_STORAGE_DEVICE_ucm-imx8m-mini = "/dev/mmcblk2"
+# MENDER_UBOOT_STORAGE_DEVICE_ucm-imx8m-mini = "1"
+
+IMAGE_BOOT_FILES_ucm-imx8m-mini = " boot.scr Image ucm-imx8m-mini.dtb "

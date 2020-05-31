@@ -1,0 +1,8 @@
+MENDER_BOOT_PART_SIZE_MB = "32"
+# MENDER_STORAGE_TOTAL_SIZE_MB = "2048"
+
+CORE_IMAGE_EXTRA_INSTALL += " cl-uboot cl-deploy bt-start htop iotop tmux iperf3 "
+#PREFERRED_RPROVIDER_u-boot-fw-utils = "u-boot-fslc-fw-utils"
+BBMASK += "meta-compulab/recipes-xfce"
+
+WKS_FILE_DEPENDS += " u-boot-script "

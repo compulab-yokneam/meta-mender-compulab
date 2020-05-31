@@ -1,0 +1,25 @@
+From dc0e0621654e9a1ed3921943095d788659c516ac Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Fri, 29 May 2020 21:26:00 +0300
+Subject: [PATCH 203/203] Allow Mender to live in eMMC
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ include/configs/ucm-imx8m-mini.h | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/include/configs/ucm-imx8m-mini.h b/include/configs/ucm-imx8m-mini.h
+index 73b23504c3..3787c7f943 100644
+--- a/include/configs/ucm-imx8m-mini.h
++++ b/include/configs/ucm-imx8m-mini.h
+@@ -200,7 +200,6 @@
+ #define CONFIG_ENV_OVERWRITE
+ #define CONFIG_ENV_OFFSET               0x1000
+ #define CONFIG_ENV_SIZE			0x4000
+-#define CONFIG_SYS_MMC_ENV_DEV		0   /* USDHC2 */
+ #define CONFIG_MMCROOT			"/dev/mmcblk1p2"  /* USDHC2 */
+ 
+ /* Size of malloc() pool */
+-- 
+2.11.0
+
