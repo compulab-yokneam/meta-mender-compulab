@@ -61,5 +61,8 @@ dd if=u-boot.imx of=/path/to/mender.sd.img bs=1k seek=1 conv=notrunc
 sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
 </pre>
 
+## Pre-Built image
+* [core-image-full-cmdline image](https://drive.google.com/drive/folders/1ZRijCNB07aNvu3uUNTiG4YJgRuCXPYaV)
+
 ## References
 * https://hub.mender.io/t/nxp-i-mx7d-sabre/1279
