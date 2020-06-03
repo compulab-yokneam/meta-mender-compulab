@@ -24,9 +24,9 @@ git clone -b imx8 https://github.com/compulab-yokneam/meta-mender-compulab.git s
 ## Setup build environment
 * Set a CompuLab machine:
 
-CompuLab machine | cl-som-imx8 | ucm-imx8m-mini |
+CompuLab machine | CL-SOM-iMX8 | UCM-iMX8M-Mini |
 --- | --- | --- |
-Environment | `MACHINE=cl-som-imx8` | `MACHINE=ucm-imx8m-mini` |
+Environment setting | `MACHINE=cl-som-imx8` | `MACHINE=ucm-imx8m-mini` |
 
 
 * Initialize the build environment:
