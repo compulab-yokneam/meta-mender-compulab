@@ -35,7 +35,7 @@ source sources/meta-mender-compulab/imx7/tools/setup-env
 </pre>
 * Building the image:
 <pre>
-bitbake -k core-image-base
+bitbake -k core-image-full-cmdline
 </pre>
 
 ## Deployment
@@ -47,7 +47,7 @@ cd tmp/deploy/images/cl-som-imx7
 
 * Deploy the image:
 <pre>
-bmaptool copy core-image-base-cl-som-imx7.sdimg /path/to/mender.sd.img
+bmaptool copy core-image-full-cmdline-cl-som-imx7.sdimg /path/to/mender.sd.img
 </pre>
 
 * Deploy the u-boot.imx:
