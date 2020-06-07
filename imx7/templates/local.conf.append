@@ -27,11 +27,11 @@ CORE_IMAGE_EXTRA_INSTALL += " linux-firmware-imx-sdma-imx7d \
 "
 
 CORE_IMAGE_EXTRA_INSTALL += " cl-uboot cl-deploy cl-stest"
-CORE_IMAGE_EXTRA_INSTALL += " dhcp-client bluez5 wpa-supplicant wvdial"
+CORE_IMAGE_EXTRA_INSTALL += " dhcp-client bluez5 wpa-supplicant wvdial iw"
 CORE_IMAGE_EXTRA_INSTALL += " tmux memtester iotop htop iperf3 stress-ng "
 
 IMAGE_FEATURES += " ssh-server-openssh "
 
 ACCEPT_FSL_EULA = "1"
 
-KERNEL_DEVICETREE += "imx7d-sbc-iot-imx7.dtb"
+MENDER_DTB_NAME_FORCE = "imx7d-sbc-iot-imx7.dtb"
