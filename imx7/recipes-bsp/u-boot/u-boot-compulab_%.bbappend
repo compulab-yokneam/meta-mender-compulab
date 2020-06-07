@@ -12,4 +12,13 @@ SRC_URI += "\
     file://0002-cl-som-imx7-Add-support-to-mender.patch \
 "
 
+do_install_append_cl-som-imx7 () {
+
+	install -d ${D}/boot/hab
+	install -m 644 ${B}/u-boot-ivt.img ${D}/boot/hab/u-boot-ivt.img
+	install -m 644 ${B}/u-boot-ivt.img.log ${D}/boot/hab/u-boot-ivt.img.log
+	install -m 644 ${B}/SPL ${D}/boot/hab/SPL
+	install -m 644 ${B}/SPL.log ${D}/boot/hab/SPL.log
+}
+
 PROVIDES += "u-boot-fslc"
