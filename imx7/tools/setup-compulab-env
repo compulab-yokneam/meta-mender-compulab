@@ -45,6 +45,7 @@ sed -i '/meta-boundary/d' ${BBLAYERS_CONF}
 mod_local() {
 # Modify local.conf
 sed -i '/^MACHINE/d' ${LOCAL_CONF}
+sed -i '/^PACKAGE_CLASSES/d' ${LOCAL_CONF}
 cat ${TEMPL}/local.conf.append | tee -a ${LOCAL_CONF} > /dev/null
 }
 
