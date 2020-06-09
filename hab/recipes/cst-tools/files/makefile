@@ -1,21 +1,18 @@
 all: build
 
 bin:
-	mkdir $@
+	mkdir -p $@
 
-crts:
-	mkdir $@
-
-keys:	crts
+crts/SRK_1_2_3_4_table.bin:
 	cd crts && ../tools/gen_keys.sh
 	
-csf:	keys bin
+csf:	crts/SRK_1_2_3_4_table.bin bin
 	cp tools/csf* bin/
 
-srk:	keys
+srk:	crts/SRK_1_2_3_4_table.bin
 	cd crts && ../tools/gen_srk.sh
 
 clean:
-	rm -rf crts bin
+	rm -rf bin crts/*
 
 build: srk csf
