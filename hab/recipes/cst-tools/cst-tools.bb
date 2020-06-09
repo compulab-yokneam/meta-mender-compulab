@@ -55,13 +55,13 @@ do_sign () {
 
 do_deploy () {
         install -d ${DEPLOY_DIR_IMAGE}/cst-tools
-        install -d ${DEPLOY_DIR_IMAGE}/cst-tools/bin
-        install -d ${DEPLOY_DIR_IMAGE}/cst-tools/crts
         install -d ${DEPLOY_DIR_IMAGE}/cst-tools/linux64/bin
-	cp -a ${S}/bin/* ${DEPLOY_DIR_IMAGE}/cst-tools/bin/
-	cp -a ${S}/crts/* ${DEPLOY_DIR_IMAGE}/cst-tools/crts/
-	cp -a ${S}/linux64/bin/cst ${DEPLOY_DIR_IMAGE}/cst-tools/linux64/bin/
+	for d in crts bin ca;do
+	cp -a ${S}/${d} ${DEPLOY_DIR_IMAGE}/cst-tools/
+	done
+	cp -a ${S}/keys/hab4_pki_tree.sh ${DEPLOY_DIR_IMAGE}/cst-tools/crts/
 	ln -fs crts ${DEPLOY_DIR_IMAGE}/cst-tools/keys
+	cp -a ${S}/linux64/bin/cst ${DEPLOY_DIR_IMAGE}/cst-tools/linux64/bin/
 	do_sign
 	do_copy_signed
 }
