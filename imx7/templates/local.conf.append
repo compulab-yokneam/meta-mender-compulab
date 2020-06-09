@@ -8,7 +8,7 @@ IMAGE_INSTALL_append = " kernel-image kernel-modules kernel-devicetree"
 MENDER_FEATURES_ENABLE_append = " mender-uboot mender-image-sd"
 MENDER_FEATURES_DISABLE_append = " mender-grub mender-image-uefi"
 
-IMAGE_BOOT_FILES_cl-som-imx7 = "boot.scr zImage imx7d-sbc-imx7.dtb imx7d-sbc-iot-imx7.dtb"
+IMAGE_BOOT_FILES_cl-som-imx7 += "boot.scr zImage imx7d-sbc-imx7.dtb imx7d-sbc-iot-imx7.dtb"
 MENDER_UBOOT_ENV_STORAGE_DEVICE_OFFSET_1_cl-som-imx7 = "0xC0000"
 MENDER_UBOOT_ENV_STORAGE_DEVICE_OFFSET_2_cl-som-imx7 = "0xE0000"
 
