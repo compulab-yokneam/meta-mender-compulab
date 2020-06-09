@@ -40,7 +40,15 @@ source sources/meta-mender-compulab/imx7/tools/setup-env
 1) default
 2) sd
 3) emmc
-media configuration [ sd ] (Ctrl^C -- exit) : 
+media configuration [ sd ] (Ctrl^C -- exit) :
+</pre>
+
+* Choose a security option:
+<pre>
+1) default
+2) yes
+3) no
+hab configuration [ yes ] (Ctrl^C -- exit) :
 </pre>
 
 * Building the image:
@@ -93,12 +101,16 @@ Important | An image with `media configuration emmc` must be used |
 * Insert the created sd-card
 * Issue: <pre>setenv script; setenv bootscript; boot</pre>
 * Let the device boot up
-* While in Linux, issue:<pre>cl-uboot</pre>
+* While in Linux:
+* If **hab=yes**, update the bootloader link:<pre>ln -fs u-boot.imx.signed /boot/u-boot.imx</pre>
+* Update the bootloader:<pre>cl-uboot</pre>
 * Issue:<pre>cl-deploy</pre>
 * Reboot the device
 * Stop in U-boot
 * Remove the media
-* Issue:<pre>env default -a; saveenv; reset</pre>
+* Issue:<pre>env default -a</pre>
+* If **hab=yes**, then update the kernel variable:<pre>setenev kernel zImage.signed</pre>
+* Issue:<pre>saveenv; reset</pre>
 * Let the device boot up
 * Done.
 
