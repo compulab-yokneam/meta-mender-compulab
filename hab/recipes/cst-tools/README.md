@@ -47,12 +47,22 @@ cd ${BUILDIR}/tmp/deploy/images/${MACHINE}/cst-tools/hab
 </pre>
 
 * Kernel signing
+
+Requirements | Input | Script | Output |
+---|--- | --- |---|
+[[ -x linux64/bin/cst ]]|zImage<br>crts/\*<br>keys/\*<br>bin/csf.in| ../bin/csf.k |signed/k/zImage.signed
+
 <pre>
 ../bin/csf.k
 stat signed/k/zImage.signed
 </pre>
 
 * U-Boot  signing
+
+Requirements | Input | Script | Output |
+---|--- | --- |---|
+[[ -x linux64/bin/cst ]]|SPL<br>SPL.log<br>u-boot-ivt.img<br>u-boot-ivt.img.log<br>crts/\*<br>keys/\*<br>bin/csf.in| ../bin/csf.u |signed/u/u-boot.imx.signed
+
 <pre>
 ../bin/csf.u
 stat signed/u/u-boot.imx.signed
