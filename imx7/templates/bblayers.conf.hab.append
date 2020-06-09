@@ -1,0 +1,3 @@
+BBLAYERS += " \
+  ${TOPDIR}/../sources/meta-mender-compulab/hab \
+"
