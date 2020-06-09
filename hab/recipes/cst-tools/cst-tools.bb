@@ -22,7 +22,6 @@ do_configure () {
 	chmod a+x ${S}/tools/*
 	cp ${WORKDIR}/makefile ${S}/
 	cd ${S}
-	oe_runmake clean
 }
 
 do_compile () {
