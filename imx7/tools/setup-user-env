@@ -5,12 +5,13 @@ local_conf="conf/local.conf"
 BBLAYERS_CONF="conf/bblayers.conf"
 
 declare -A MENDER_UBOOT_STORAGE_DEVICE=( [sd]="0" [emmc]="1" )
-declare -A MENDER_STORAGE_DEVICE_BASE=( [sd]="/dev/mmcblk0p" [emmc]="/dev/mmcblk2p" )
+declare -A MENDER_STORAGE_DEVICE_BASE=( [sd]="/dev/mmcblk0" [emmc]="/dev/mmcblk2" )
 media=( sd emmc )
 cfg_media() {
 cat << EOF >> ${user_local_conf}
 MENDER_UBOOT_STORAGE_DEVICE_cl-som-imx7 = "${MENDER_UBOOT_STORAGE_DEVICE[$1]}"
-MENDER_STORAGE_DEVICE_BASE_cl-som-imx7 = "${MENDER_STORAGE_DEVICE_BASE[$1]}"
+MENDER_STORAGE_DEVICE_cl-som-imx7 = "${MENDER_STORAGE_DEVICE_BASE[$1]}"
+MENDER_STORAGE_DEVICE_BASE_cl-som-imx7 = "${MENDER_STORAGE_DEVICE_BASE[$1]}p"
 EOF
 }
 
