@@ -114,6 +114,13 @@ Important | An image with `media configuration emmc` must be used |
 * Let the device boot up
 * Done.
 
+## Fuse values
+If **hab=yes**, then the fuse values file can be found at this location:
+<pre>cat /boot/signed/f/fuse.out</pre>
+
+Important | Standard CompuLab warranty does not apply if fuses are flashed |
+--- | --- |
+
 ## Pre-Built image
 * [core-image-full-cmdline image](https://drive.google.com/drive/folders/1ZRijCNB07aNvu3uUNTiG4YJgRuCXPYaV)
 
