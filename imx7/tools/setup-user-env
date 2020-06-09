@@ -2,6 +2,7 @@
 
 user_local_conf=$(mktemp --dry-run --tmpdir=/tmp userXXX)
 local_conf="conf/local.conf"
+BBLAYERS_CONF="conf/bblayers.conf"
 
 declare -A MENDER_UBOOT_STORAGE_DEVICE=( [sd]="0" [emmc]="1" )
 declare -A MENDER_STORAGE_DEVICE_BASE=( [sd]="/dev/mmcblk0p" [emmc]="/dev/mmcblk2p" )
@@ -13,7 +14,14 @@ MENDER_STORAGE_DEVICE_BASE_cl-som-imx7 = "${MENDER_STORAGE_DEVICE_BASE[$1]}"
 EOF
 }
 
-declare -A ARRAYNAME=( [media]="sd" )
+hab=( yes no )
+cfg_hab() {
+if [[ $1 == "yes" ]];then
+awk '!/^#/' ${TEMPL}/bblayers.conf.hab.append | tee -a ${BBLAYERS_CONF} > /dev/null
+fi
+}
+
+declare -A ARRAYNAME=( [media]="sd" [hab]="yes" )
 
 cat << EOF
 --- Users' Configurations started ---
