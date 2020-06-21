@@ -91,14 +91,13 @@ Important | An image with `media configuration emmc` must be used |
 * Turn on the device
 * Stop in U-Boot
 * Insert the created sd-card
-* Issue: ```setenv script; setenv bootscript; boot```
+* Issue:<pre>setenv script; setenv bootscript; boot</pre>
 * Let the device boot up
-* While in Linux issue:```cl-deploy```
+* While in Linux issue:<pre>cl-deploy</pre>
 * Reboot the device
 * Stop in U-boot
 * Remove the media
-* Issue:```env default -a```
-* Issue:```saveenv; reset```
+* Issue:<pre>env default -a; saveenv; reset</pre>
 * Let the device boot up
 * Done.
 
