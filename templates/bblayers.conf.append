@@ -1,0 +1,6 @@
+BBLAYERS += "${BSPDIR}/sources/meta-bsp-imx8mm"
+BBLAYERS += "${BSPDIR}/sources/meta-mender-compulab"
+BBLAYERS += " \
+  ${BSPDIR}/sources/meta-mender/meta-mender-core \
+  ${BSPDIR}/sources/meta-mender/meta-mender-demo \
+"

@@ -1,0 +1,20 @@
+# Append fragment from meta-mender-compulab
+# CompuLab imx8m[m,q] modules
+
+MENDER_IMAGE_BOOTLOADER_FILE = "imx-boot"
+MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET = "66"
+
+MENDER_BOOT_PART_SIZE_MB = "16"
+IMAGE_BOOT_FILES_remove = "${KERNEL_IMAGETYPE} ${@make_dtb_boot_files(d)}"
+
+# Cleanup image types generated
+IMAGE_FSTYPES_remove = "tar.gz ext4 wic.gz wic.bmap multiubi mender.bmap"
+
+# Build sdimg file rather than uefiimg
+MENDER_FEATURES_ENABLE_append = " mender-image-sd "
+MENDER_FEATURES_DISABLE_append = " mender-image-uefi "
+
+# Make sure we don't include u-boot-fw-utils; we are using grub-mender-grubenv instead
+MACHINE_EXTRA_RDEPENDS_remove = "u-boot-fw-utils"
+
+MENDER_STORAGE_TOTAL_SIZE_MB = "2048"

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <manifest>
+  <remote fetch="https://github.com/compulab-yokneam" name="compulab"/>
+
+  <project name="meta-bsp-imx8mm" remote="compulab" revision="rel_imx_5.4.24_2.1.0-dev" path="sources/meta-bsp-imx8mm"/>
+  <project name="meta-mender-compulab" remote="compulab" revision="zeus" path="sources/meta-mender-compulab"/>
+
+  </manifest>

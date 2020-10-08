@@ -1,0 +1,5 @@
+# eMMC Settings
+
+MENDER_STORAGE_DEVICE = "/dev/mmcblk2"
+MENDER_UBOOT_STORAGE_DEVICE = "2"
+UBOOT_CONFIG = "sd"

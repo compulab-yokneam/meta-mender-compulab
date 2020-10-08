@@ -1,0 +1,5 @@
+# SDCard Settings
+
+MENDER_STORAGE_DEVICE = "/dev/mmcblk1"
+MENDER_UBOOT_STORAGE_DEVICE = "1"
+UBOOT_CONFIG = "sd"

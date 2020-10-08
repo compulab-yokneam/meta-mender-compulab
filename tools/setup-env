@@ -1,0 +1,18 @@
+#!/bin/bash -e
+MACHINE=${MACHINE:-mcm-imx8m-mini}
+DISTRO=${DISTRO:-fsl-imx-xwayland}
+EULA=1
+
+. imx-setup-release.sh $@
+
+cat ../sources/meta-mender-compulab/templates/bblayers.conf.append >> conf/bblayers.conf
+cat ../sources/meta-mender-community/templates/local.conf.append >> conf/local.conf
+cat ../sources/meta-mender-compulab/templates/local.conf.append >> conf/local.conf
+cat ../sources/meta-mender-compulab/templates/local-emmc.conf.append >> conf/local.conf
+
+declare -a ENVIRONMENT=('../sources/meta-mender-compulab/tools/setup-compulab-env
+		../sources/meta-mender-compulab/tools/setup-user-env')
+
+for env in ${ENVIRONMENT[@]};do
+	[ -f ${env} ] && FORCE=Yes source ${env}
+done
