@@ -2,20 +2,20 @@
 
 ## Setup Yocto environment
 
-### NXP
-
 * WorkDir
 ```
 mkdir mender-compulab && cd mender-compulab
 ```
-* Initialize NXP repo manifest:
+
+## Initialize repo manifests
+
+* NXP
 ```
 repo init -u git://source.codeaurora.org/external/imx/imx-manifest.git -b imx-linux-zeus -m imx-5.4.24-2.1.0.xml
 repo sync
 ```
 
-### Mender
-* Initialize Mender repo manifest:
+* Mender
 ```
 mkdir -p .repo/local_manifests
 cd .repo/local_manifests
@@ -23,8 +23,7 @@ wget https://raw.githubusercontent.com/mendersoftware/meta-mender-community/zeus
 cd -
 ```
 
-### CompuLab
-* Initialize CompuLab repo manifest:
+* CompuLab
 ```
 mkdir -p .repo/local_manifests
 cd .repo/local_manifests
@@ -32,7 +31,7 @@ wget https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/zeu
 cd -
 ```
 
-### Sync Them all
+* Sync Them all
 ```
 repo sync
 ```
