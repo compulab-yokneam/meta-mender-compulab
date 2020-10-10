@@ -34,6 +34,10 @@ cd -
 * Sync Them all
 ```
 repo sync
+cd .repo/local_manifests
+ln -sf ../../sources/meta-mender-community/scripts/mender-no-setup.xml .
+ln -sf ../../sources/meta-mender-compulab/scripts/mender-compulab-setup.xml .
+cd -
 ```
 
 ## Setup build environment
