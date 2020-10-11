@@ -1,0 +1,40 @@
+#!/bin/bash
+
+function mender_dev_convert() {
+
+mpoint=/tmp/media
+
+src=${src:-mmcblk1}
+dst=${dst:-mmcblk2}
+
+declare -A devarr=( [1]=/EFI/BOOT/grub.cfg [2]=/etc/fstab [3]=/etc/fstab [4]=/mender/mender.conf )
+[[ ${dst} =~ "mmc" ]] && p="p" || p=""
+
+mkdir -p ${mpoint}
+
+for d in ${!devarr[@]};do
+
+_dev=/dev/${dst}${p}${d}
+if [ -b ${_dev} ];then
+
+mount ${_dev} ${mpoint}
+
+if [ -f ${mpoint}/${devarr[${d}]} ];then
+	sed -i "s/${src}/${dst}/" ${mpoint}/${devarr[${d}]}
+fi
+
+umount ${_dev}
+
+fi
+
+done
+
+rm -rf ${mpoint}
+
+}
+
+export src=mmcblk1 dst=mmcblk2
+export SRC=/dev/${src} DST=/dev/${dst} QUIET=Yes
+
+cl-deploy
+mender_dev_convert
