@@ -1,1 +1,2 @@
-CORE_IMAGE_EXTRA_INSTALL += " cl-uboot cl-deploy cl-launcher cl-stest cl-camera "
+CORE_IMAGE_EXTRA_INSTALL += " cl-uboot cl-deploy cl-launcher cl-stest cl-camera u-boot-script mr-deploy "
+IMAGE_BOOT_FILES_append = " boot.scr "
