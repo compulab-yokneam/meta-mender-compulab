@@ -1,0 +1,3 @@
+load mmc ${bootdev} ${fdt_addr} dtb/${fdt_file}
+load mmc ${bootdev} ${loadaddr} EFI/BOOT/bootaa64.efi
+bootefi ${loadaddr} ${fdt_addr}
