@@ -69,13 +69,23 @@ cd tmp/deploy/images/${MACHINE}
 bmaptool copy core-image-base-${MACHINE}.sdimg /path/to/mender.sd.img
 ```
 
-* Deploy the machine bootloader:
-```
-dd if=imx-boot-${MACHINE}-sd.bin-flash_evk of=/path/to/mender.sd.img bs=1K seek=33 conv=notrunc
-```
-
 ### Create a bootable sd card
 * Deploy the image to sd card:
 ```
 sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
+```
+
+### Installing the mender image onto the eMMC
+* Boot up the device using the mender sd card with 'AltBoot'.
+* Wait for the Linux prompt and issue:
+```
+mr-deploy
+```
+* Wait for 'SUCCESS', then issue `cl-uboot` and select the `/dev/mmcblk2boot0` as destination:
+```
+cl-uboot
+```
+* Reboot the device, stop in U-boot, remove the sd card and issue:
+```
+env default -a; saveenv; reset
 ```
