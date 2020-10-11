@@ -81,11 +81,11 @@ sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
 ```
 mr-deploy
 ```
-* Wait for 'SUCCESS', then issue `cl-uboot` and select the `/dev/mmcblk2boot0` as destination:
+* Wait for 'SUCCESS', then reboot the device.
 ```
-cl-uboot
+reboot
 ```
-* Reboot the device, stop in U-boot, remove the sd card and issue:
+* Stop in U-boot, remove the sd card and issue:
 ```
 env default -a; saveenv; reset
 ```
