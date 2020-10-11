@@ -27,7 +27,7 @@ cd -
 ```
 mkdir -p .repo/local_manifests
 cd .repo/local_manifests
-wget https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/zeus/templates/mender-compulab-setup.xml
+wget https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/zeus/scripts/mender-compulab-setup.xml
 cd -
 ```
 
