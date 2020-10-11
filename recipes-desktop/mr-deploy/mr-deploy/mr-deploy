@@ -38,3 +38,8 @@ export SRC=/dev/${src} DST=/dev/${dst} QUIET=Yes
 
 cl-deploy
 mender_dev_convert
+
+declare -A bootcan=( [mmcblk1]=mmcblk1 [mmcblk2]=mmcblk2boot0 )
+export IMX_BOOT=$(ls /boot/*flash_evk | tail -1)
+export IMX_DEV=/dev/${bootcan[${dst}]}
+cl-uboot
