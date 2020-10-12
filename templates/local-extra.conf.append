@@ -1,2 +1,6 @@
 CORE_IMAGE_EXTRA_INSTALL += " cl-uboot cl-deploy cl-launcher cl-stest cl-camera u-boot-script mr-deploy "
+CORE_IMAGE_EXTRA_INSTALL += " dhcp-client memtester imx-gpu-viv-demos htop iotop tmux iperf3 "
+IMAGE_FEATURES += " package-management ssh-server-openssh "
 IMAGE_BOOT_FILES_append = " boot.scr "
+
+LICENSE_FLAGS_WHITELIST = "commercial"
