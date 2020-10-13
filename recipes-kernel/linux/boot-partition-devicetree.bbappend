@@ -8,3 +8,5 @@ do_install_preppend() {
 }
 
 addtask install_preppend before do_install after do_compile
+
+DEPENDS += "linux-imx"
