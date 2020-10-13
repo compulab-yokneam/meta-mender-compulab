@@ -20,4 +20,4 @@ RPROVIDES_${PN} += "mr-deploy"
 RDEPENDS_${PN} += "cl-deploy bash"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-COMPATIBLE_MACHINE = "(mcm-imx8m-mini|ucm-imx8m-mini)"
+COMPATIBLE_MACHINE = "(mcm-imx8m-mini|ucm-imx8m-mini|iot-gate-imx8)"
