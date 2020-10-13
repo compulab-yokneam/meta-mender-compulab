@@ -1,0 +1,36 @@
+From 322770dba1d37e45e242ddd8592254f0a357319c Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Tue, 13 Oct 2020 22:42:10 +0300
+Subject: [PATCH 200/200] iot-gate-imx8: config: Add the SD as a boot candidate
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ include/configs/iot-gate-imx8.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/include/configs/iot-gate-imx8.h b/include/configs/iot-gate-imx8.h
+index 9774949456..565d53ef71 100644
+--- a/include/configs/iot-gate-imx8.h
++++ b/include/configs/iot-gate-imx8.h
+@@ -28,6 +28,9 @@
+ 	"initrd_high=0xffffffffffffffff\0" \
+ 	"root_opt=rootwait rw\0" \
+ 	"bootargs_common="__stringify(ENV_CONSOLE)" net.ifnames=0\0" \
++	"sd_ul=setenv boot_dev_str SD; run boot_try_msg; " \
++	"setenv iface mmc; setenv dev 1; setenv part 1;" \
++	"setenv bootargs console=${console} root=/dev/mmcblk1p2 ${root_opt};\0" \
+ 	"emmc_ul=setenv boot_dev_str eMMC; run boot_try_msg; " \
+ 	"setenv iface mmc; setenv dev 2; setenv part 1;" \
+ 	"setenv bootargs ${bootargs_common} root=/dev/mmcblk2p2 " \
+@@ -42,7 +45,7 @@
+ 	"source;\0" \
+ 	"boot_try_msg=echo Trying to boot from ${boot_dev_str} ...;\0"
+ #define CONFIG_BOOTCOMMAND \
+-	"for src in usb_ul emmc_ul; do " \
++	"for src in sd_ul usb_ul emmc_ul; do " \
+ 		"run ${src}; " \
+ 		"if run ulbootscript; then " \
+ 			"run bootscript; " \
+-- 
+2.11.0
+

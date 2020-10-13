@@ -1,3 +1,7 @@
+FILESEXTRAPATHS_prepend := "${THISDIR}/compulab/imx8mm:"
+
+include compulab/imx8mm.inc
+
 PROVIDES += "u-boot"
 RPROVIDES_${PN} += "u-boot"
 
