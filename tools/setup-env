@@ -11,10 +11,3 @@ cat ../sources/meta-mender-community/templates/local.conf.append >> conf/local.c
 cat ../sources/meta-mender-compulab/templates/local.conf.append >> conf/local.conf
 cat ../sources/meta-mender-compulab/templates/local-extra.conf.append >> conf/local.conf
 cat ../sources/meta-mender-compulab/templates/local-sdcard.conf.append >> conf/local.conf
-
-declare -a ENVIRONMENT=('../sources/meta-mender-compulab/tools/setup-compulab-env
-		../sources/meta-mender-compulab/tools/setup-user-env')
-
-for env in ${ENVIRONMENT[@]};do
-	[ -f ${env} ] && FORCE=Yes source ${env}
-done
