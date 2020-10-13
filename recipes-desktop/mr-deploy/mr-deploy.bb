@@ -17,7 +17,7 @@ do_install() {
 FILES_${PN} += "/usr/local/bin/"
 
 RPROVIDES_${PN} += "mr-deploy"
-RDEPENDS_${PN} += "cl-deploy bash"
+RDEPENDS_${PN} += "cl-deploy cl-uboot bash"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 COMPATIBLE_MACHINE = "(mcm-imx8m-mini|ucm-imx8m-mini|iot-gate-imx8)"
