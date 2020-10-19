@@ -4,7 +4,7 @@
 
   <project name="meta-compulab" remote="compulab" revision="devel" path="sources/meta-compulab"/>
   <project name="meta-compulab-bsp" remote="compulab" revision="master" path="sources/meta-compulab-bsp"/>
-  <project name="meta-bsp-imx8mm" remote="compulab" revision="580c826975c6acef577afb0654a0357cc02cd313" path="sources/meta-bsp-imx8mm"/>
-  <project name="meta-mender-compulab" remote="compulab" revision="zeus" path="sources/meta-mender-compulab"/>
+  <project name="meta-bsp-imx8mm" remote="compulab" revision="refs/tags/iot-gate-imx8_r2.3" path="sources/meta-bsp-imx8mm"/>
+  <project name="meta-mender-compulab" remote="compulab" revision="refs/tags/zeus_iot-gate-imx8" path="sources/meta-mender-compulab"/>
 
   </manifest>
