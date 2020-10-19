@@ -7,11 +7,10 @@
 mkdir mender-compulab && cd mender-compulab
 ```
 * Set a CompuLab machine:
-
-CompuLab machine | UCM-iMX8M-Mini | MCM-iMX8M-Mini | iot-gate-imx8 |
---- | --- | --- | --- |
-`MACHINE` environment setting| `MACHINE=ucm-imx8m-mini` |`MACHINE=mcm-imx8m-mini` |`MACHINE=iot-gate-imx8` |
-`LREPO` environment setting | `LREPO=mender-compulab-setup.xml` |`LREPO=mender-compulab-setup.xml` |`LREPO=mender-compulab-setup-iot.xml` |
+```
+MACHINE=iot-gate-imx8
+LREPO=mender-compulab-setup-iot.xml
+```
 
 ## Initialize repo manifests
 
@@ -33,7 +32,7 @@ cd -
 ```
 mkdir -p .repo/local_manifests
 cd .repo/local_manifests
-wget https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/zeus/scripts/${LREPO}
+wget https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/zeus_iot-gate-imx8/scripts/${LREPO}
 cd -
 ```
 
@@ -54,38 +53,35 @@ source sources/meta-mender-compulab/tools/setup-env -b build-mender-${MACHINE}
 ```
 * Building the image:
 ```
-bitbake -k core-image-base
+bitbake -k core-image-full-cmdline
 ```
 
 ## Deployment
-### Create an image file
-* Goto the `tmp/deploy/images/${MACHINE}` directory:
+### Create a Live Mender USB FLASH drive
+* Plug a USB flash drive into the host PC.
+The USB flash drive device is referred as /dev/sdX.
+* Deploy the mender image to a USB FLASH drive:
 ```
-cd tmp/deploy/images/${MACHINE}
+sudo dd if=tmp/deploy/images/iot-gate-imx8/core-image-full-cmdline-iot-gate-imx8.sdimg of=/dev/sdX bs=1M status=progress
 ```
-
-* Deploy the image:
-```
-bmaptool copy core-image-base-${MACHINE}.sdimg /path/to/mender.sd.img
-```
-
-### Create a bootable sd card
-* Deploy the image to sd card:
-```
-sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
-```
-
+* Un-plug the USB flash drive from the host PC.
 ### Installing the mender image onto the eMMC
-* Boot up the device using the mender sd card with 'AltBoot'.
-* Wait for the Linux prompt and issue:
+* Boot up the device using the Live Mender FLASH drive.
+* Wait (~2 minutes) for the following messagea:
 ```
-mr-deploy
+Press Enter for maintenance
+(or press Control-D to continue):
+```
+* Press Enter
+* Apply the following command:
+```
+MR_SRC=sda mr-deploy
 ```
 * Wait for 'SUCCESS', then reboot the device.
 ```
 reboot
 ```
-* Stop in U-boot, remove the sd card and issue:
+* Stop in U-boot, remove the Live FLASH drive and issue:
 ```
 env default -a; saveenv; reset
 ```
