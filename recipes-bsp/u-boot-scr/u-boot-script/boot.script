@@ -1,3 +1,8 @@
+if itest.s "xusb" == "x${iface}" ; then
+ setenv script
+ boot
+fi
+
 load mmc ${bootdev} ${fdt_addr} dtb/${fdt_file}
 load mmc ${bootdev} ${loadaddr} EFI/BOOT/bootaa64.efi
 bootefi ${loadaddr} ${fdt_addr}
