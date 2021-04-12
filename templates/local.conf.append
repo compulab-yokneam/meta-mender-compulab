@@ -4,9 +4,8 @@
 MENDER_IMAGE_BOOTLOADER_FILE = "imx-boot"
 MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET = "66"
 
-MENDER_BOOT_PART_SIZE_MB = "16"
-IMAGE_BOOT_FILES_remove = "${KERNEL_IMAGETYPE} ${@make_dtb_boot_files(d)}"
-
+MENDER_BOOT_PART_SIZE_MB = "64"
+#
 # Cleanup image types generated
 IMAGE_FSTYPES_remove = "tar.gz ext4 wic.gz wic.bmap multiubi mender.bmap"
 
