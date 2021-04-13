@@ -35,7 +35,7 @@ rm -rf ${mpoint}
 
 }
 
-export src=mmcblk1 dst=mmcblk2
+export src=${MR_SRC:-mmcblk1} dst=mmcblk2
 export SRC=/dev/${src} DST=/dev/${dst} QUIET=Yes
 
 cl-deploy
