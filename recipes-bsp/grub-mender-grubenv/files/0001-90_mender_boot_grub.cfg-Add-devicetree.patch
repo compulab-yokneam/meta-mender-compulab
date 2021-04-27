@@ -1,0 +1,32 @@
+From b179fe496ee455a7198e296c4af3d57fb0ea6323 Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Tue, 27 Apr 2021 10:29:50 +0000
+Subject: [PATCH 1/1] 90_mender_boot_grub.cfg: Add devicetree
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ 90_mender_boot_grub.cfg | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/90_mender_boot_grub.cfg b/90_mender_boot_grub.cfg
+index ab67d3b..7e94569 100644
+--- a/90_mender_boot_grub.cfg
++++ b/90_mender_boot_grub.cfg
+@@ -28,6 +28,7 @@ else
+ fi
+ 
+ if [ "${drop_to_grub_prompt}" = "no" ]; then
++    if devicetree ${mender_kernel_path}/${kernel_devicetree}; then
+     if linux ${mender_kernel_path}/${kernel_imagetype} root=${mender_root} ${bootargs}; then
+         if test -n "${initrd_imagetype}" -a test -e ${mender_kernel_path}/${initrd_imagetype}; then
+             initrd ${mender_kernel_path}/${initrd_imagetype}
+@@ -35,5 +36,6 @@ if [ "${drop_to_grub_prompt}" = "no" ]; then
+         maybe_pause "Pausing before booting."
+         boot
+     fi
++    fi
+     maybe_pause "Pausing after failed boot."
+ fi
+-- 
+2.17.1
+
