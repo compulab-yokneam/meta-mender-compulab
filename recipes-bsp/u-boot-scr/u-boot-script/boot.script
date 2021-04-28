@@ -1,8 +1,10 @@
-if itest.s "xusb" == "x${iface}" ; then
- setenv script
- boot
-fi
+setenv grub_efi 'EFI/BOOT/bootaa64.efi'
+setenv boot_efi 'bootefi ${loadaddr} ${fdtcontroladdr}'
 
-load mmc ${bootdev} ${fdt_addr} dtb/${fdt_file}
-load mmc ${bootdev} ${loadaddr} EFI/BOOT/bootaa64.efi
-bootefi ${loadaddr} ${fdt_addr}
+load usb 0 ${loadaddr} ${grub_efi} && run boot_efi
+load mmc 1 ${loadaddr} ${grub_efi} && run boot_efi
+load mmc 2 ${loadaddr} ${grub_efi} && run boot_efi
+
+setenv script
+
+boot
