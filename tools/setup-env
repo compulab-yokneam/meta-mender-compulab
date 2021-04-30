@@ -9,5 +9,3 @@ cat ../sources/meta-mender-compulab/templates/bblayers.conf.append >> conf/bblay
 cat ../sources/meta-mender-compulab/templates/bblayers-extra.conf.append >> conf/bblayers.conf
 cat ../sources/meta-mender-community/templates/local.conf.append >> conf/local.conf
 cat ../sources/meta-mender-compulab/templates/local.conf.append >> conf/local.conf
-cat ../sources/meta-mender-compulab/templates/local-extra.conf.append >> conf/local.conf
-cat ../sources/meta-mender-compulab/templates/local-sdcard.conf.append >> conf/local.conf
