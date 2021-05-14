@@ -3,12 +3,11 @@
 
   <include name="imx-4.19.35-1.1.2.xml" />
 
-  <remote fetch="https://github.com/compulab-yokneam" name="compulab"/>
   <remote fetch="https://github.com/mendersoftware" name="mender" />
-
   <project remote="mender" revision="warrior" name="meta-mender" path="sources/meta-mender" />
   <project remote="mender" revision="warrior" name="meta-mender-community" path="sources/meta-mender-community">
 
+  <remote fetch="https://github.com/compulab-yokneam" name="compulab"/>
   <project remote="compulab" revision="devel" name="meta-compulab" path="sources/meta-compulab"/>
   <project remote="compulab" revision="master" name="meta-compulab-bsp" path="sources/meta-compulab-bsp"/>
   <project remote="compulab" revision="devel-warrior" name="meta-bsp-imx7" path="sources/meta-bsp-imx7"/>
