@@ -7,12 +7,6 @@ T="../sources/meta-mender-compulab/imx7/templates"
 
 [[ -f fsl-setup-release.sh ]] && source fsl-setup-release.sh $@ || true
 
-declare -a ENVIRONMENT=('../sources/meta-mender-compulab/imx7/tools/setup-user-env')
-
-for env in ${ENVIRONMENT[@]};do
-[ -f ${env} ] && source ${env}
-done
-
 for _d in ${T}/*;do
 	_file=$(basename ${_d})
 	for _f in ${_d}/*;do
