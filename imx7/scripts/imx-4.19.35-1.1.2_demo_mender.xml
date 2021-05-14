@@ -9,7 +9,7 @@
   <project remote="compulab" revision="devel" name="meta-compulab" path="sources/meta-compulab"/>
   <project remote="compulab" revision="master" name="meta-compulab-bsp" path="sources/meta-compulab-bsp"/>
   <project remote="compulab" revision="devel-warrior" name="meta-bsp-imx7" path="sources/meta-bsp-imx7"/>
-  <project remote="compulab" revision="imx7-nxp" name="meta-mender-compulab" rpath="sources/meta-mender-compulab"/>
+  <project remote="compulab" revision="imx7-nxp" name="meta-mender-compulab" path="sources/meta-mender-compulab"/>
     <linkfile src="meta-mender-compulab/imx7/tools/main-setup-env" dest="main-setup-env" />
 
   <project remote="mender" revision="warrior" name="meta-mender" path="sources/meta-mender" />
