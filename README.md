@@ -19,7 +19,7 @@ repo sync
 ## Setup build environment
 * Initialize the build environment:
 ```
-source main-setup-env -b build
+source compulab-setup-env -b build
 ```
 
 * Choose a media that the image will be used for:
