@@ -1,8 +1,6 @@
 # Configuring the build
 
-## Setup Yocto environment
-
-### Mender
+## Prepare build environment
 
 * WorkDir
 ```
