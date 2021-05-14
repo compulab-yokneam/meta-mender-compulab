@@ -1,0 +1,26 @@
+#!/bin/bash -e
+
+C="../sources/meta-mender-community/templates/local.conf.append"
+[[ -f ${C} ]] && awk '!/^#/' ${C} >> conf/local.conf || true
+
+T="../sources/meta-mender-compulab/imx7/templates/mender"
+for _d in ${T}/*;do
+	_file=$(basename ${_d})
+	for _f in ${_d}/*;do
+		[[ -f ${_f} ]] || continue
+		cat ${_f} >> conf/${_file}
+	done;
+done
+
+TOOLS="../sources/meta-mender-compulab/imx7/tools/mender"
+declare -a ENVIRONMENT=("${TOOLS}/setup-user-env")
+
+for env in ${ENVIRONMENT[@]};do
+[ -f ${env} ] && source ${env}
+done
+
+cat << eom
+
+Mender integration complete.
+
+eom

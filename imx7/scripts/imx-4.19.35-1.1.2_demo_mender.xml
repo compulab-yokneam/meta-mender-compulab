@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<manifest>
+
+  <include name="imx-4.19.35-1.1.2.xml" />
+
+  <remote fetch="https://github.com/compulab-yokneam" name="compulab"/>
+  <remote fetch="https://github.com/mendersoftware" name="mender" />
+
+  <project remote="compulab" revision="devel" name="meta-compulab" path="sources/meta-compulab"/>
+  <project remote="compulab" revision="master" name="meta-compulab-bsp" path="sources/meta-compulab-bsp"/>
+  <project remote="compulab" revision="devel-warrior" name="meta-bsp-imx7" path="sources/meta-bsp-imx7"/>
+  <project remote="compulab" revision="imx7-nxp" name="meta-mender-compulab" rpath="sources/meta-mender-compulab"/>
+    <linkfile src="meta-mender-compulab/imx7/tools/main-setup-env" dest="main-setup-env" />
+
+  <project remote="mender" revision="warrior" name="meta-mender" path="sources/meta-mender" />
+  <project remote="mender" revision="warrior" name="meta-mender-community" path="sources/meta-mender-community">
+  </project>
+
+</manifest>

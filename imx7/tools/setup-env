@@ -1,13 +1,22 @@
+#!/bin/bash -e
+
 MACHINE=${MACHINE:-cl-som-imx7}
-TOOLS=../sources/meta-mender-compulab/imx7/tools
-TEMPL=../sources/meta-mender-compulab/imx7/templates
+DISTRO=${DISTRO:-fsl-imx-xwayland}
 EULA=1
+T="../sources/meta-mender-compulab/imx7/templates"
 
-. setup-environment nxp
+[[ -f fsl-setup-release.sh ]] && source fsl-setup-release.sh $@ || true
 
-declare -a ENVIRONMENT=("${TOOLS}/setup-compulab-env \
-			 ${TOOLS}/setup-user-env")
+declare -a ENVIRONMENT=('../sources/meta-mender-compulab/imx7/tools/setup-user-env')
 
 for env in ${ENVIRONMENT[@]};do
-[ -f ${env} ] && FORCE=Yes source ${env}
+[ -f ${env} ] && source ${env}
+done
+
+for _d in ${T}/*;do
+	_file=$(basename ${_d})
+	for _f in ${_d}/*;do
+		[[ -f ${_f} ]] || continue
+		cat ${_f} >> conf/${_file}
+	done;
 done

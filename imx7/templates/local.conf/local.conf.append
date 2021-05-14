@@ -1,0 +1,12 @@
+CORE_IMAGE_EXTRA_INSTALL += " dhcp-client rng-tools  cl-uboot cl-deploy cl-camera cl-stest memtester htop iotop tmux iperf3 stress-ng  video-mode  u-boot-fw-utils  kernel-modules firmware-imx-sdma linux-firmware-wl18xx linux-firmware-wlcommon linux-firmware-ti-connectivity-license bluez5 wpa-supplicant wvdial wvdial-compulab"
+IMAGE_FEATURES += " package-management ssh-server-openssh "
+LICENSE_FLAGS_WHITELIST = "commercial"
+DISTRO_FEATURES_append = " polkit"
+PREFERRED_RPROVIDER_u-boot-fw-utils = "u-boot-fw-utils"
+# Make it use for core-images only
+# These package cause a root image build conflict with gui images
+# CORE_IMAGE_EXTRA_INSTALL += " modemmanager networkmanager "
+# Users' Configurations
+# Disable root autologing on serial
+BBMASK += "systemd-serialgetty.bbappend"
+PREFERRED_VERSION_u-boot-compulab = "2017.07"

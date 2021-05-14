@@ -2,27 +2,117 @@
 
 user_local_conf=$(mktemp --dry-run --tmpdir=/tmp userXXX)
 local_conf="conf/local.conf"
-BBLAYERS_CONF="conf/bblayers.conf"
+kernel_recipe="linux-compulab"
 
-declare -A MENDER_UBOOT_STORAGE_DEVICE=( [sd]="0" [emmc]="1" )
-declare -A MENDER_STORAGE_DEVICE_BASE=( [sd]="/dev/mmcblk0" [emmc]="/dev/mmcblk2" )
-media=( sd emmc )
-cfg_media() {
-cat << EOF >> ${user_local_conf}
-MENDER_UBOOT_STORAGE_DEVICE_cl-som-imx7 = "${MENDER_UBOOT_STORAGE_DEVICE[$1]}"
-MENDER_STORAGE_DEVICE_cl-som-imx7 = "${MENDER_STORAGE_DEVICE_BASE[$1]}"
-MENDER_STORAGE_DEVICE_BASE_cl-som-imx7 = "${MENDER_STORAGE_DEVICE_BASE[$1]}p"
-EOF
-}
-
-hab=( yes no )
-cfg_hab() {
+firefox=( yes no )
+cfg_firefox() {
 if [[ $1 == "yes" ]];then
-awk '!/^#/' ${TEMPL}/bblayers.conf.hab.append | tee -a ${BBLAYERS_CONF} > /dev/null
+cat << EOF >> ${user_local_conf}
+# Add Browser
+IMAGE_INSTALL_append = " firefox "
+EOF
 fi
 }
 
-declare -A ARRAYNAME=( [media]="sd" [hab]="yes" )
+enable_boot_scr=( yes no )
+cfg_enable_boot_scr() {
+if [[ $1 == "yes" ]];then
+cat << EOF >> ${user_local_conf}
+IMAGE_BOOT_FILES_append = " \\
+    boot.scr-\${MACHINE};boot.scr \\
+"
+EOF
+fi
+}
+
+console_root_autologin=( yes no )
+cfg_console_root_autologin() {
+if [[ $1 == "no" ]];then
+cat << EOF >> ${user_local_conf}
+# Disable root autologing on serial
+BBMASK += "systemd-serialgetty.bbappend"
+EOF
+fi
+}
+
+rootfs=( ro rw )
+cfg_rootfs() {
+if [[ $1 == "ro" ]];then
+cat << EOF >> ${user_local_conf}
+IMAGE_FEATURES += "read-only-rootfs"
+EOF
+fi
+}
+
+calc_image_size() {
+local image_size=${1:-2}
+
+image_size=$(( ${image_size} << 10 ))
+image_size=$(( $(( ${image_size} - 12 )) << 10 ))
+
+cat << EOF >> ${user_local_conf}
+IMAGE_ROOTFS_SIZE = "${image_size}"
+IMAGE_OVERHEAD_FACTOR = "1.0"
+EOF
+}
+
+get_image_size() {
+select_string="4 8 16"
+PS3="Select an image size in GB (Ctrl^C -- exit): "
+
+select i in $select_string
+do
+	[[ -z $i ]] && continue
+	case $i in
+	*)
+	calc_image_size $i
+	;&
+	exit)
+	break
+	;;
+	esac
+done
+}
+
+set_image_size=( yes no )
+cfg_set_image_size() {
+if [[ $1 == "yes" ]];then
+get_image_size
+fi
+}
+
+kernel=( 4.14.98 4.19.35 )
+cfg_kernel() {
+if [[ $1 == "4.14.98" ]];then
+cat << EOF >> ${user_local_conf}
+PREFERRED_VERSION_${kernel_recipe} = "$1"
+EOF
+fi
+}
+
+real_time_linux=( yes no )
+cfg_real_time_linux() {
+if [[ $1 == "yes" ]];then
+kernel_recipe="linux-compulab-rt"
+cat << EOF >> ${user_local_conf}
+# Use linux-compulab-rt recipe
+PREFERRED_PROVIDER_virtual/kernel_cl-som-imx7 = "linux-compulab-rt"
+# Add rt-tests
+IMAGE_INSTALL_append = " rt-tests "
+EOF
+fi
+}
+
+u_boot=( 2017.07 2018.11 )
+cfg_u_boot() {
+if [[ $1 == "2017.07" ]];then
+cat << EOF >> ${user_local_conf}
+PREFERRED_VERSION_u-boot-compulab = "$1"
+EOF
+fi
+}
+
+declare -A ARRAYNAME=( [firefox]="no" [rootfs]="rw" [set_image_size]="no" [kernel]="4.19.35" [real_time_linux]="no" [u_boot]="2017.07" [console_root_autologin]="yes" [enable_boot_scr]="no" )
 
 cat << EOF
 --- Users' Configurations started ---

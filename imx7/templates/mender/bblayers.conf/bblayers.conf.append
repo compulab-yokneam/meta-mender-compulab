@@ -1,0 +1,9 @@
+BBLAYERS += " \
+  ${TOPDIR}/../sources/meta-mender/meta-mender-core \
+  ${TOPDIR}/../sources/meta-mender/meta-mender-demo \
+  ${TOPDIR}/../sources/meta-mender-community/meta-mender-nxp \
+"
+
+BBLAYERS += " \
+  ${TOPDIR}/../sources/meta-mender-compulab/imx7 \
+"

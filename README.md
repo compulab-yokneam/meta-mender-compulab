@@ -4,34 +4,23 @@
 
 ### Mender
 
-* Branch
-```
-export BRANCH="warrior"
-```
 * WorkDir
 ```
 mkdir mender-compulab && cd mender-compulab
 ```
 * Initialize and sync repo manifest:
 ```
-repo init -u https://github.com/mendersoftware/meta-mender-community \
-           -m meta-mender-nxp/scripts/manifest-nxp.xml \
-           -b ${BRANCH}
-
+repo init -u https://source.codeaurora.org/external/imx/imx-manifest -b imx-linux-warrior -m imx-4.19.35-1.1.2.xml
+wget --directory-prefix .repo/manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/imx7-nxp/imx7/scripts/imx-4.19.35-1.1.2_demo_mender.xml
+ender.xml
+repo init -m imx-4.19.35-1.1.2_demo_mender.xml
 repo sync
-```
-
-### CompuLab
-
-* Download CompuLab meta layer:
-```
-git clone -b imx7 https://github.com/compulab-yokneam/meta-mender-compulab.git sources/meta-mender-compulab/
 ```
 
 ## Setup build environment
 * Initialize the build environment:
 ```
-source sources/meta-mender-compulab/imx7/tools/setup-env
+source main-setup-env -b build
 ```
 
 * Choose a media that the image will be used for:
@@ -100,9 +89,3 @@ Important | An image with `media configuration emmc` must be used |
 * Issue:<pre>env default -a; saveenv; reset</pre>
 * Let the device boot up
 * Done.
-
-## Pre-Built image
-* [core-image-full-cmdline image](https://drive.google.com/drive/folders/1ZRijCNB07aNvu3uUNTiG4YJgRuCXPYaV)
-
-## References
-* https://hub.mender.io/t/nxp-i-mx7d-sabre/1279

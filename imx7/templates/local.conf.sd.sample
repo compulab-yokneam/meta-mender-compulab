@@ -1,4 +1,0 @@
-# SD
-MENDER_UBOOT_STORAGE_DEVICE_cl-som-imx7 = "0"
-MENDER_STORAGE_DEVICE_cl-som-imx7 = "/dev/mmcblk0"
-MENDER_STORAGE_DEVICE_BASE_cl-som-imx7 = "${MENDER_STORAGE_DEVICE_cl-som-imx7}p"

@@ -1,0 +1,6 @@
+BBLAYERS += " \
+	${BSPDIR}/sources/meta-compulab \
+	${BSPDIR}/sources/meta-compulab-bsp/meta-bsp \
+	${BSPDIR}/sources/meta-bsp-imx7 \
+	${BSPDIR}/sources/meta-openembedded/meta-xfce \
+"

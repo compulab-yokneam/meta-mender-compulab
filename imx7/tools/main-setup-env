@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+B=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
+
+IMX7_ENV=${B}/setup-env
+MENDER_ENV=${B}/mender/setup-env
+
+for env in ${IMX7_ENV} ${MENDER_ENV};do
+	source ${env} $@
+done
