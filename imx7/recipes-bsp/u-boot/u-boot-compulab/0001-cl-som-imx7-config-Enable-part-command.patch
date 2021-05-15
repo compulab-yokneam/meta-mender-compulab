@@ -1,0 +1,25 @@
+From 9a8c03ae85145ab93d43b4118452126ee313673f Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Sat, 15 May 2021 21:14:48 +0300
+Subject: [PATCH 1/1] cl-som-imx7: config: Enable part command
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ configs/cl-som-imx7_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/configs/cl-som-imx7_defconfig b/configs/cl-som-imx7_defconfig
+index d419c6d..5e5675c 100644
+--- a/configs/cl-som-imx7_defconfig
++++ b/configs/cl-som-imx7_defconfig
+@@ -34,6 +34,7 @@ CONFIG_CMD_GREPENV=y
+ CONFIG_CMD_GPIO=y
+ CONFIG_CMD_I2C=y
+ CONFIG_CMD_MMC=y
++CONFIG_CMD_PART=y
+ CONFIG_CMD_SF=y
+ CONFIG_CMD_USB=y
+ CONFIG_CMD_DHCP=y
+-- 
+1.9.1
+
