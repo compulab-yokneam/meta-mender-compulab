@@ -62,7 +62,7 @@ sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
 ## Boot a created image
 ### SD
 
-Important | An image with `media configuration sd` must be used |
+[BLOCK] Important | An image with `media configuration sd` must be used |
 --- | --- |
 
 * Turn on the device
@@ -73,7 +73,7 @@ Important | An image with `media configuration sd` must be used |
 
 ### eMMC
 
-Important | An image with `media configuration emmc` must be used |
+[BLOCK] Important | An image with `media configuration emmc` must be used |
 --- | --- |
 
 * Turn on the device
@@ -81,10 +81,13 @@ Important | An image with `media configuration emmc` must be used |
 * Insert the created sd-card
 * Issue:<pre>setenv script; setenv bootscript; boot</pre>
 * Let the device boot up
-* While in Linux issue:<pre>cl-deploy</pre>
+* While in Linux issue:<pre>cl-uboot; cl-deploy</pre>
 * Reboot the device
 * Stop in U-boot
 * Remove the media
 * Issue:<pre>env default -a; saveenv; reset</pre>
 * Let the device boot up
 * Done.
+
+## Pre-Built image
+* [core-image-full-cmdline image](https://drive.google.com/file/d/1KdrE6PPfs8BC9delu9sxOLg9tONml0RL/view?usp=sharing)
