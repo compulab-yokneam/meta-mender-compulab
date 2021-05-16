@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 MACHINE=${MACHINE:-cl-som-imx7}
-DISTRO=${DISTRO:-fsl-imx-xwayland}
+DISTRO=${DISTRO:-fsl-imx-x11}
 EULA=1
 T="../sources/meta-mender-compulab/imx7/templates"
 
