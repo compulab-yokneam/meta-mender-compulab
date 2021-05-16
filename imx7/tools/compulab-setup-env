@@ -4,7 +4,8 @@ B=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
 IMX7_ENV=${B}/setup-env
 MENDER_ENV=${B}/mender/setup-env
+ENV_PATCH=${B}/../patch/apply.sh
 
-for env in ${IMX7_ENV} ${MENDER_ENV};do
+for env in ${IMX7_ENV} ${MENDER_ENV} ${ENV_PATCH}; do
 	source ${env} $@
 done
