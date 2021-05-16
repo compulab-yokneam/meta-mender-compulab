@@ -4,7 +4,7 @@ function sign_image_part() {
 
 [[ -z ${PTUUID} ]] && return
 
-cat << eof | sudo fdisk ${DST}
+cat << eof | fdisk ${DST}
 x
 i
 0x${PTUUID}
