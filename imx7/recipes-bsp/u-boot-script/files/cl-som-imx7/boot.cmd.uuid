@@ -1,11 +1,11 @@
-setenv scan_dev 'part list ${devtype} ${devnum} devplist; env exists devplist || setenv devplist 1; for bootpart in ${devplist}; do part uuid ${devtype} ${devnum}:${bootpart} partid; if test ${partid} = ${mender_uboot_root} ;then echo ${devtype} ${devnum} ${bootpart}; run mender_boot; fi; done'
+setenv scan_dev 'part list ${devtype} ${devnum} devplist; env exists devplist || setenv devplist 1; for bootpart in ${devplist}; do part uuid ${devtype} ${devnum}:${bootpart} partid; if test ${partid} = ${mender_boot_part} ;then echo ${devtype} ${devnum} ${bootpart}; run mender_boot; fi; done'
 
 setenv bootcmd_mmc0 'devtype=mmc; devnum=0; run scan_dev'
 setenv bootcmd_mmc1 'devtype=mmc; devnum=1; run scan_dev'
 setenv bootcmd_mmc2 'devtype=mmc; devnum=2; run scan_dev'
 setenv bootcmd_usb0 'devtype=usb; devnum=0; run scan_dev'
 
-setenv mender_bootargs 'setenv bootargs console=${console},${baudrate} root=${mender_kernel_root} rootwait rw'
+setenv mender_bootargs 'setenv bootargs console=${console},${baudrate} root=PARTUUID=${mender_boot_part} rootwait rw'
 setenv mender_dev_init '${devtype} dev ${devnum}'
 setenv mender_ker_load 'load ${devtype} ${devnum}:${bootpart} ${loadaddr} /boot/${kernel}'
 setenv mender_fdt_load 'load ${devtype} ${devnum}:${bootpart} ${fdtaddr}  /boot/${fdtfile}'
@@ -15,10 +15,10 @@ setenv mender_boot 'run mender_dev_init; run mender_ker_load; run mender_fdt_loa
 run mender_setup
 
 mmc rescan
-bootcmd_mmc0
-bootcmd_mmc1
-bootcmd_mmc2
-usb start
-bootcmd_usb0
+run bootcmd_mmc0
+run bootcmd_mmc1
+run bootcmd_mmc2
+run usb start
+run bootcmd_usb0
 
 run mender_try_to_recover
