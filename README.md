@@ -16,11 +16,13 @@ repo sync
 
 ## Setup build environment
 * Initialize the build environment:
-```
-source compulab-setup-env -b build
-```
 
-* Choose a media that the image will be used for:
+Media Options | Setup command |
+--- | --- |
+UUID|MENDER_UUID_DEVICE=Yes source compulab-setup-env -b build-uuid|
+BLOCK|MENDER_BLOCK_DEVICE=Yes source compulab-setup-env -b build-block|
+
+* [BLOCK] Choose a media that the image will be used for:
 ```
 --- Users' Configurations started ---
 1) default
