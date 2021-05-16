@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# expected a rootfs=/dev/rootfs_candidate
+# if the rootfs is a valid rootfs candidate
+# then continue w/out user interactions
+
+D=$(findmnt --noheadings --output SOURCE /)
+
+[[ -n ${rootfs} ]] && for RC in ${D:0:-1}[2,3]
+do
+if [ ${RC} = ${rootfs} ];then
+	ROOTFS=${rootfs}
+	break
+fi
+done
+
+if [[ -z ${ROOTFS} ]];then
+RADIO=$(blkid ${D:0:-1}[2,3] | awk -F":" '$0=$1" OFF "' ORS="")
+ROOTFS=$(dialog --no-items --backtitle "Select a rootfs device [ current ${D} ] :" --radiolist "Available rootfs devices:" 12 80 12 ${RADIO} --stdout)
+[[ -z ${ROOTFS} ]] && exit
+fi
+
+eval $(blkid ${ROOTFS} | awk -F":" '$0=$2')
+
+fw_setenv mender_boot_part ${PARTUUID}
