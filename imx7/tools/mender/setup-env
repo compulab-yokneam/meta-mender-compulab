@@ -13,7 +13,10 @@ for _d in ${T}/*;do
 done
 
 TOOLS="../sources/meta-mender-compulab/imx7/tools/mender"
-declare -a ENVIRONMENT=("${TOOLS}/setup-user-env")
+declare -A EOPT=( [0]="setup-uuid-env" [1]="setup-user-env" )
+[[ -z ${MENDER_BLOCK_DEVICE} ]] && rc=0 || rc=1
+
+declare -a ENVIRONMENT=("${TOOLS}/${EOPT[${rc}]}")
 
 for env in ${ENVIRONMENT[@]};do
 [ -f ${env} ] && source ${env}

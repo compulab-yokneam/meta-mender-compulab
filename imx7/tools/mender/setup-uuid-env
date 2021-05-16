@@ -1,0 +1,23 @@
+#!/bin/bash
+
+user_local_conf=$(mktemp --dry-run --tmpdir=/tmp userXXX)
+local_conf="conf/local.conf"
+
+UUID=$(uuidgen --md5 --time | awk -F"-" '$0=$1')
+
+cat << eof | tee &>/dev/null ${user_local_conf}
+# Enable UUID
+MENDER_FEATURES_ENABLE_append += " mender-partuuid "
+
+MENDER_BOOT_PART = "${UUID}-01"
+MENDER_DATA_PART = "${UUID}-04"
+MENDER_ROOTFS_PART_A = "${UUID}-02"
+MENDER_ROOTFS_PART_B = "${UUID}-03"
+eof
+
+
+if [[ -f ${local_conf} ]];then
+cat ${user_local_conf} >> ${local_conf}
+fi
+
+rm -rf ${user_local_conf}
