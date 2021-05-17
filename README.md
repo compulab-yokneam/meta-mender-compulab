@@ -11,13 +11,12 @@ mkdir mender-compulab && cd mender-compulab
 CompuLab machine | UCM-iMX8M-Mini | MCM-iMX8M-Mini | iot-gate-imx8 |
 --- | --- | --- | --- |
 `MACHINE` environment setting| `MACHINE=ucm-imx8m-mini` |`MACHINE=mcm-imx8m-mini` |`MACHINE=iot-gate-imx8` |
-`LREPO` environment setting | `LREPO=mender-compulab-setup.xml` |`LREPO=mender-compulab-setup.xml` |`LREPO=mender-compulab-setup-iot.xml` |
 
 ## Initialize repo manifests
 
-* NXP
+* FSL Community
 ```
-repo init -u git://source.codeaurora.org/external/imx/imx-manifest.git -b imx-linux-zeus -m imx-5.4.24-2.1.0.xml
+repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b dunfell
 repo sync
 ```
 
@@ -25,32 +24,29 @@ repo sync
 ```
 mkdir -p .repo/local_manifests
 cd .repo/local_manifests
-wget https://raw.githubusercontent.com/mendersoftware/meta-mender-community/zeus/scripts/mender-no-setup.xml
+https://raw.githubusercontent.com/mendersoftware/meta-mender-community/dunfell/scripts/mender-no-setup.xml
 cd -
 ```
 
-* CompuLab
+* CompuLab FSLC & Mender
 ```
 mkdir -p .repo/local_manifests
 cd .repo/local_manifests
-wget https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/zeus/scripts/${LREPO}
+wget https://raw.githubusercontent.com/compulab-yokneam/compulab-fslc-bsp/master/scripts/compulab-bsp-setup.xml
+wget https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/zeus/scripts/mender-compulab-only.xml
 cd -
 ```
 
 * Sync Them all
 ```
 repo sync
-cd .repo/local_manifests
-ln -sf ../../sources/meta-mender-community/scripts/mender-no-setup.xml .
-ln -sf ../../sources/meta-mender-compulab/scripts/${LREPO} .
-cd -
 ```
 
 ## Setup build environment
 
 * Initialize the build environment:
 ```
-source sources/meta-mender-compulab/tools/setup-env -b build-mender-${MACHINE}
+source sources/meta-mender-compulab/tools/setup-env build-fslc-${MACHINE}
 ```
 * Building the image:
 ```
