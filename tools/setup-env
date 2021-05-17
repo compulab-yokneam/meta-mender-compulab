@@ -1,11 +1,15 @@
 #!/bin/bash -e
-MACHINE=${MACHINE:-mcm-imx8m-mini}
-DISTRO=${DISTRO:-fsl-imx-xwayland}
+MACHINE=${MACHINE:-ucm-imx8m-mini}
+_MACHINE=${MACHINE}
+DISTRO=${DISTRO:-fslc-framebuffer}
 EULA=1
 
-. imx-setup-release.sh $@
+FSLC_SETUP=$(pwd)/sources/compulab-fslc-bsp/tools/setup-env
+D=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
-cat ../sources/meta-mender-compulab/templates/bblayers.conf.append >> conf/bblayers.conf
-cat ../sources/meta-mender-compulab/templates/bblayers-extra.conf.append >> conf/bblayers.conf
-cat ../sources/meta-mender-community/templates/local.conf.append >> conf/local.conf
-cat ../sources/meta-mender-compulab/templates/local.conf.append >> conf/local.conf
+source setup-environment $@
+
+NO_SETUP=1 source ${FSLC_SETUP}
+source ${D}/setup-conf
+
+export MACHINE=${_MACHINE}
