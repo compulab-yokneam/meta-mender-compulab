@@ -4,7 +4,7 @@ set -e
 
 # All sizes are in blocks of 512 bytes
 
-device=$(basename $(findmnt / --output SOURCE | awk '!/SOURCE/'))
+device=$(basename $(findmnt / --noheadings --output SOURCE))
 
 MENDER_STORAGE_DEVICE=/dev/$(basename $(dirname /sys/block/*/${device}))
 MENDER_DATA_PART=/dev/${device:0:-1}4
