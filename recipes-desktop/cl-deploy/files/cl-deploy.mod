@@ -79,7 +79,7 @@ eof
 
 function post_deploy() {
 device=${DST}
-image_sign=$(uuidgen --md5 --time | awk -F"-" '$0=$1')
+image_sign=$(uuidgen --md5 --namespace @dns --name ${device} | awk -F"-" '$0=$1')
 device=${device} image_sign=${image_sign} modify_image_uuid
 device=${device} image_sign=${image_sign} modify_image_data_main
 }
