@@ -20,6 +20,8 @@ ROOTFS=$(dialog --no-items --backtitle "Select a rootfs device [ current ${D} ] 
 [[ -z ${ROOTFS} ]] && exit
 fi
 
-eval $(blkid ${ROOTFS} | awk -F":" '$0=$2')
+eval $(blkid --output export ${ROOTFS})
+
+PARTUUID=$(grep -q UUID /etc/fstab && echo ${PARTUUID} || echo ${PARTUUID:(-1)})
 
 fw_setenv mender_boot_part ${PARTUUID}
