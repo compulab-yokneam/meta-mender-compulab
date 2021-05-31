@@ -81,7 +81,7 @@ sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
 * Insert the created sd-card
 * Issue:<pre>mw.w ${loadaddr} 0x0 0x800; mmc dev 1;mmc write ${loadaddr} 0 0x4; setenv script; setenv bootscript; boot</pre>
 
-[BLOC] Impotant | The very 1-st boot will be an emergency one
+[BLOCK] Impotant | The very 1-st boot will be an emergency one
 --- | --- |
 | | The prompt will be `(or press Control-D to continue):`; press `Enter` and continue:
 
