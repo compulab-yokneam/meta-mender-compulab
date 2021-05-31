@@ -37,29 +37,18 @@ bitbake -k core-image-full-cmdline
 ```
 
 ## Deployment
-### Create an image file
+### Create a bootable sd card
 * Goto the `tmp/deploy/images/cl-som-imx7` directory:
 ```
 cd tmp/deploy/images/cl-som-imx7
 ```
 
-* Deploy the image:
+* Deploy the image to the sd card:
 ```
-bmaptool copy core-image-full-cmdline-cl-som-imx7.sdimg /path/to/mender.sd.img
-```
-
-* Deploy the u-boot.imx:
-```
-dd if=u-boot.imx of=/path/to/mender.sd.img bs=1k seek=1 conv=notrunc
+bmaptool copy core-image-full-cmdline-cl-som-imx7.sdimg /dev/sdX
 ```
 
-### Create a bootable sd card
-* Deploy the image to sd card:
-```
-sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
-```
-
-## Boot a created image
+## Boot the created image
 ### SD
 
 [BLOCK] Important | An image with `media configuration sd` must be used |
@@ -79,7 +68,8 @@ sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
 * Turn on the device
 * Stop in U-Boot
 * Insert the created sd-card
-* Issue:<pre>mw.w ${loadaddr} 0x0 0x800; mmc dev 1;mmc write ${loadaddr} 0 0x4; setenv script; setenv bootscript; boot</pre>
+* Wipe out the internal media partition table, issue:<pre>mw.w ${loadaddr} 0x0 0x800; mmc dev 1;mmc write ${loadaddr} 0 0x4</pre>
+* Make the device forget about the default boot script, issue:<pre>setenv script; setenv bootscript; reset</pre>
 
 [BLOCK] Impotant | The very 1-st boot will be an emergency one
 --- | --- |
@@ -97,4 +87,4 @@ sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
 
 ## Pre-Built image
 * [core-image-full-cmdline image  uuid](https://drive.google.com/file/d/1uFMYmxD7_7UMZkD1bsfrwK09v0ViwYsZ/view?usp=sharing)
-* [core-image-full-cmdline image block](https://drive.google.com/file/d/14GdXJ27S1_sFi4eI1u7NooLlidfJcDyH/view?usp=sharing)
+* [core-image-full-cmdline image block](https://drive.google.com/file/d/1qRE747jViclcezYrbMr5GVdeaPgw4fo4/view?usp=sharing)
