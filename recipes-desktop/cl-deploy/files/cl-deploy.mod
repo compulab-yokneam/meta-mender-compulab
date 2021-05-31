@@ -3,13 +3,25 @@
 function file_mender_mod1() {
     local _file=${mpoint}/${1}
     [[ -f ${_file} ]] || return
-    sed -i "s/^.*\(-0[[:digit:]]\)$/${image_sign}\1/g" ${_file}
+    sed "s/^.*\(-0[[:digit:]]\)$/${image_sign}\1/g" ${_file} > ${_file}.uuid
+cat > ${_file}.block << eof
+${device_base}2
+${device_base}3
+eof
+    ln -sf $(basename ${_file}).block ${_file}
 }
 
 function file_mender_mod() {
     local _file=${mpoint}/${1}
     [[ -f ${_file} ]] || return
-    sed -i "s/\(RootfsPart[A,B]\).*\(-0[[:digit:]]\)/\1\": \"${image_sign}\2/g" ${_file}
+    sed "s/\(RootfsPart[A,B]\).*\(-0[[:digit:]]\)/\1\": \"${image_sign}\2/g" ${_file} > ${_file}.uuid
+cat > ${_file}.block << eof
+{
+    "RootfsPartA": "${device_base}2",
+    "RootfsPartB": "${device_base}3"
+}
+eof
+    ln -sf $(basename ${_file}).block ${_file}
 }
 
 function file_grub_mod() {
@@ -60,6 +72,7 @@ function modify_image_data_main() {
     mpoint=$(mktemp --directory)
 
     for i in $(seq 1 4);do
+        export device_base=${device}${p}
         mount ${device}${p}${i} ${mpoint}
         part_numder=${i} mpoint=${mpoint} modify_image_data ${mpoint} ${i}
         sync;sync;sync
