@@ -96,4 +96,5 @@ sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
 * Done.
 
 ## Pre-Built image
-* [core-image-full-cmdline image](https://drive.google.com/file/d/1KdrE6PPfs8BC9delu9sxOLg9tONml0RL/view?usp=sharing)
+* [core-image-full-cmdline image  uuid](https://drive.google.com/file/d/1uFMYmxD7_7UMZkD1bsfrwK09v0ViwYsZ/view?usp=sharing)
+* [core-image-full-cmdline image block](https://drive.google.com/file/d/14GdXJ27S1_sFi4eI1u7NooLlidfJcDyH/view?usp=sharing)
