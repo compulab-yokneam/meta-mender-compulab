@@ -1,6 +1,6 @@
 function sign_image_part() {
 
-[[ -b ${SRC} && -z ${PTUUID} ]] && eval $(blkid ${SRC} | awk -F":" '($0=$2)')
+[[ -b ${SRC} && -z ${PTUUID} ]] && eval $(blkid --output export ${SRC})
 
 [[ -z ${PTUUID} ]] && return
 

@@ -92,7 +92,9 @@ eof
 
 function post_deploy() {
 device=${DST}
-image_sign=$(uuidgen --md5 --namespace @dns --name ${device} | awk -F"-" '$0=$1')
+eval $(blkid --output export ${SRC})
+# Preserv the source PTUUID 'cause the mender-uboot has this value stored in the uboot environment
+image_sign=${PTUUID}
 device=${device} image_sign=${image_sign} modify_image_uuid
 device=${device} image_sign=${image_sign} modify_image_data_main
 }
