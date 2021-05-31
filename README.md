@@ -69,14 +69,13 @@ bmaptool copy core-image-full-cmdline-cl-som-imx7.sdimg /dev/sdX
 * Stop in U-Boot
 * Insert the created sd-card
 * Wipe out the internal media partition table, issue:<pre>mw.w ${loadaddr} 0x0 0x800; mmc dev 1;mmc write ${loadaddr} 0 0x4</pre>
-* Make the device forget about the default boot script, issue:<pre>setenv script; setenv bootscript; reset</pre>
+* Make the device ignore the default boot script, issue:<pre>setenv script; setenv bootscript; reset</pre>
+* Let the device boot up
 
 [BLOCK] Impotant | The very 1-st boot will be an emergency one
 --- | --- |
 | | The prompt will be `(or press Control-D to continue):`; press `Enter` and continue:
 
-
-* Let the device boot up
 * While in Linux issue:<pre>cl-uboot; cl-deploy</pre>
 * Reboot the device
 * Stop in U-boot
