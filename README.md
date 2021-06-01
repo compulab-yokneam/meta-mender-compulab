@@ -76,7 +76,7 @@ bmaptool copy core-image-full-cmdline-cl-som-imx7.sdimg /dev/sdX
 --- | --- |
 | | The prompt will be `(or press Control-D to continue):`; press `Enter` and continue:
 
-* While in Linux issue:<pre>cl-uboot; cl-deploy</pre>
+* While in Linux issue:<pre>mr-deploy</pre>
 * Reboot the device
 * Stop in U-boot
 * Remove the media
