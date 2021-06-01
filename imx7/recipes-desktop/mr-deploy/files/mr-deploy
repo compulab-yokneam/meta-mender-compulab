@@ -1,0 +1,4 @@
+#!/bin/bash
+
+DST=/dev/mmcblk2 QUIET=Yes cl-deploy
+cl-uboot.quiet
