@@ -11,12 +11,13 @@ mkdir mender-compulab && cd mender-compulab
 CompuLab machine | UCM-iMX8M-Mini | MCM-iMX8M-Mini | iot-gate-imx8 |
 --- | --- | --- | --- |
 `MACHINE` environment setting| `MACHINE=ucm-imx8m-mini` |`MACHINE=mcm-imx8m-mini` |`MACHINE=iot-gate-imx8` |
+`MANIFEST` environment setting| `MANIFEST=mender-compulab-dunfell.xml` |`MANIFEST=mender-compulab-dunfell.xml` |`MANIFEST=mender-compulab-dunfell-iot.xml` |
 
 * Initialize and sync repo manifest:
 ```
 repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b dunfell
-wget --directory-prefix .repo/manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/dunfell/scripts/mender-compulab-dunfell.xml
-repo init -m mender-compulab-dunfell.xml
+wget --directory-prefix .repo/manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/dunfell/scripts/${MANIFEST}
+repo init -m ${MANIFEST}
 repo sync
 ```
 
