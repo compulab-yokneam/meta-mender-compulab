@@ -2,6 +2,6 @@
   <manifest>
   <remote fetch="https://github.com/compulab-yokneam" name="compulab"/>
 
-  <project name="meta-mender-compulab" remote="compulab" revision="zeus" path="sources/meta-mender-compulab"/>
+  <project name="meta-mender-compulab" remote="compulab" revision="dunfell" path="sources/meta-mender-compulab"/>
 
   </manifest>
