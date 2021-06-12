@@ -1,9 +1,37 @@
+#
 setenv grub_efi 'EFI/BOOT/bootaa64.efi'
-setenv boot_efi 'bootefi ${loadaddr} ${fdtcontroladdr}'
+setenv boot_efi 'bootefi ${loadaddr} ${fdt_addr}'
 
-load usb 0 ${loadaddr} ${grub_efi} && run boot_efi
-load mmc 1 ${loadaddr} ${grub_efi} && run boot_efi
-load mmc 2 ${loadaddr} ${grub_efi} && run boot_efi
+grub_env=EFI/BOOT/mender_grubenv1/env
+
+#env1=EFI/BOOT/mender_grubenv1/env
+#env2=EFI/BOOT/mender_grubenv2/env
+
+# efi
+setenv load_efi 'load ${devtype} ${devnum} ${loadaddr} ${grub_efi}'
+
+# fdt
+setenv load_env0 'load ${devtype} ${devnum} ${initrd_addr} ${grub_env} && env import -t ${initrd_addr} ${filesize}'
+setenv load_env1 'env exists mender_boot_part || setenv mender_boot_part 2'
+setenv load_env 'run load_env0; run load_env1'
+setenv load_fdt 'run load_env; load ${devtype} ${devnum}:${mender_boot_part} ${fdt_addr} /boot/${fdt_file}'
+
+# boot
+setenv boot_cmd 'run load_fdt && run load_efi && run boot_efi'
+
+setenv bootcmd_mmc0 'devtype=mmc; devnum=0;'
+setenv bootcmd_mmc1 'devtype=mmc; devnum=1;'
+setenv bootcmd_mmc2 'devtype=mmc; devnum=2;'
+setenv bootcmd_usb0 'devtype=usb; devnum=0;'
+
+env exist iface && env exist dev && bootdev=${iface}${dev}
+test -e ${bootdev} && run bootcmd_${bootdev} && run boot_cmd
+
+boot_devs='usb0 mmc1 mmc2'
+for boot_dev in ${boot_devs};do
+echo Trying ${boot_dev}
+run bootcmd_${boot_dev}; run boot_cmd;
+done
 
 setenv script
 
