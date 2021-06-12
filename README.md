@@ -12,26 +12,11 @@ CompuLab machine | UCM-iMX8M-Mini | MCM-iMX8M-Mini | iot-gate-imx8 |
 --- | --- | --- | --- |
 `MACHINE` environment setting| `MACHINE=ucm-imx8m-mini` |`MACHINE=mcm-imx8m-mini` |`MACHINE=iot-gate-imx8` |
 
-## Initialize repo manifests
-
-* FSL Community
+* Initialize and sync repo manifest:
 ```
 repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b dunfell
-```
-
-* Mender
-```
-wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/mendersoftware/meta-mender-community/dunfell/scripts/mender-no-setup.xml
-```
-
-* CompuLab FSLC & Mender
-```
-wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/compulab-yokneam/compulab-fslc-bsp/master/scripts/compulab-bsp-setup.xml
-wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/dunfell/scripts/mender-compulab-only.xml
-```
-
-* Sync Them all
-```
+wget --directory-prefix .repo/manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/dunfell/scripts/mender-compulab-dunfell.xml
+repo init -m mender-compulab-dunfell.xml
 repo sync
 ```
 
@@ -39,11 +24,11 @@ repo sync
 
 * Initialize the build environment:
 ```
-source sources/meta-mender-compulab/tools/setup-env build-fslc-${MACHINE}
+source compulab-setup-env build-fslc-${MACHINE}
 ```
 * Building the image:
 ```
-bitbake -k core-image-base
+bitbake -k core-image-full-cmdline
 ```
 
 ## Deployment
@@ -53,15 +38,9 @@ bitbake -k core-image-base
 cd tmp/deploy/images/${MACHINE}
 ```
 
-* Deploy the image:
+* Deploy the image to the sd card:
 ```
-bmaptool copy core-image-base-${MACHINE}.sdimg /path/to/mender.sd.img
-```
-
-### Create a bootable sd card
-* Deploy the image to sd card:
-```
-sudo dd if=/path/to/mender.sd.img of=/dev/sdX bs=1M status=progress
+bmaptool copy core-image-full-cmdline-${MACHINE}.sdimg /dev/sdX
 ```
 
 ### Installing the mender image onto the eMMC
