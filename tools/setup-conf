@@ -1,6 +1,7 @@
 cat ../sources/meta-mender-compulab/templates/bblayers-mender.conf.append >> conf/bblayers.conf
 cat ../sources/meta-mender-community/templates/local.conf.append >> conf/local.conf
 
+cat ../sources/meta-mender-compulab/templates/local-extra.conf.append >> conf/local.conf
 # generate an unique uuid for earch setup
 image_sign=$(uuidgen --md5 --time | awk -F"-" '$0=$1')
 sed "s|##UUID##|${image_sign}|g" ../sources/meta-mender-compulab/templates/local.conf.append >> conf/local.conf
