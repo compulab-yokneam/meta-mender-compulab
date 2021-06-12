@@ -17,24 +17,17 @@ CompuLab machine | UCM-iMX8M-Mini | MCM-iMX8M-Mini | iot-gate-imx8 |
 * FSL Community
 ```
 repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b dunfell
-repo sync
 ```
 
 * Mender
 ```
-mkdir -p .repo/local_manifests
-cd .repo/local_manifests
-https://raw.githubusercontent.com/mendersoftware/meta-mender-community/dunfell/scripts/mender-no-setup.xml
-cd -
+wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/mendersoftware/meta-mender-community/dunfell/scripts/mender-no-setup.xml
 ```
 
 * CompuLab FSLC & Mender
 ```
-mkdir -p .repo/local_manifests
-cd .repo/local_manifests
-wget https://raw.githubusercontent.com/compulab-yokneam/compulab-fslc-bsp/master/scripts/compulab-bsp-setup.xml
-wget https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/zeus/scripts/mender-compulab-only.xml
-cd -
+wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/compulab-yokneam/compulab-fslc-bsp/master/scripts/compulab-bsp-setup.xml
+wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/dunfell/scripts/mender-compulab-only.xml
 ```
 
 * Sync Them all
