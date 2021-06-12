@@ -1,1 +1,5 @@
+# Mender extra conf
 CORE_IMAGE_EXTRA_INSTALL += " mr-deploy "
+
+PACKAGE_CLASSES = "package_deb"
+
