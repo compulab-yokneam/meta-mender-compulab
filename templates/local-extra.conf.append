@@ -1,4 +1,6 @@
 # Mender extra conf
+IMAGE_BOOT_FILES_append = " boot.scr "
+
 CORE_IMAGE_EXTRA_INSTALL += " mr-deploy "
 
 PACKAGE_CLASSES = "package_deb"
