@@ -31,4 +31,4 @@ FILES_${PN} += "/boot/"
 RPROVIDES_${PN} += "u-boot-script"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-COMPATIBLE_MACHINE = "(mcm-imx8m-mini|ucm-imx8m-mini|iot-gate-imx8)"
+COMPATIBLE_MACHINE = "(mcm-imx8m-mini|ucm-imx8m-mini|iot-gate-imx8|ucm-imx8m-plus)"
