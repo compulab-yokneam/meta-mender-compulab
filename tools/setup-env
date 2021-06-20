@@ -1,15 +1,13 @@
 #!/bin/bash -e
-MACHINE=${MACHINE:-ucm-imx8m-mini}
+MACHINE=${MACHINE:-ucm-imx8m-plus}
 _MACHINE=${MACHINE}
-DISTRO=${DISTRO:-fslc-framebuffer}
+DISTRO=${DISTRO:-fsl-imx-xwayland}
 EULA=1
 
-FSLC_SETUP=$(pwd)/sources/compulab-fslc-bsp/tools/setup-env
 D=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
-source setup-environment $@
+source imx-setup-release.sh $@
 
-NO_SETUP=1 source ${FSLC_SETUP}
 source ${D}/setup-conf
 
 export MACHINE=${_MACHINE}
