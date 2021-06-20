@@ -18,7 +18,7 @@ repo sync
 
 * Download CompuLab meta layer:
 ```
-git clone -b imx8 https://github.com/compulab-yokneam/meta-mender-compulab.git sources/meta-mender-compulab/
+git clone -b sumo https://github.com/compulab-yokneam/meta-mender-compulab.git sources/meta-mender-compulab/
 ```
 
 ## Setup build environment
