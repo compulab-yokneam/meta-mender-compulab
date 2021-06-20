@@ -1,12 +1,8 @@
 #!/bin/bash -e
-MACHINE=${MACHINE:-ucm-imx8m-plus}
-_MACHINE=${MACHINE}
-DISTRO=${DISTRO:-fsl-imx-xwayland}
-EULA=1
 
 D=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
-source imx-setup-release.sh $@
+source compulab-setup-env $@
 
 source ${D}/setup-conf
 

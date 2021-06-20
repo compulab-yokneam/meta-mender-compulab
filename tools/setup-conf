@@ -5,3 +5,9 @@ cat ../sources/meta-mender-compulab/templates/local-extra.conf.append >> conf/lo
 # generate an unique uuid for earch setup
 image_sign=$(uuidgen --md5 --time | awk -F"-" '$0=$1')
 sed "s|##UUID##|${image_sign}|g" ../sources/meta-mender-compulab/templates/local.conf.append >> conf/local.conf
+
+# Make the mender-core/demo support gatesgarth
+MENDER_SRC=../sources/meta-mender
+for layer_conf in ${MENDER_SRC}/meta-mender-core/conf/layer.conf ${MENDER_SRC}/meta-mender-demo/conf/layer.conf;do
+sed -i '/gatesgarth/d; $ a LAYERSERIES_COMPAT_mender_append = " gatesgarth"' ${layer_conf}
+done
