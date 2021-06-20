@@ -8,15 +8,15 @@ mkdir mender-compulab && cd mender-compulab
 ```
 * Set a CompuLab machine:
 
-CompuLab machine | UCM-iMX8M-Mini | MCM-iMX8M-Mini | iot-gate-imx8 |
---- | --- | --- | --- |
-`MACHINE` environment setting| `MACHINE=ucm-imx8m-mini` |`MACHINE=mcm-imx8m-mini` |`MACHINE=iot-gate-imx8` |
-`MANIFEST` environment setting| `MANIFEST=mender-compulab-dunfell.xml` |`MANIFEST=mender-compulab-dunfell.xml` |`MANIFEST=mender-compulab-dunfell-iot.xml` |
+CompuLab machine | UCM-iMX8M-Plus |
+--- | --- |
+`MACHINE` environment setting| `MACHINE=ucm-imx8m-plus` |
+`MANIFEST` environment setting| `MANIFEST=mender-compulab-gatesgarth.xml` |
 
 * Initialize and sync repo manifest:
 ```
-repo init -u https://github.com/Freescale/fsl-community-bsp-platform -b dunfell
-wget --output-document=.repo/manifests/mender-compulab.xml https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/dunfell/scripts/${MANIFEST}
+repo init -u https://source.codeaurora.org/external/imx/imx-manifest -b imx-linux-gatesgarth -m imx-5.10.9-1.0.0.xml
+wget --output-document=.repo/manifests/mender-compulab.xml https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/gatesgarth/scripts/${MANIFEST}
 repo init -m mender-compulab.xml
 repo sync
 ```
@@ -25,7 +25,7 @@ repo sync
 
 * Initialize the build environment:
 ```
-source compulab-setup-env build-fslc-${MACHINE}
+source mender-setup-env build-${MACHINE}
 ```
 * Building the image:
 ```
