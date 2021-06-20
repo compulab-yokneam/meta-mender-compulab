@@ -1,3 +1,10 @@
+DONE_CONF=conf/done.conf
+
+if [[ -e ${DONE_CONF} ]];then
+cat << eof
+Already configured
+eof
+else
 cat ../sources/meta-mender-compulab/templates/bblayers-mender.conf.append >> conf/bblayers.conf
 cat ../sources/meta-mender-community/templates/local.conf.append >> conf/local.conf
 
@@ -6,8 +13,13 @@ cat ../sources/meta-mender-compulab/templates/local-extra.conf.append >> conf/lo
 image_sign=$(uuidgen --md5 --time | awk -F"-" '$0=$1')
 sed "s|##UUID##|${image_sign}|g" ../sources/meta-mender-compulab/templates/local.conf.append >> conf/local.conf
 
+touch ${DONE_CONF}
+fi
+
 # Make the mender-core/demo support gatesgarth
 MENDER_SRC=../sources/meta-mender
 for layer_conf in ${MENDER_SRC}/meta-mender-core/conf/layer.conf ${MENDER_SRC}/meta-mender-demo/conf/layer.conf;do
-sed -i '/gatesgarth/d; $ a LAYERSERIES_COMPAT_mender_append = " gatesgarth"' ${layer_conf}
+eval $(awk '/^BBFILE_COLLECTIONS/&&($0="BBFILE_COLLECTIONS="$NF)' ${layer_conf})
+sed -i '/gatesgarth/d' ${layer_conf}
+sed -i "$ a LAYERSERIES_COMPAT_${BBFILE_COLLECTIONS}_append = \" gatesgarth \"" ${layer_conf}
 done
