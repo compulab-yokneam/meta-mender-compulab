@@ -58,3 +58,25 @@ reboot
 ```
 env default -a; saveenv; reset
 ```
+
+# Run time
+* Accessing the environment:
+
+Owner | Command | Conf File |
+--- | --- | --- |
+Bootloader|`/usr/local/bin/fw_printenv/setenv`|`/etc/fw_env.config`
+Mender|`/usr/bin/fw_printenv/setenv`|`/etc/mender_grubenv.config`
+
+## Mender environment:
+* Get 
+``` bashscript
+/usr/bin/fw_printenv
+bootcount=0
+mender_boot_part=2
+upgrade_available=0
+```
+* Set
+  * Change the mender boot partition:
+``` bashscript
+/usr/bin/fw_setenv mender_boot_part 3
+```
