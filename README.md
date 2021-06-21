@@ -64,11 +64,25 @@ env default -a; saveenv; reset
 
 Owner | Command | Conf File |
 --- | --- | --- |
-Bootloader|`/usr/local/bin/fw_printenv/setenv`|`/etc/fw_env.config`
-Mender|`/usr/bin/fw_printenv/setenv`|`/etc/mender_grubenv.config`
+Bootloader|`/usr/local/bin/{fw_printenv,cl_setenv}`|`/etc/fw_env.config`
+Mender|`/usr/bin/{fw_printenv,fw_setenv}`|`/etc/mender_grubenv.config`
+
+## Bootloader environment:
+* Get
+  * The bootloader default device tree:
+``` bashscript
+/usr/local/bin/fw_printenv fdt_file
+fdt_file=ucm-imx8m-plus.dtb
+```
+* Set
+  * The bootloader default device tree:
+``` bashscript
+cl_setenv fdt_file ucm-imx8m-plus_mipi-csi1.dtb
+```
 
 ## Mender environment:
-* Get 
+* Get
+  * Full Mender environment:
 ``` bashscript
 /usr/bin/fw_printenv
 bootcount=0
@@ -76,7 +90,7 @@ mender_boot_part=2
 upgrade_available=0
 ```
 * Set
-  * Change the mender boot partition:
+  * The Mender boot partition:
 ``` bashscript
 /usr/bin/fw_setenv mender_boot_part 3
 ```
