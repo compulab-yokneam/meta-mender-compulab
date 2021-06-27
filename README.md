@@ -64,20 +64,20 @@ env default -a; saveenv; reset
 
 Owner | Command | Conf File |
 --- | --- | --- |
-Bootloader|`/usr/local/bin/{fw_printenv,cl_setenv}`|`/etc/fw_env.config`
+Bootloader|`/opt/compulab/u-boot-compulab-fw-utils/{fw_printenv,cl_setenv}`|`/etc/fw_env.config`
 Mender|`/usr/bin/{fw_printenv,fw_setenv}`|`/etc/mender_grubenv.config`
 
 ## Bootloader environment:
 * Get
   * The bootloader default device tree:
 ``` bashscript
-/usr/local/bin/fw_printenv fdt_file
+/opt/compulab/u-boot-compulab-fw-utils/fw_printenv fdt_file
 fdt_file=ucm-imx8m-plus.dtb
 ```
 * Set
   * The bootloader default device tree:
 ``` bashscript
-cl_setenv fdt_file ucm-imx8m-plus_mipi-csi1.dtb
+/opt/compulab/u-boot-compulab-fw-utils/cl_setenv fdt_file ucm-imx8m-plus_mipi-csi1.dtb
 ```
 
 ## Mender environment:
