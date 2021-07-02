@@ -3,6 +3,7 @@ IMAGE_BOOT_FILES_append = " boot.scr "
 
 CORE_IMAGE_EXTRA_INSTALL += " mr-deploy "
 CORE_IMAGE_EXTRA_INSTALL += " u-boot-script "
+CORE_IMAGE_EXTRA_INSTALL += " mender-artifact "
 
 PACKAGE_CLASSES = "package_deb"
 
