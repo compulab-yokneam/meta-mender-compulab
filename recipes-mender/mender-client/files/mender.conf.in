@@ -1,0 +1,4 @@
+{
+    "RootfsPartA": "/dev/disk/by-partuuid/MENDER_ROOTFS_PART_A"
+    "RootfsPartB": "/dev/disk/by-partuuid/MENDER_ROOTFS_PART_B"
+}
