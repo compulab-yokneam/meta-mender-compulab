@@ -17,25 +17,23 @@ eoh
 function file_mender_mod1() {
     local _file=${mpoint}/${1}
     [[ -f ${_file} ]] || return
-    sed "s/^.*\(-0[[:digit:]]\)$/${image_sign}\1/g" ${_file} > ${_file}.uuid
-cat > ${_file}.block << eof
-${device_base}2
-${device_base}3
+    mv ${_file} ${_file}.src
+cat > ${_file} << eof
+/dev/disk/by-partuuid/${image_sign}-02
+/dev/disk/by-partuuid/${image_sign}-03
 eof
-    ln -sf $(basename ${_file}).block ${_file}
 }
 
 function file_mender_mod() {
     local _file=${mpoint}/${1}
     [[ -f ${_file} ]] || return
-    sed "s/\(RootfsPart[A,B]\).*\(-0[[:digit:]]\)/\1\": \"${image_sign}\2/g" ${_file} > ${_file}.uuid
-cat > ${_file}.block << eof
+    mv ${_file} ${_file}.src
+cat > ${_file} << eof
 {
-    "RootfsPartA": "${device_base}2",
-    "RootfsPartB": "${device_base}3"
+    "RootfsPartA": "/dev/disk/by-partuuid/${image_sign}-02"
+    "RootfsPartB": "/dev/disk/by-partuuid/${image_sign}-03"
 }
 eof
-    ln -sf $(basename ${_file}).block ${_file}
 }
 
 function file_grub_mod() {
