@@ -45,7 +45,10 @@ bmaptool copy core-image-full-cmdline-${MACHINE}.sdimg /dev/sdX
 ```
 
 ### Installing the mender image onto the eMMC
-* Boot up the device using the mender sd card with 'AltBoot'.
+* Boot up the device using the created media, stop in U-boot and issue:
+```
+setenv script; boot;
+```
 * Wait for the Linux prompt and issue:
 ```
 mr-deploy
@@ -54,7 +57,7 @@ mr-deploy
 ```
 reboot
 ```
-* Stop in U-boot, remove the sd card and issue:
+* Stop in U-boot, remove the installation media and issue:
 ```
 env default -a; saveenv; reset
 ```
