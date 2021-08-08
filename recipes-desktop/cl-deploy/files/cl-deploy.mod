@@ -16,42 +16,47 @@ eoh
 
 function file_mender_mod1() {
     local _file=${mpoint}/${1}
-    [[ -f ${_file} ]] || return
-    mv ${_file} ${_file}.src
+    [[ -f ${_file} ]] && {
+mv ${_file} ${_file}.src
 cat > ${_file} << eof
 /dev/disk/by-partuuid/${image_sign}-02
 /dev/disk/by-partuuid/${image_sign}-03
 eof
+} || true
 }
 
 function file_mender_mod() {
     local _file=${mpoint}/${1}
-    [[ -f ${_file} ]] || return
-    mv ${_file} ${_file}.src
+    [[ -f ${_file} ]] && {
+mv ${_file} ${_file}.src
 cat > ${_file} << eof
 {
     "RootfsPartA": "/dev/disk/by-partuuid/${image_sign}-02",
     "RootfsPartB": "/dev/disk/by-partuuid/${image_sign}-03"
 }
 eof
+} || true
 }
 
 function file_grub_mod() {
     local _file=${mpoint}/${1}
-    [[ -f ${_file} ]] || return
-    sed -i "s/\(mender_rootfs[a,b]_uuid=\).*\(-0[[:digit:]]\)/\1${image_sign}\2/g" ${_file}
+    [[ -f ${_file} ]] && {
+sed -i "s/\(mender_rootfs[a,b]_uuid=\).*\(-0[[:digit:]]\)/\1${image_sign}\2/g" ${_file}
+} || true
 }
 
 function file_extlinux_mod() {
     local _file=${mpoint}/${1}
-    [[ -f ${_file} ]] || return
-    sed -i "s/\(root=PARTUUID=\).*-0[[:digit:]]/\1${image_sign}-0${part_numder}/g" ${_file}
+    [[ -f ${_file} ]] && {
+sed -i "s/\(root=PARTUUID=\).*-0[[:digit:]]/\1${image_sign}-0${part_numder}/g" ${_file}
+} || true
 }
 
 function file_fstab_mod() {
     local _file=${mpoint}/${1}
-    [[ -f ${_file} ]] || return
-    sed -i "s/\(PARTUUID=\).*\(-0[[:digit:]]\)/\1${image_sign}\2/g" ${_file}
+    [[ -f ${_file} ]] && {
+sed -i "s/\(PARTUUID=\).*\(-0[[:digit:]]\)/\1${image_sign}\2/g" ${_file}
+} || true
 }
 
 function modify_image_p4() {
