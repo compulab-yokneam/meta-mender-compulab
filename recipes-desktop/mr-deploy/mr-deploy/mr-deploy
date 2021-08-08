@@ -1,44 +1,15 @@
 #!/bin/bash
 
-function mender_dev_convert() {
+dst=mmcblk2
+DST=${DST:-/dev/${dst}}
+dst=$(basename ${DST})
 
-mpoint=/tmp/media
-
-src=${src:-mmcblk1}
-dst=${dst:-mmcblk2}
-
-declare -A devarr=( [1]=/EFI/BOOT/grub.cfg [2]="/etc/fstab /usr/bin/mender-client-resize-data-part" [3]="/etc/fstab /usr/bin/mender-client-resize-data-part" [4]=/mender/mender.conf )
-[[ ${dst} =~ "mmc" ]] && p="p" || p=""
-
-mkdir -p ${mpoint}
-
-for d in ${!devarr[@]};do
-
-_dev=/dev/${dst}${p}${d}
-if [ -b ${_dev} ];then
-
-mount ${_dev} ${mpoint}
-
-for _file in ${devarr[${d}]};do
-if [ -f ${mpoint}/${_file} ];then
-	sed -i "s/${src}/${dst}/" ${mpoint}/${_file}
-fi
-done
-
-umount ${_dev}
-
-fi
-
-done
-
-rm -rf ${mpoint}
-
-}
-
-export src=mmcblk1 dst=mmcblk2
-export SRC=/dev/${src} DST=/dev/${dst} QUIET=Yes
+# File system
+export QUIET=Yes
+export DST=${DST}
 cl-deploy
 
+# Bootloader
 declare -A bootcan=( [mmcblk1]=mmcblk1 [mmcblk2]=mmcblk2boot0 )
 export IMX_BOOT=$(ls /boot/*flash_evk | tail -1)
 export IMX_DEV=/dev/${bootcan[${dst}]}
