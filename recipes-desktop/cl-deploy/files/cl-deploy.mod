@@ -30,7 +30,7 @@ function file_mender_mod() {
     mv ${_file} ${_file}.src
 cat > ${_file} << eof
 {
-    "RootfsPartA": "/dev/disk/by-partuuid/${image_sign}-02"
+    "RootfsPartA": "/dev/disk/by-partuuid/${image_sign}-02",
     "RootfsPartB": "/dev/disk/by-partuuid/${image_sign}-03"
 }
 eof
