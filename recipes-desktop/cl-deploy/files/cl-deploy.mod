@@ -98,7 +98,7 @@ function modify_image_data_main() {
 }
 
 function modify_image_uuid() {
-cat << eof | sudo fdisk ${device}
+cat << eof | fdisk ${device}
 x
 i
 0x${image_sign}
