@@ -3,6 +3,7 @@ PACKAGE_CLASSES = 'package_deb package_tar'
 CORE_IMAGE_EXTRA_INSTALL += " dhcp-client rng-tools cl-root cl-uboot cl-deploy cl-camera cl-stest memtester htop iotop tmux iperf3 stress-ng  video-mode  u-boot-fw-utils  kernel-modules firmware-imx-sdma linux-firmware-wl18xx linux-firmware-wlcommon linux-firmware-ti-connectivity-license bluez5 wpa-supplicant wvdial wvdial-compulab"
 CORE_IMAGE_EXTRA_INSTALL += " modemmanager networkmanager "
 CORE_IMAGE_EXTRA_INSTALL += " mr-deploy "
+CORE_IMAGE_EXTRA_INSTALL += " u-boot-update-script "
 
 IMAGE_FEATURES += " package-management ssh-server-openssh "
 LICENSE_FLAGS_WHITELIST = "commercial"
