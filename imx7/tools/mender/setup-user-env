@@ -22,7 +22,16 @@ awk '!/^#/' ${TEMPL}/bblayers.conf.hab.append | tee -a ${BBLAYERS_CONF} > /dev/n
 fi
 }
 
-declare -A ARRAYNAME=( [media]="sd" )
+autoinstaller=( yes no )
+cfg_autoinstaller() {
+if [[ $1 == "yes" ]];then
+cat << EOF >> ${user_local_conf}
+CL_DEPLOY_AUTO = "1"
+EOF
+fi
+}
+
+declare -A ARRAYNAME=( [media]="emmc" [autoinstaller]="yes" )
 
 cat << EOF
 --- Users' Configurations started ---
