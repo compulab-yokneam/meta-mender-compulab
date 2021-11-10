@@ -28,8 +28,17 @@ BLOCK|MENDER_BLOCK_DEVICE=Yes source compulab-setup-env -b build-block|
 1) default
 2) sd
 3) emmc
-media configuration [ sd ] (Ctrl^C -- exit) :
+media configuration [ emmc ] (Ctrl^C -- exit) :
 ```
+* [AUTO_INSTALLER] Choose an autoinstaller option:
+```
+--- Users' Configurations started ---
+1) default
+2) yes
+3) no
+autoinstaller configuration [ yes ] (Ctrl^C -- exit) :
+```
+This option allows using the created removable media as an auto installer device.
 
 * Building the image:
 ```
@@ -37,18 +46,32 @@ bitbake -k core-image-full-cmdline
 ```
 
 ## Deployment
-### Create a bootable sd card
+### Create a bootable removable media:
 * Goto the `tmp/deploy/images/cl-som-imx7` directory:
 ```
 cd tmp/deploy/images/cl-som-imx7
 ```
 
-* Deploy the image to the sd card:
+* Deploy the image to a removable media, it can be either an sd-card or a usb-stick:
 ```
 bmaptool copy core-image-full-cmdline-cl-som-imx7.sdimg /dev/sdX
 ```
 
 ## Boot the created image
+### AUTO_INSTALLER SD/USB
+
+[BLOCK] Important | An image with `media configuration emmc` must be used |
+--- | --- |
+
+* Turn off the device
+* Insert the created auto installer media
+* Turn on the device
+* Stop in U-Boot
+* Make the device restore the default environment, issue:<pre>env default -a; saveenv; reset</pre>
+* Let the device boot up and start auto installation procedure
+* Wait for a 'SUCCESS' message box, remove the installation media and reboot the device
+* Done.
+
 ### SD
 
 [BLOCK] Important | An image with `media configuration sd` must be used |
