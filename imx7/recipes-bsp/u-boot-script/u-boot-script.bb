@@ -11,10 +11,13 @@ SRC_FILE = "${@bb.utils.contains('MENDER_FEATURES_ENABLE', 'mender-partuuid', 'b
 SRC_URI = " \
     file://boot.cmd.uuid \
     file://boot.cmd \
+    file://boot.cmd.ai \
 "
 
 do_compile() {
-	mkimage -C none -A arm -T script -d "${WORKDIR}/${SRC_FILE}" boot.scr
+	cat ${WORKDIR}/boot.cmd.ai ${WORKDIR}/${SRC_FILE} > ${WORKDIR}/boot.in
+	mkimage -C none -A arm -T script -d ${WORKDIR}/boot.in boot.scr
+	rm -rf ${WORKDIR}/boot.in
 }
 
 inherit deploy
