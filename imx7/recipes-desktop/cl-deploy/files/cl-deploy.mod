@@ -2,7 +2,7 @@
 
 function file_mender_mod1() {
     local _file=${mpoint}/${1}
-    [[ -f ${_file} ]] || return
+    [[ -f ${_file} ]] || return 0
     sed "s/^.*\(-0[[:digit:]]\)$/${image_sign}\1/g" ${_file} > ${_file}.uuid
 cat > ${_file}.block << eof
 ${device_base}2
@@ -13,7 +13,7 @@ eof
 
 function file_mender_mod() {
     local _file=${mpoint}/${1}
-    [[ -f ${_file} ]] || return
+    [[ -f ${_file} ]] || return 0
     sed "s/\(RootfsPart[A,B]\).*\(-0[[:digit:]]\)/\1\": \"${image_sign}\2/g" ${_file} > ${_file}.uuid
 cat > ${_file}.block << eof
 {
@@ -26,19 +26,19 @@ eof
 
 function file_grub_mod() {
     local _file=${mpoint}/${1}
-    [[ -f ${_file} ]] || return
+    [[ -f ${_file} ]] || return 0
     sed -i "s/\(mender_rootfs[a,b]_uuid=\).*\(-0[[:digit:]]\)/\1${image_sign}\2/g" ${_file}
 }
 
 function file_extlinux_mod() {
     local _file=${mpoint}/${1}
-    [[ -f ${_file} ]] || return
+    [[ -f ${_file} ]] || return 0
     sed -i "s/\(root=PARTUUID=\).*-0[[:digit:]]/\1${image_sign}-0${part_numder}/g" ${_file}
 }
 
 function file_fstab_mod() {
     local _file=${mpoint}/${1}
-    [[ -f ${_file} ]] || return
+    [[ -f ${_file} ]] || return 0
     sed -i "s/\(PARTUUID=\).*\(-0[[:digit:]]\)/\1${image_sign}\2/g" ${_file}
 }
 
@@ -81,7 +81,7 @@ function modify_image_data_main() {
 }
 
 function modify_image_uuid() {
-cat << eof | sudo fdisk ${device}
+cat << eof | fdisk ${device}
 x
 i
 0x${image_sign}
