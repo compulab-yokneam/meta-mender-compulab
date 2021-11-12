@@ -16,18 +16,27 @@ SRC_URI = " \
 
 do_compile() {
 	cat ${WORKDIR}/boot.cmd.ai ${WORKDIR}/${SRC_FILE} > ${WORKDIR}/boot.in
-	mkimage -C none -A arm -T script -d ${WORKDIR}/boot.in boot.scr
+	mkimage -C none -A arm -T script -d ${WORKDIR}/boot.in ${WORKDIR}/boot.scr
 	rm -rf ${WORKDIR}/boot.in
 }
 
 inherit deploy
 
 do_deploy() {
-	install -d ${DEPLOYDIR}
-	install -m 0644 boot.scr ${DEPLOYDIR}
+    install -d ${DEPLOYDIR}
+    install -m 0644 ${WORKDIR}/boot.scr ${DEPLOYDIR}
+}
+
+do_install() {
+    install -d ${D}/boot
+    install -m 0644 ${WORKDIR}/boot.scr ${D}/boot/
 }
 
 addtask do_deploy after do_compile before do_build
+
+FILES_${PN} += "/boot/"
+
+RPROVIDES_${PN} += "u-boot-script"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 COMPATIBLE_MACHINE = "(cl-som-imx7)"
