@@ -1,0 +1,1 @@
+DEBIANNAME_${PN} = "dbus"
