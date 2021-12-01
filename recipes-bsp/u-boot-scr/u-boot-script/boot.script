@@ -10,6 +10,8 @@ setenv grub_env EFI/BOOT/mender_grubenv1/env
 # efi
 setenv load_efi 'load ${devtype} ${devnum} ${loadaddr} ${grub_efi}'
 
+# Try to create a variable if not exists
+env exist fdt_file || setenv fdt_file ${fdtfile}
 # fdt
 setenv load_env0 'load ${devtype} ${devnum} ${initrd_addr} ${grub_env} && env import -t ${initrd_addr} ${filesize}'
 setenv load_env1 'env exists mender_boot_part || setenv mender_boot_part 2'
