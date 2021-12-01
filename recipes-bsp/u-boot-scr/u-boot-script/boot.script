@@ -2,7 +2,7 @@
 setenv grub_efi 'EFI/BOOT/bootaa64.efi'
 setenv boot_efi 'bootefi ${loadaddr} ${fdt_addr}'
 
-grub_env=EFI/BOOT/mender_grubenv1/env
+setenv grub_env EFI/BOOT/mender_grubenv1/env
 
 #env1=EFI/BOOT/mender_grubenv1/env
 #env2=EFI/BOOT/mender_grubenv2/env
@@ -19,10 +19,10 @@ setenv load_fdt 'run load_env; load ${devtype} ${devnum}:${mender_boot_part} ${f
 # boot
 setenv boot_cmd 'run load_fdt && run load_efi && run boot_efi'
 
-setenv bootcmd_mmc0 'devtype=mmc; devnum=0;'
-setenv bootcmd_mmc1 'devtype=mmc; devnum=1;'
-setenv bootcmd_mmc2 'devtype=mmc; devnum=2;'
-setenv bootcmd_usb0 'devtype=usb; devnum=0;'
+setenv bootcmd_mmc0 'setenv devtype mmc; setenv devnum 0;'
+setenv bootcmd_mmc1 'setenv devtype mmc; setenv devnum 1;'
+setenv bootcmd_mmc2 'setenv devtype mmc; setenv devnum 2;'
+setenv bootcmd_usb0 'setenv devtype usb; setenv devnum 0;'
 
 env exist iface && env exist dev && bootdev=${iface}${dev}
 test -e ${bootdev} && run bootcmd_${bootdev} && run boot_cmd
