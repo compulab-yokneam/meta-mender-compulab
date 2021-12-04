@@ -13,9 +13,9 @@ for src in ${bootlist};do
 run ${src}
 # Try updating the u-boot 1-st
 load ${iface} ${inst_dev}:${inst_part} ${loadaddr} boot/boot.update.scr && source ${loadaddr}
-load ${iface} ${inst_dev}:${inst_part} ${loadaddr} boot/auto && setenv auto_install 1
+load ${iface} ${inst_dev}:${inst_part} ${loadaddr} boot/auto && setenv auto_install yes
 
-if test ${auto_install} = 1; then
+if env exist auto_install;then
 setenv bootargs "console=${console},${baudrate} root=${kernel_root} rootwait rw "
 setenv bootargs ${bootargs} init=/usr/local/bin/cl-init
 load ${iface} ${inst_dev}:${inst_part} ${loadaddr} /boot/${kernel}

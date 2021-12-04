@@ -18,6 +18,9 @@ do_compile() {
 	cat ${WORKDIR}/boot.cmd.ai ${WORKDIR}/${SRC_FILE} > ${WORKDIR}/boot.in
 	mkimage -C none -A arm -T script -d ${WORKDIR}/boot.in ${WORKDIR}/boot.scr
 	rm -rf ${WORKDIR}/boot.in
+	( cat ${WORKDIR}/boot.cmd.ai; echo "setenv bootscript; boot" ) > ${WORKDIR}/boot.in
+	mkimage -C none -A arm -T script -d ${WORKDIR}/boot.in ${WORKDIR}/boot.auto.scr
+	rm -rf ${WORKDIR}/boot.in
 }
 
 inherit deploy
@@ -25,11 +28,13 @@ inherit deploy
 do_deploy() {
     install -d ${DEPLOYDIR}
     install -m 0644 ${WORKDIR}/boot.scr ${DEPLOYDIR}
+    install -m 0644 ${WORKDIR}/boot.auto.scr ${DEPLOYDIR}
 }
 
 do_install() {
     install -d ${D}/boot
     install -m 0644 ${WORKDIR}/boot.scr ${D}/boot/
+    install -m 0644 ${WORKDIR}/boot.auto.scr ${D}/boot/
 }
 
 addtask do_deploy after do_compile before do_build
