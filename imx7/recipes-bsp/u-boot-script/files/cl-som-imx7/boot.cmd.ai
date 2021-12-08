@@ -16,6 +16,7 @@ load ${iface} ${inst_dev}:${inst_part} ${loadaddr} boot/boot.update.scr && sourc
 load ${iface} ${inst_dev}:${inst_part} ${loadaddr} boot/auto && setenv auto_install yes
 
 if env exist auto_install;then
+setenv init_env yes; saveenv
 setenv bootargs "console=${console},${baudrate} root=${kernel_root} rootwait rw "
 setenv bootargs ${bootargs} init=/usr/local/bin/cl-init
 load ${iface} ${inst_dev}:${inst_part} ${loadaddr} /boot/${kernel}
