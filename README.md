@@ -25,7 +25,7 @@ repo sync
 
 * Initialize the build environment:
 ```
-source mender-setup-env build-${MACHINE}
+source mender-setup-env -b build-${MACHINE}
 ```
 * Building the image:
 ```
