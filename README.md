@@ -46,6 +46,11 @@ bmaptool copy core-image-full-cmdline-${MACHINE}.sdimg /dev/sdX
 
 ### Installing the mender image onto the eMMC
 * Boot up the device using the created media, stop in U-boot and issue:
+
+
+Note| This is a mandatory step, don't try issuing the USB boot with the mender boot script
+--- | --- 
+
 ```
 setenv script; boot;
 ```
