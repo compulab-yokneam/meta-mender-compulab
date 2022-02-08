@@ -41,7 +41,7 @@ cd tmp/deploy/images/${MACHINE}
 
 * Deploy the image to the sd card:
 ```
-bmaptool copy core-image-full-cmdline-${MACHINE}.sdimg /dev/sdX
+bmaptool copy --bmap core-image-full-cmdline-${MACHINE}.sdimg.bmap core-image-full-cmdline-${MACHINE}.sdimg.bz2 /dev/sdX
 ```
 
 ### Installing the mender image onto the eMMC
