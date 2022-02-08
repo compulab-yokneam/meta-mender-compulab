@@ -13,3 +13,5 @@ NO_SETUP=1 source ${FSLC_SETUP}
 source ${D}/setup-conf
 
 export MACHINE=${_MACHINE}
+
+git -C  ${BUILDDIR}/../sources/meta-mender revert --no-edit d1e1c04e53a9fc572beab10ded3681a864863c20
