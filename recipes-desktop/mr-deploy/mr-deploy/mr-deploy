@@ -35,8 +35,8 @@ rm -rf ${mpoint}
 
 }
 
-export src=mmcblk1 dst=mmcblk2
-export SRC=/dev/${src} DST=/dev/${dst} QUIET=Yes
+export dst=mmcblk2
+export DST=/dev/${dst} QUIET=Yes
 cl-deploy
 
 declare -A bootcan=( [mmcblk1]=mmcblk1 [mmcblk2]=mmcblk2boot0 )
