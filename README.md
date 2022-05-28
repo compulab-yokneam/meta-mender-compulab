@@ -6,12 +6,12 @@
 ```
 mkdir mender-compulab && cd mender-compulab
 ```
-* Set a CompuLab machine:
+* Set environment variables:
 
-CompuLab machine | UCM-iMX8M-Plus |
+Variable | Command to set |
 --- | --- |
-`MACHINE` environment setting| `MACHINE=ucm-imx8m-plus` |
-`MANIFEST` environment setting| `MANIFEST=mender-compulab-gatesgarth.xml` |
+`MACHINE`| `MACHINE=ucm-imx8m-plus` |
+`MANIFEST`| `MANIFEST=mender-compulab-gatesgarth.xml` |
 
 * Initialize and sync repo manifest:
 ```
