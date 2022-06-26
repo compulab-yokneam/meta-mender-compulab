@@ -2,7 +2,7 @@
 
 D=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
-source compulab-setup-env $@
+source compulab-setup-environment $@
 
 source ${D}/setup-conf
 
