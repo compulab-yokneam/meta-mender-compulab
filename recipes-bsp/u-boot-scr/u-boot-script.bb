@@ -26,9 +26,9 @@ do_deploy() {
 
 addtask do_deploy after do_compile before do_build
 
-FILES_${PN} += "/boot/"
+FILES:${PN} += "/boot/"
 
-RPROVIDES_${PN} += "u-boot-script"
+RPROVIDES:${PN} += "u-boot-script"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 COMPATIBLE_MACHINE = "(mx8)"

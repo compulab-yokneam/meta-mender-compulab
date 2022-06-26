@@ -1,9 +1,9 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/compulab/imx8mm:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/compulab/imx8mm:"
 
 include compulab/imx8mm.inc
 
 PROVIDES += "u-boot"
-RPROVIDES_${PN} += "u-boot"
+RPROVIDES:${PN} += "u-boot"
 
 do_configure_efi() {
     for config in ${UBOOT_MACHINE}; do

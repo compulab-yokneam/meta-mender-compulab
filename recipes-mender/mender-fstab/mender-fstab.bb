@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 SUMMARY = "Mender /etc/fstab" 
 LICENSE = "BSD"
@@ -14,9 +14,9 @@ do_install() {
     install -m 0644 ${WORKDIR}/fstab ${D}/etc/
 }
 
-FILES_${PN} += "/etc/"
+FILES:${PN} += "/etc/"
 
-RPROVIDES_${PN} += "fstab"
+RPROVIDES:${PN} += "fstab"
 
 PACKAGE_ARCH = "all"
 COMPATIBLE_MACHINE = "(mx8|mx7)"

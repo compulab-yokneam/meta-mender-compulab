@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-SRC_URI_append = " file://02_compulab_console_grub.cfg;subdir=git \
+SRC_URI:append = " file://02_compulab_console_grub.cfg;subdir=git \
 "

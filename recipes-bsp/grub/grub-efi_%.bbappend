@@ -1,2 +1,2 @@
-GRUB_BUILDIN_append_mender-grub = " gzio "
-RDEPENDS_${PN}_remove  = "u-boot"
+GRUB_BUILDIN:append_mender-grub = " gzio "
+RDEPENDS:${PN}:remove  = "u-boot"

@@ -1,5 +1,5 @@
 # Mender extra conf
-IMAGE_BOOT_FILES_append = " boot.scr "
+IMAGE_BOOT_FILES:append = " boot.scr "
 
 CORE_IMAGE_EXTRA_INSTALL += " mr-deploy "
 CORE_IMAGE_EXTRA_INSTALL += " u-boot-script "

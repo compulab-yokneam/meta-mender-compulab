@@ -1,20 +1,20 @@
 # Make the mender-configure create a mender-configure-data package.
 # This package will be used by Debian installer.
 
-PACKAGES_append = " ${PN}-data "
+PACKAGES:append = " ${PN}-data "
 
-FILES_${PN}_remove = " \
+FILES:${PN}:remove = " \
     ${datadir}/mender/modules/v3/mender-configure \
     ${datadir}/mender/inventory/mender-inventory-mender-configure \
     /var/lib/mender-configure \
     /data/mender-configure \
 "
 
-FILES_${PN}-demo_remove = " \
+FILES:${PN}-demo:remove = " \
     /data/mender-configure/device-config.json \
 "
 
-FILES_${PN}-data = " \
+FILES:${PN}-data = " \
     ${datadir}/mender/modules/v3/mender-configure \
     ${datadir}/mender/inventory/mender-inventory-mender-configure \
     /var/lib/mender-configure \
@@ -22,4 +22,4 @@ FILES_${PN}-data = " \
     /data/mender-configure/device-config.json \
 "
 
-RDEPENDS_${PN}_append = " ${PN}-data "
+RDEPENDS:${PN}:append = " ${PN}-data "
