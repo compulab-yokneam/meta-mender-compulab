@@ -16,11 +16,3 @@ sed "s|##UUID##|${image_sign}|g" ../sources/meta-mender-compulab/templates/local
 
 touch ${DONE_CONF}
 fi
-
-# Make the mender-core/demo support gatesgarth
-MENDER_SRC=../sources/meta-mender
-for layer_conf in ${MENDER_SRC}/meta-mender-core/conf/layer.conf ${MENDER_SRC}/meta-mender-demo/conf/layer.conf;do
-eval $(awk '/^BBFILE_COLLECTIONS/&&($0="BBFILE_COLLECTIONS="$NF)' ${layer_conf})
-sed -i '/gatesgarth/d' ${layer_conf}
-sed -i "$ a LAYERSERIES_COMPAT_${BBFILE_COLLECTIONS}_append = \" gatesgarth \"" ${layer_conf}
-done
