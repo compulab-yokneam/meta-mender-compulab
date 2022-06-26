@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <project name="meta-mender-compulab" remote="compulab" revision="kirkstone" path="sources/meta-mender-compulab">
+    <linkfile src="tools/mender-setup-environment" dest="mender-setup-environment" />
+  </project>
+
+  <remote fetch="https://github.com/mendersoftware" name="mender"/>
+
+  <project name="meta-mender" remote="mender" revision="master-next" path="sources/meta-mender"/>
+  <project name="meta-mender-community" remote="mender" revision="kirkstone-next" path="sources/meta-mender-community"/>
+
+</manifest>
