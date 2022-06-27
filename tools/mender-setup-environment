@@ -2,7 +2,11 @@
 
 D=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
+O=${D}/../overlays
+
 source compulab-setup-environment $@
+
+cp -a ${O}/* ${BUILDDIR}/../sources/
 
 source ${D}/setup-conf
 
