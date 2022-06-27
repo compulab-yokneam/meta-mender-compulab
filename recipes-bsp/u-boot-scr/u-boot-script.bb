@@ -1,4 +1,4 @@
-LICENSE = "GPLv2+"
+LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/README;md5=2456088a0455a82ac9e16b007de97c03"
 
 DEPENDS = "u-boot-mkimage-native"
