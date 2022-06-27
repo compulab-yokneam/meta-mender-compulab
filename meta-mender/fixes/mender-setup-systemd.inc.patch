@@ -1,0 +1,13 @@
+diff --git a/meta-mender-core/classes/mender-setup-systemd.inc b/meta-mender-core/classes/mender-setup-systemd.inc
+index 45086c7d..1b84226c 100644
+--- a/meta-mender-core/classes/mender-setup-systemd.inc
++++ b/meta-mender-core/classes/mender-setup-systemd.inc
+@@ -2,6 +2,8 @@
+ # boot process while looking for devices. This is almost always because the
+ # kernel feature CONFIG_FHANDLE is not enabled.
+ 
++inherit mender-maybe-setup
++
+ DISTRO_FEATURES_BACKFILL:append = "${@mender_feature_is_enabled('mender-systemd', ' systemd', '', d)}"
+ DISTRO_FEATURES_BACKFILL_CONSIDERED:append = "${@mender_feature_is_enabled('mender-systemd', ' sysvinit', '', d)}"
+ VIRTUAL-RUNTIME_init_manager:mender-systemd = "systemd"
