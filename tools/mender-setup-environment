@@ -10,4 +10,5 @@ cp -a ${O}/* ${BUILDDIR}/../sources/
 
 source ${D}/setup-conf
 
-export MACHINE=${_MACHINE}
+# mender provides its own grub/efi configuration
+bitbake-layers remove-layer meta-compulab-uefi
