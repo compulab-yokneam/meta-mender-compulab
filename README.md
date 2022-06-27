@@ -13,8 +13,8 @@ Variable | Command to set |
 `MACHINE`| `MACHINE=ucm-imx8m-plus` |
 `MANIFEST`| `MANIFEST=mender-compulab-kirkstone.xml` |
 
-* Initialize FSL comunity & CompuLab repo manifests:
-Follow the instructions of [compulab-fslc-bsp](https://github.com/compulab-yokneam/compulab-fslc-bsp/tree/kirkstone#initialize-repo-manifests)
+* Initialize FSL comunity & CompuLab repo manifests
+<br>Follow the instructions of [compulab-fslc-bsp](https://github.com/compulab-yokneam/compulab-fslc-bsp/tree/kirkstone#initialize-repo-manifests)
 
 * Initialize and sync CompuLab Mender repo manifest:
 ```
