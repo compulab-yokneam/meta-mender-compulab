@@ -33,3 +33,9 @@ source mender-setup-environment build-${MACHINE}
 ```
 bitbake -k fsl-image-network-full-cmdline
 ```
+
+## Ready to run images
+
+Machine | Image location |
+--- | --- |
+ucm-imx8m-plus| [fsl-image-network-full-cmdline](https://drive.google.com/drive/folders/16DPTNdd6Xrw4SOaTygpNABTfPQo7dHR7)
