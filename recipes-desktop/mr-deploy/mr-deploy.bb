@@ -1,4 +1,4 @@
-LICENSE = "GPLv2+"
+LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${WORKDIR}/README;md5=9f3e9717b35d0dea0c634e9529ad509d"
 
 SRC_URI = "file://mr-deploy \
