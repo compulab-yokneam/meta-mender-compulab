@@ -3,6 +3,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 SRC_URI:append = " \
     file://mender.conf.in \
     file://mender.in \
+    file://1000-fips.go-hack-fix-compilation-issue.patch \
 "
 
 do_install:append() {
