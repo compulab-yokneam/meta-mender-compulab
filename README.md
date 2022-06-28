@@ -38,4 +38,5 @@ bitbake -k fsl-image-network-full-cmdline
 
 Machine | Image location |
 --- | --- |
-ucm-imx8m-plus| [fsl-image-network-full-cmdline](https://drive.google.com/drive/folders/16DPTNdd6Xrw4SOaTygpNABTfPQo7dHR7)
+ucm-imx8m-plus| [fsl-image-network-full-cmdline-ucm-imx8m-plus](https://drive.google.com/drive/folders/16DPTNdd6Xrw4SOaTygpNABTfPQo7dHR7)
+iot-gate-imx8| [fsl-image-network-full-cmdline-iot-gate-imx8](https://drive.google.com/drive/folders/1KTiCyZ_ngQwKoH1WikYEhOok-O0_KCcc)
