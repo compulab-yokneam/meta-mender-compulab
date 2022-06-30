@@ -1,0 +1,35 @@
+From d92d220c77921d507eda4326f773eb5be6a099e6 Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Thu, 30 Jun 2022 22:10:32 +0000
+Subject: [PATCH] Remove the old no longer present calls
+
+DOCS: Fixups of the migration guide and the FIPS module manual
+https://github.com/openssl/openssl/commit/0491691342cf8fefb61de14b8edd56a937b458ac
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ vendor/github.com/mendersoftware/openssl/fips.go | 9 ---------
+ 1 file changed, 9 deletions(-)
+
+diff --git a/vendor/github.com/mendersoftware/openssl/fips.go b/vendor/github.com/mendersoftware/openssl/fips.go
+index f65e14d..2f0a942 100644
+--- a/src/github.com/mendersoftware/mender/vendor/github.com/mendersoftware/openssl/fips.go
++++ b/src/github.com/mendersoftware/mender/vendor/github.com/mendersoftware/openssl/fips.go
+@@ -26,14 +26,5 @@ func FIPSModeSet(mode bool) error {
+ 	runtime.LockOSThread()
+ 	defer runtime.UnlockOSThread()
+ 
+-	var r C.int
+-	if mode {
+-		r = C.FIPS_mode_set(1)
+-	} else {
+-		r = C.FIPS_mode_set(0)
+-	}
+-	if r != 1 {
+-		return errorFromErrorQueue()
+-	}
+ 	return nil
+ }
+-- 
+2.17.1
+
