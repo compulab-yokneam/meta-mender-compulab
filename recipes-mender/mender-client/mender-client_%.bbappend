@@ -3,7 +3,6 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 SRC_URI:append = " \
     file://mender.conf.in \
     file://mender.in \
-    file://1000-Remove-the-old-no-longer-present-calls.patch \
 "
 
 do_install:append() {
