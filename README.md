@@ -12,7 +12,8 @@ Machine | Environment |
 --- | --- |
 `iot-gate-imx8`  | `export MACHINE=iot-gate-imx8 MANIFEST=mender-compulab-kirkstone.xml`
 `ucm-imx8m-plus` | `export MACHINE=ucm-imx8m-plus MANIFEST=mender-compulab-kirkstone.xml`
-`sbc-iot-imx8m-plus` | `export MACHINE=sbc-iot-imx8m-plus MANIFEST=mender-compulab-kirkstone.xml`
+`som-imx8m-plus` | `export MACHINE=som-imx8m-plus MANIFEST=mender-compulab-kirkstone.xml`
+`iot-gate-imx8plus` | `export MACHINE=iot-gate-imx8plus MANIFEST=mender-compulab-kirkstone.xml`
 
 * Initialize FSL comunity & CompuLab repo manifests
 <br>Follow the instructions of [compulab-fslc-bsp](https://github.com/compulab-yokneam/compulab-fslc-bsp/tree/kirkstone#initialize-repo-manifests)
