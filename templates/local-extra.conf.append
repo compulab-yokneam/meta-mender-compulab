@@ -8,3 +8,7 @@ CORE_IMAGE_EXTRA_INSTALL += " mender-artifact "
 PACKAGE_CLASSES = "package_deb"
 
 BBMASK += "meta-mender-core/recipes-bsp/grub/grub_%.bbappend"
+
+# Extra options for outdated devices
+IMAGE_BOOT_FILES:append = " boot.update.scr "
+CORE_IMAGE_EXTRA_INSTALL += " u-boot-update-script "
