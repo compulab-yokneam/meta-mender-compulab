@@ -1,0 +1,4 @@
+
+# Uncoment the next lane if the read-only file system is requiered
+# IMAGE_FEATURES += "read-only-rootfs"
+
