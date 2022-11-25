@@ -6,10 +6,17 @@ cat << eof
 Already configured
 eof
 else
-cat ../sources/meta-mender-compulab/templates/bblayers-mender.conf.append >> conf/bblayers.conf
-cat ../sources/meta-mender-community/templates/local.conf.append >> conf/local.conf
 
+# 1 Update the bblayers.conf
+cat ../sources/meta-mender-compulab/templates/bblayers-mender.conf.append >> conf/bblayers.conf
+
+# 2 Update the local.conf
+## 2.1 Comunity
+cat ../sources/meta-mender-community/templates/local.conf.append >> conf/local.conf
+## 2.2 Compulab
 cat ../sources/meta-mender-compulab/templates/local-extra.conf.append >> conf/local.conf
+cat ../sources/meta-mender-compulab/templates/local-read-only-rootfs.conf.append >> conf/local.conf
+
 # generate an unique uuid for earch setup
 image_sign=$(uuidgen --md5 --namespace @dns --name ${EMMC_TARGET} | awk -F"-" '$0=$1')
 sed "s|##UUID##|${image_sign}|g" ../sources/meta-mender-compulab/templates/local.conf.append >> conf/local.conf
