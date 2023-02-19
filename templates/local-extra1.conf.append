@@ -1,0 +1,9 @@
+# Bootscript for running bootefi if the distro_bootcmd
+# is not implemented
+#
+# IMAGE_BOOT_FILES:append = " boot.scr "
+# CORE_IMAGE_EXTRA_INSTALL += " u-boot-script "
+#
+# Extra options for outdated devices
+# IMAGE_BOOT_FILES:append = " boot.update.scr "
+# CORE_IMAGE_EXTRA_INSTALL += " u-boot-update-script "
