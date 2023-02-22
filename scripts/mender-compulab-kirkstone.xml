@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
 
-  <project name="meta-mender-compulab" remote="compulab" revision="kirkstone" path="sources/meta-mender-compulab">
+  <project name="meta-mender-compulab" remote="compulab" revision="kirkstone-nxp" path="sources/meta-mender-compulab">
     <linkfile src="tools/mender-setup-environment" dest="mender-setup-environment" />
   </project>
 

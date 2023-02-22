@@ -4,7 +4,7 @@ D=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
 O=${D}/../overlays
 
-source compulab-setup-environment $@
+source compulab-setup-env -b $@
 
 cp -a ${O}/* ${BUILDDIR}/../sources/
 
