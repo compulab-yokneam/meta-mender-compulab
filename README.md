@@ -8,7 +8,7 @@ mkdir mender-compulab && cd mender-compulab
 ```
 * Initialize and sync repo manifest:
 ```
-repo init -u https://source.codeaurora.org/external/imx/imx-manifest -b imx-linux-warrior -m imx-4.19.35-1.1.2.xml
+repo init -u https://github.com/nxp-imx/imx-manifest.git -b imx-linux-warrior -m imx-4.19.35-1.1.2.xml
 wget --directory-prefix .repo/manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/imx7-nxp/imx7/scripts/imx-4.19.35-1.1.2_demo_mender.xml
 repo init -m imx-4.19.35-1.1.2_demo_mender.xml
 repo sync
