@@ -15,7 +15,7 @@ Variable | Command to set |
 
 * Initialize and sync repo manifest:
 ```
-repo init -u https://source.codeaurora.org/external/imx/imx-manifest -b imx-linux-gatesgarth -m imx-5.10.9-1.0.0.xml
+repo init -u https://github.com/nxp-imx/imx-manifest.git -b imx-linux-gatesgarth -m imx-5.10.9-1.0.0.xml
 wget --output-document=.repo/manifests/mender-compulab.xml https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/gatesgarth/scripts/${MANIFEST}
 repo init -m mender-compulab.xml
 repo sync
