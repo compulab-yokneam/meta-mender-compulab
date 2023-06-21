@@ -13,7 +13,7 @@ Follow the instructions of the specific machine and prepare the Yocto Build envi
 NXP SoC | Build Environment Manual|
 --- | --- |
 `i.MX8MM` | [meta-bsp-imx8mm](https://github.com/compulab-yokneam/meta-bsp-imx8mm/tree/iot-gate-imx8_5.15.32)
-`i.MX8MP` | [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mp/tree/ucm-imx8m-plus-r2.0)
+`i.MX8MP` | [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mp/tree/kirkstone-2.2.0)
 
 * Initialize and sync CompuLab Mender repo manifest:
 ```
