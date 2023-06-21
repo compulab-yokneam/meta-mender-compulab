@@ -6,21 +6,28 @@
 ```
 mkdir mender-compulab && cd mender-compulab
 ```
-* Set environment variables:
-
-Machine | Environment |
---- | --- |
-`ucm-imx8m-plus` | `export MACHINE=ucm-imx8m-plus MANIFEST=mender-compulab-kirkstone.xml`
 
 * Initialize CompuLab Yocto build environment:
-<br>Follow the instructions of [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mp/tree/ucm-imx8m-plus-r2.0)
+Follow the instructions of the specific machine and prepare the Yocto Build environemt:
+
+NXP SoC | Build Environment Manual|
+--- | --- |
+`i.MX8MM` | [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mm/tree/iot-gate-imx8_5.15.32)
+`i.MX8MP` | [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mp/tree/ucm-imx8m-plus-r2.0)
 
 * Initialize and sync CompuLab Mender repo manifest:
 ```
 mkdir -p .repo/local_manifests
-wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/kirkstone-nxp/scripts/${MANIFEST}
+wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/kirkstone-nxp/scripts/mender-compulab-kirkstone.xml
 repo sync
 ```
+
+* Set environment variables:
+
+NXP SoC | CompuLab Machine | Environment variable |
+--- | --- | --- |
+`i.MX8MM`| `iot-gate-imx8` | `export MACHINE=ucm-imx8m-plus`
+`i.MX8MP`|`iot-gate-imx8plus` | `export MACHINE=ucm-imx8m-plus`
 
 ## Setup build environment
 
