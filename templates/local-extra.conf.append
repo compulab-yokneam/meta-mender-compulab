@@ -5,3 +5,4 @@ CORE_IMAGE_EXTRA_INSTALL += " mender-artifact "
 PACKAGE_CLASSES = "package_deb"
 
 BBMASK += "meta-mender-core/recipes-bsp/grub/grub_%.bbappend"
+IMAGE_BOOT_FILES:append:iot-gate-imx8 = " boot.scr "
