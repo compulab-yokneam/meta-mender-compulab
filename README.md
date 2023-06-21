@@ -7,12 +7,12 @@
 mkdir mender-compulab && cd mender-compulab
 ```
 
-* Initialize CompuLab Yocto build environment:
+* CompuLab Yocto build environment</br>
 Follow the instructions of the specific machine and prepare the Yocto Build environemt:
 
 NXP SoC | Build Environment Manual|
 --- | --- |
-`i.MX8MM` | [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mm/tree/iot-gate-imx8_5.15.32)
+`i.MX8MM` | [meta-bsp-imx8mm](https://github.com/compulab-yokneam/meta-bsp-imx8mm/tree/iot-gate-imx8_5.15.32)
 `i.MX8MP` | [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mp/tree/ucm-imx8m-plus-r2.0)
 
 * Initialize and sync CompuLab Mender repo manifest:
@@ -26,8 +26,8 @@ repo sync
 
 NXP SoC | CompuLab Machine | Environment variable |
 --- | --- | --- |
-`i.MX8MM`| `iot-gate-imx8` | `export MACHINE=ucm-imx8m-plus`
-`i.MX8MP`|`iot-gate-imx8plus` | `export MACHINE=ucm-imx8m-plus`
+`i.MX8MM`| `iot-gate-imx8` | `export MACHINE=iot-gate-imx8`
+`i.MX8MP`|`iot-gate-imx8plus` | `export MACHINE=iot-gate-imx8plus`
 
 ## Setup build environment
 
