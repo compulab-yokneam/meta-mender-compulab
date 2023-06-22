@@ -20,4 +20,3 @@ RPROVIDES:${PN} += "mr-deploy"
 RDEPENDS:${PN} += "cl-deploy cl-uboot bash"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
-COMPATIBLE_MACHINE = "mx8"

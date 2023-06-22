@@ -1,0 +1,10 @@
+#!/bin/bash
+
+dst=mmcblk2
+DST=${DST:-/dev/${dst}}
+dst=$(basename ${DST})
+
+# File system
+export QUIET=Yes
+export DST=${DST}
+cl-deploy
