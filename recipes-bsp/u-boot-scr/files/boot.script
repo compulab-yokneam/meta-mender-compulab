@@ -26,7 +26,7 @@ setenv bootcmd_mmc1 'setenv devtype mmc; setenv devnum 1;'
 setenv bootcmd_mmc2 'setenv devtype mmc; setenv devnum 2;'
 setenv bootcmd_usb0 'setenv devtype usb; setenv devnum 0;'
 
-env exist iface && env exist dev && bootdev=${iface}${dev}
+env exist iface && env exist dev && setenv bootdev ${iface}${dev}
 test -e ${bootdev} && run bootcmd_${bootdev} && run boot_cmd
 
 boot_devs='usb0 mmc1 mmc2'
@@ -34,6 +34,8 @@ for boot_dev in ${boot_devs};do
 echo Trying ${boot_dev}
 run bootcmd_${boot_dev}; run boot_cmd;
 done
+
+env exist master_script && exit
 
 setenv script
 

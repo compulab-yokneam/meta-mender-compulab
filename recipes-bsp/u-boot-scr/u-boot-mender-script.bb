@@ -8,27 +8,28 @@ SRC_URI = "file://boot.script \
 "
 
 do_compile() {
-	mkimage -C none -A arm -T script -d "${WORKDIR}/boot.script" boot.scr
+	mkimage -C none -A arm -T script -d ${WORKDIR}/boot.script ${WORKDIR}/boot.scr
 }
 
 do_install() {
 	install -d ${D}/boot
-	install -m 0644 ${WORKDIR}/boot.script ${D}/boot/boot.script
-	install -m 0644 boot.scr ${D}/boot/boot.scr
+	install -d ${D}/usr/share/compulab
+	install -m 0644 ${WORKDIR}/boot.scr ${D}/boot/boot.mender.scr
+	install -m 0644 ${WORKDIR}/boot.script ${D}/usr/share/compulab/boot.mender.script
 }
 
 inherit deploy
 
 do_deploy() {
 	install -d ${DEPLOYDIR}
-	install -m 0644 boot.scr ${DEPLOYDIR}
+	install -m 0644 ${WORKDIR}/boot.scr ${DEPLOYDIR}/boot.mender.scr
 }
 
 addtask do_deploy after do_compile before do_build
 
-FILES:${PN} += "/boot/"
+FILES:${PN} += "/boot/ /usr/share/compulab/ "
 
-RPROVIDES:${PN} += "u-boot-script"
+RPROVIDES:${PN} += "u-boot-mender-script"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 COMPATIBLE_MACHINE = "(mx8)"
