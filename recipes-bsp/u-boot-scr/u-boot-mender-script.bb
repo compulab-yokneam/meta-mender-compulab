@@ -12,9 +12,7 @@ do_compile() {
 }
 
 do_install() {
-	install -d ${D}/boot
 	install -d ${D}/usr/share/compulab
-	install -m 0644 ${WORKDIR}/boot.scr ${D}/boot/boot.mender.scr
 	install -m 0644 ${WORKDIR}/boot.script ${D}/usr/share/compulab/boot.mender.script
 }
 
@@ -27,7 +25,7 @@ do_deploy() {
 
 addtask do_deploy after do_compile before do_build
 
-FILES:${PN} += "/boot/ /usr/share/compulab/ "
+FILES:${PN} += "/usr/share/compulab/"
 
 RPROVIDES:${PN} += "u-boot-mender-script"
 
