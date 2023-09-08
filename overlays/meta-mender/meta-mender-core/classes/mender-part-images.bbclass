@@ -108,7 +108,7 @@ EOF
 
     # Used for all Linux filesystem partitions.
     if [ "$ptable_type" = "gpt" ]; then
-        part_type_params="--part-type 8300"
+        part_type_params="--part-type 0FC63DAF-8483-4772-8E79-3D69D8477DE4"
     else
         part_type_params=
     fi
@@ -219,6 +219,12 @@ EOF
             sgdisk -u ${MENDER_ROOTFS_PART_A_NUMBER}:${@mender_get_partuuid_from_device(d, '${MENDER_ROOTFS_PART_A}')} "$outimgname"
             sgdisk -u ${MENDER_ROOTFS_PART_B_NUMBER}:${@mender_get_partuuid_from_device(d, '${MENDER_ROOTFS_PART_B}')} "$outimgname"
             sgdisk -u ${MENDER_DATA_PART_NUMBER}:${@mender_get_partuuid_from_device(d, '${MENDER_DATA_PART}')} "$outimgname"
+	    # check if we have extra parts and setup uuid for those partitions
+	    local ext_partitions="${@get_extra_parts_partition_to_uuid(d)}"
+	    for part in ${ext_partitions}; do
+		sgdisk -u ${part} "$outimgname"
+	    done
+
         else
             diskIdent=$(echo ${@mender_get_partuuid_from_device(d, '${MENDER_ROOTFS_PART_A}')} | cut -d- -f1)
             # For MBR Set the Disk Identifier.  Drives follow the pattern of <Disk Identifier>-<Part Number>
