@@ -1,5 +1,4 @@
 DONE_CONF=conf/done.conf
-EMMC_TARGET=/dev/mmcblk2
 
 if [[ -e ${DONE_CONF} ]];then
 cat << eof
@@ -13,13 +12,18 @@ cat ../sources/meta-mender-compulab/templates/bblayers-mender.conf.append >> con
 # 2 Update the local.conf
 ## 2.1 Comunity
 cat ../sources/meta-mender-community/templates/local.conf.append >> conf/local.conf
+
 ## 2.2 Compulab
 cat ../sources/meta-mender-compulab/templates/local-extra.conf.append >> conf/local.conf
 cat ../sources/meta-mender-compulab/templates/local-read-only-rootfs.conf.append >> conf/local.conf
+cat ../sources/meta-mender-compulab/templates/local.conf.append >> conf/local.conf
 
 # generate an unique uuid for earch setup
-image_sign=$(uuidgen --md5 --namespace @dns --name ${EMMC_TARGET} | awk -F"-" '$0=$1')
-sed "s|##UUID##|${image_sign}|g" ../sources/meta-mender-compulab/templates/local.conf.append >> conf/local.conf
+(
+ for part in MENDER_BOOT_PART MENDER_DATA_PART MENDER_ROOTFS_PART_A MENDER_ROOTFS_PART_B;do
+ echo "${part} = "\"$(uuidgen --md5 --namespace @dns --name ${part})"\"";
+ done
+) >> conf/local.conf
 
 touch ${DONE_CONF}
 fi
