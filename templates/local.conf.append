@@ -11,9 +11,9 @@ MENDER_BOOT_PART_SIZE_MB = "64"
 # Cleanup image types generated
 IMAGE_FSTYPES:remove = "tar.gz ext4 wic.gz wic.bmap multiubi mender.bmap"
 
-# Build sdimg file rather than uefiimg
-MENDER_FEATURES_ENABLE:append = " mender-image-sd mender-partuuid "
-MENDER_FEATURES_DISABLE:append = " mender-image-uefi "
+# Build uefiimg
+MENDER_FEATURES_ENABLE:append = " mender-grub mender-image-uefi mender-partuuid"
+MENDER_FEATURES_DISABLE:append = " mender-uboot mender-image-sd"
 
 # Make sure we don't include u-boot-fw-utils; we are using grub-mender-grubenv instead
 MACHINE_EXTRA_RDEPENDS:remove = "u-boot-fw-utils"
@@ -21,7 +21,3 @@ MACHINE_EXTRA_RDEPENDS:remove = "u-boot-fw-utils"
 MENDER_STORAGE_TOTAL_SIZE_MB = "4096"
 MENDER_STORAGE_DEVICE = ""
 
-MENDER_BOOT_PART = "##UUID##-01"
-MENDER_DATA_PART = "##UUID##-04"
-MENDER_ROOTFS_PART_A = "##UUID##-02"
-MENDER_ROOTFS_PART_B = "##UUID##-03"
