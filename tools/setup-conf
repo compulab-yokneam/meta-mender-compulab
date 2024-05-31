@@ -4,32 +4,9 @@ EMMC_TARGET=/dev/mmcblk2
 declare -A tarch_arr=(['cl-som-imx7']="armhf")
 tarch=${tarch_arr[cl-som-imx7]:-"arm64"}
 
-
-function armhf_uuid_templates() {
-
-UUID=$(uuidgen --md5 --time | awk -F"-" '$0=$1')
-
-cat << eof
-# Enable UUID
-MENDER_FEATURES_ENABLE:append = " mender-partuuid "
-
-MENDER_BOOT_PART = "${UUID}-01"
-MENDER_DATA_PART = "${UUID}-04"
-MENDER_ROOTFS_PART_A = "${UUID}-02"
-MENDER_ROOTFS_PART_B = "${UUID}-03"
-
-#
-MENDER_UBOOT_STORAGE_INTERFACE = "spi"
-MENDER_UBOOT_STORAGE_DEVICE = "0"
-MENDER_UBOOT_MMC_ENV_LINUX_DEVICE_PATH = "/dev/mtd1"
-MENDER_STORAGE_DEVICE = ""
-eof
-
-}
-
-
 function armhf_templates() {
 	T="../sources/meta-mender-compulab/templates/armhf"
+	export UUID=$(uuidgen --md5 --time | awk -F"-" '$0=$1')
 	for _d in ${T}/*;do
 		_file=$(basename ${_d})
 		for _f in ${_d}/*;do
@@ -37,7 +14,7 @@ function armhf_templates() {
 			cat ${_f} >> conf/${_file}
 		done;
 	done
-	armhf_uuid_templates >> conf/local.conf
+	sed -i "s/@@UUID@@/${UUID}/g" conf/local.conf
 }
 
 function arm64_templates() {
