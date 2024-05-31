@@ -16,12 +16,13 @@ NXP SoC | Build Environment Manual|
 `i.MX8MM` | [meta-bsp-imx8mm](https://github.com/compulab-yokneam/meta-bsp-imx8mm/tree/iot-gate-imx8_5.15.32)
 `i.MX8MP` | [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mp/tree/kirkstone-2.2.0)
 `i.MX93` | [meta-bsp-imx9](https://github.com/compulab-yokneam/meta-bsp-imx9/tree/kirkstone-2.2.0)
+`i.MX7` | [meta-bsp-imx7](https://github.com/compulab-yokneam/meta-bsp-imx7/tree/kirkstone)
 
 * Initialize and sync CompuLab Mender repo manifest:
 
 ```
 mkdir -p .repo/local_manifests
-wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/kirkstone-nxp/scripts/mender-compulab-kirkstone.xml
+wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/kirkstone-nxp-next/scripts/mender-compulab-kirkstone.xml
 repo sync
 ```
 
@@ -35,6 +36,7 @@ NXP SoC | CompuLab Machine | Environment variable |
 `i.MX8MP`|`ucm-imx8m-plus`|`export MACHINE=ucm-imx8m-plus`
 `i.MX8MP`|`som-imx8m-plus`|`export MACHINE=som-imx8m-plus`
 `i.MX93`|`ucm-imx93`|`export MACHINE=ucm-imx93`
+`i.MX7`|`cl-som-imx7`|`export MACHINE=cl-som-imx7`
 
 ## Setup build environment
 
