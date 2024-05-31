@@ -1,0 +1,14 @@
+PACKAGE_CLASSES = 'package_deb package_tar'
+
+CORE_IMAGE_EXTRA_INSTALL += " rng-tools cl-root cl-uboot cl-deploy memtester htop iotop tmux iperf3 stress-ng u-boot-fw-utils  kernel-modules linux-firmware-wl18xx linux-firmware-wlcommon linux-firmware-ti-connectivity-license bluez5 wpa-supplicant wvdial"
+CORE_IMAGE_EXTRA_INSTALL += " modemmanager networkmanager "
+CORE_IMAGE_EXTRA_INSTALL += " u-boot-script "
+
+IMAGE_FEATURES += " package-management ssh-server-openssh "
+LICENSE_FLAGS_ACCEPTED = "commercial"
+DISTRO_FEATURES:append = " polkit"
+
+# Users' Configurations
+# Disable root autologing on serial
+BBMASK += "systemd-serialgetty.bbappend"
+BBMASK += "chromium_%.bbappend"

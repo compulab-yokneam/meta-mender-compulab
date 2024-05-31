@@ -1,0 +1,21 @@
+BBLAYERS += "${BSPDIR}/sources/meta-mender-compulab"
+BBLAYERS += "${BSPDIR}/sources/meta-mender-compulab/imx7"
+
+BBLAYERS += " \
+  ${BSPDIR}/sources/meta-mender/meta-mender-core \
+  ${BSPDIR}/sources/meta-mender/meta-mender-demo \
+"
+
+BBLAYERS += "${BSPDIR}/sources/meta-bsp-imx7"
+BBLAYERS += " \
+	${BSPDIR}/sources/meta-compulab \
+	${BSPDIR}/sources/meta-compulab-bsp/meta-desktop \
+	${BSPDIR}/sources/meta-compulab-bsp/meta-multimedia \
+	${BSPDIR}/sources/meta-compulab-bsp/meta-graphics \
+	${BSPDIR}/sources/meta-compulab-bsp/meta-bsp \
+	${BSPDIR}/sources/meta-compulab-bsp/meta-devtool \
+"
+BBLAYERS += " \
+    ${BSPDIR}/sources/meta-openembedded/meta-xfce \
+    ${BSPDIR}/sources/meta-compulab-bsp/meta-xfce \
+"

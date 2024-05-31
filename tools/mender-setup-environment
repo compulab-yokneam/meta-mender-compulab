@@ -1,4 +1,5 @@
 #!/bin/bash -e
+EULA=1
 
 D=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
