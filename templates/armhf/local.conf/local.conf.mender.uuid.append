@@ -1,13 +1,9 @@
 # Enable UUID
-MENDER_FEATURES_ENABLE:append = " mender-partuuid "
+# Don't touch it, requires mender-core support for mender-update
+# MENDER_FEATURES_ENABLE:append = " mender-partuuid "
 
-MENDER_BOOT_PART = "@@UUID@@-01"
-MENDER_DATA_PART = "@@UUID@@-04"
-MENDER_ROOTFS_PART_A = "@@UUID@@-02"
-MENDER_ROOTFS_PART_B = "@@UUID@@-03"
-
-#
-MENDER_UBOOT_STORAGE_INTERFACE = "spi"
-MENDER_UBOOT_STORAGE_DEVICE = "0"
-MENDER_UBOOT_MMC_ENV_LINUX_DEVICE_PATH = "/dev/mtd1"
-MENDER_STORAGE_DEVICE = ""
+# MENDER_BOOT_PART = "@@UUID@@-01"
+# MENDER_DATA_PART = "@@UUID@@-04"
+# MENDER_ROOTFS_PART_A = "@@UUID@@-02"
+# MENDER_ROOTFS_PART_B = "@@UUID@@-03"
+# MENDER_STORAGE_DEVICE = ""
