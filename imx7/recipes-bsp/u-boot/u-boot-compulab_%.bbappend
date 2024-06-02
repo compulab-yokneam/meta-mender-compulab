@@ -8,6 +8,7 @@ BOOTENV_SIZE = "0x2000"
 SRC_URI += "\
     file://0001-cl-som-imx7-config-Enable-part-command.patch \
     file://0002-cl-som-imx7-Add-support-to-mender.patch \
+    file://fw_env.config.default \
 "
 
 PATCH_ENV = "${@bb.utils.contains('MENDER_FEATURES_ENABLE', 'mender-partuuid', '1' , '0' , d)}"
