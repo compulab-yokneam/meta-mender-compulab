@@ -1,0 +1,2 @@
+MENDER_STORAGE_DEVICE:cl-som-imx7 = "/dev/mmcblk2"
+MENDER_STORAGE_DEVICE_BASE:cl-som-imx7 = "${MENDER_STORAGE_DEVICE}p"
