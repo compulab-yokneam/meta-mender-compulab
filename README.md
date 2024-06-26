@@ -35,6 +35,7 @@ NXP SoC | CompuLab Machine | Environment variable |
 `i.MX8MP`|`ucm-imx8m-plus`|`export MACHINE=ucm-imx8m-plus`
 `i.MX8MP`|`som-imx8m-plus`|`export MACHINE=som-imx8m-plus`
 `i.MX93`|`ucm-imx93`|`export MACHINE=ucm-imx93`
+`i.MX93`|`mcm-imx93`|`export MACHINE=mcm-imx93`
 
 ## Setup build environment
 
