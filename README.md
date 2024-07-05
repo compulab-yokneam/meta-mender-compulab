@@ -18,7 +18,6 @@ NXP SoC | Build Environment Manual|
 * Initialize and sync CompuLab Mender repo manifest:
 
 ```
-mkdir -p .repo/local_manifests
 wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/scarthgap-nxp/scripts/mender-compulab.xml
 repo sync
 ```
