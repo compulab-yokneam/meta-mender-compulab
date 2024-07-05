@@ -12,7 +12,7 @@ cat ../sources/meta-mender-compulab/templates/bblayers-mender.conf.append >> con
 
 # 2 Update the local.conf
 ## 2.1 Comunity
-cat ../sources/meta-mender-community/templates/local.conf.append >> conf/local.conf
+cat ../sources/meta-mender-compulab/templates/former-community.conf.append >> conf/local.conf
 ## 2.2 Compulab
 cat ../sources/meta-mender-compulab/templates/local-extra.conf.append >> conf/local.conf
 cat ../sources/meta-mender-compulab/templates/local-read-only-rootfs.conf.append >> conf/local.conf

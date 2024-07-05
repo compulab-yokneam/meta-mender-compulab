@@ -13,15 +13,13 @@ Follow the instructions of the specific machine and prepare the Yocto Build envi
 
 NXP SoC | Build Environment Manual|
 --- | --- |
-`i.MX8MM` | [meta-bsp-imx8mm](https://github.com/compulab-yokneam/meta-bsp-imx8mm/tree/iot-gate-imx8_5.15.32)
-`i.MX8MP` | [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mp/tree/kirkstone-2.2.0)
-`i.MX93` | [meta-bsp-imx9](https://github.com/compulab-yokneam/meta-bsp-imx9/tree/kirkstone-2.2.0)
+`i.MX8MP` | [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mp/tree//scarthgap)
 
 * Initialize and sync CompuLab Mender repo manifest:
 
 ```
 mkdir -p .repo/local_manifests
-wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/kirkstone-nxp/scripts/mender-compulab-kirkstone.xml
+wget --directory-prefix .repo/local_manifests https://raw.githubusercontent.com/compulab-yokneam/meta-mender-compulab/scarthgap-nxp/scripts/mender-compulab.xml
 repo sync
 ```
 
@@ -29,13 +27,9 @@ repo sync
 
 NXP SoC | CompuLab Machine | Environment variable |
 --- | --- | --- |
-`i.MX8MM`|`iot-gate-imx8`|`export MACHINE=iot-gate-imx8`
-`i.MX8MM`|`ucm-imx8m-mini`|`export MACHINE=ucm-imx8m-mini`
 `i.MX8MP`|`iot-gate-imx8plus`|`export MACHINE=iot-gate-imx8plus`
-`i.MX8MP`|`ucm-imx8m-plus`|`export MACHINE=ucm-imx8m-plus`
-`i.MX8MP`|`som-imx8m-plus`|`export MACHINE=som-imx8m-plus`
-`i.MX93`|`ucm-imx93`|`export MACHINE=ucm-imx93`
-`i.MX93`|`mcm-imx93`|`export MACHINE=mcm-imx93`
+`i.MX8MP`|`iot-gate-imx8plus`|`export MACHINE=iotdin-imx8p`
+`i.MX8MP`|`ucm-imx8m-plus`|`export MACHINE=ucm-imx8m-plus-sbev`
 
 ## Setup build environment
 
