@@ -27,8 +27,9 @@ repo sync
 NXP SoC | CompuLab Machine | Environment variable |
 --- | --- | --- |
 `i.MX8MP`|`iot-gate-imx8plus`|`export MACHINE=iot-gate-imx8plus`
-`i.MX8MP`|`iot-gate-imx8plus`|`export MACHINE=iotdin-imx8p`
-`i.MX8MP`|`ucm-imx8m-plus`|`export MACHINE=ucm-imx8m-plus-sbev`
+`i.MX8MP`|`iotdin-imx8p`|`export MACHINE=iotdin-imx8p`
+`i.MX8MP`|`ucm-imx8m-plus`|`export MACHINE=ucm-imx8m-plus`
+`i.MX8MP`|`ucm-imx8m-plus-sbev`|`export MACHINE=ucm-imx8m-plus-sbev`
 
 ## Setup build environment
 
