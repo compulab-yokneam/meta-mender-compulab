@@ -1,0 +1,10 @@
+[Unit]
+Description=CompuLab service to modify the U-Boot bootcmd
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+ExecStart=/usr/bin/cl-bootcmd.sh
+
+[Install]
+WantedBy=multi-user.target
