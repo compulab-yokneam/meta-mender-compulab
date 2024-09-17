@@ -42,7 +42,7 @@ NXP SoC | CompuLab Machine | Environment variable |
 * Initialize the build environment:
 
 ```
-source mender-setup-environment build-${MACHINE}
+source mender-setup-environment build-mender-${MACHINE}
 ```
 
 * Building the image:
