@@ -44,3 +44,31 @@ source mender-setup-environment build-mender-${MACHINE}
 ```
 bitbake -k fsl-image-network-full-cmdline
 ```
+
+## Deployment
+
+### Create a bootable media
+* Goto the `tmp/deploy/images/${MACHINE}` directory:
+```
+cd tmp/deploy/images/${MACHINE}
+```
+
+* Deploy the image to either sd or usb media:
+```
+sudo bmaptool copy --bmap fsl-image-network-full-cmdline-${MACHINE}.sdimg.bmap fsl-image-network-full-cmdline-${MACHINE}.sdimg.bz2 /dev/sdX
+```
+
+### Installing the mender image onto the eMMC
+* Boot up the device using the created media.
+* Wait for the Linux prompt and issue:
+```
+cl-deploy
+```
+* Wait for 'SUCCESS', then reboot the device.
+```
+reboot
+```
+* Stop in U-boot, remove the installation media and issue:
+```
+env default -a; saveenv; reset
+```
