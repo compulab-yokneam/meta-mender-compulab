@@ -2,10 +2,7 @@
 setenv grub_efi 'EFI/BOOT/bootaa64.efi'
 setenv boot_efi 'bootefi ${loadaddr} ${fdt_addr}'
 
-setenv grub_env EFI/BOOT/mender_grubenv1/env
-
-#env1=EFI/BOOT/mender_grubenv1/env
-#env2=EFI/BOOT/mender_grubenv2/env
+setenv grub_env grub-mender-grubenv/mender_grubenv1/env
 
 # efi
 setenv load_efi 'load ${devtype} ${devnum} ${loadaddr} ${grub_efi}'
