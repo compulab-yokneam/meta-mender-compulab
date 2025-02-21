@@ -14,3 +14,7 @@ do_install:append() {
 
 RDEPENDS:mender-update += " bash "
 
+FILES:mender-config:append = "\
+    ${sysconfdir}/udev/mount.blacklist.d/mender \
+    /data/mender/mender.conf \
+"
