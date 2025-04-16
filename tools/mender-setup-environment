@@ -1,10 +1,12 @@
 #!/bin/bash -e
 
+SETUP=${SETUP:-"compulab-setup-env"}
+
 D=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
 O=${D}/../overlays
 
-source compulab-setup-env $@
+source ${SETUP} $@
 
 cp -a ${O}/* ${BUILDDIR}/../sources/
 
