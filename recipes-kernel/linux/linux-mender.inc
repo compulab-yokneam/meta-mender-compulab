@@ -1,6 +1,5 @@
-do_configure:append() {
-    echo "CONFIG_EFI=y" >> ${B}/.config
-}
+FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
-PROVIDES += "linux-imx"
-RPROVIDES:${PN} += "linux-imx"
+SRC_URI:append = " \
+	file://mender.cfg \
+"
