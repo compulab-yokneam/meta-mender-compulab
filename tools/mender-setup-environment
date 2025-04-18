@@ -6,7 +6,11 @@ D=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 
 O=${D}/../overlays
 
-source ${SETUP} $@
+# A temporarily fix for passing a "-b" key to the next script
+
+grep -w -- "-b" ${SETUP} && PARAM=$@ || PARAM="-b $@"
+
+source ${SETUP} $PARAM
 
 cp -a ${O}/* ${BUILDDIR}/../sources/
 
