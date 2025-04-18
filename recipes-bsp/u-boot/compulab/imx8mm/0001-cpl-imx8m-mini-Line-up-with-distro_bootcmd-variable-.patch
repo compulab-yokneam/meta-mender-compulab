@@ -1,0 +1,96 @@
+From 196bdfb81b36b1ca564586bdf2c06e63870f22c1 Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Fri, 18 Apr 2025 17:18:00 +0300
+Subject: [PATCH] cpl-imx8m-mini: Line up with distro_bootcmd variable names
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ board/compulab/iot-gate-imx8/iot-gate-imx8.c   |  2 +-
+ board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.c |  2 +-
+ include/configs/cpl-imx8m-mini.h               | 14 +++++++-------
+ 3 files changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/board/compulab/iot-gate-imx8/iot-gate-imx8.c b/board/compulab/iot-gate-imx8/iot-gate-imx8.c
+index 25749af338..c569699e72 100644
+--- a/board/compulab/iot-gate-imx8/iot-gate-imx8.c
++++ b/board/compulab/iot-gate-imx8/iot-gate-imx8.c
+@@ -102,7 +102,7 @@ static void iot_gate_imx8_detect_ext(void)
+ 		iot_gate_imx8_ext_id = IOT_GATE_EXT_IED;
+ }
+ 
+-#define IOT_GATE_IMX8_ENV_FDT_FILE "fdt_file"
++#define IOT_GATE_IMX8_ENV_FDT_FILE "fdtfile"
+ /*
+  * iot_gate_imx8_select_dtb() - select the kernel device tree blob
+  * The device tree blob is selected according to the detected extended board.
+diff --git a/board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.c b/board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.c
+index d39d8f8ed6..8ea55d8901 100644
+--- a/board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.c
++++ b/board/compulab/ucm-imx8m-mini/ucm-imx8m-mini.c
+@@ -30,7 +30,7 @@
+ 
+ DECLARE_GLOBAL_DATA_PTR;
+ 
+-#define ENV_FDT_FILE "fdt_file"
++#define ENV_FDT_FILE "fdtfile"
+ #define TYPE_2L_OPT "WBM" //Wi/Fi module is LBES5PL2EL by Murata, PCB rev 1.4
+ static void ucm_imx8_mini_select_dtb(void)
+ {
+diff --git a/include/configs/cpl-imx8m-mini.h b/include/configs/cpl-imx8m-mini.h
+index f76fd68e5f..2b3bf23d2f 100644
+--- a/include/configs/cpl-imx8m-mini.h
++++ b/include/configs/cpl-imx8m-mini.h
+@@ -63,7 +63,7 @@
+ 		"else " \
+ 			"if run ulimage; then " \
+ 				"if run ulfdt; then " \
+-					"booti ${loadaddr} - ${fdt_addr}; " \
++					"booti ${loadaddr} - ${fdt_addr_r}; " \
+ 				"else " \
+ 					"if test ${boot_fdt} != yes; then " \
+ 						"booti ${loadaddr}; " \
+@@ -87,7 +87,7 @@
+ 	"emmc_dev=2\0" \
+ 	"sd_dev=1\0" \
+ 	"bootcmd_mfg=run mfgtool_args;  if iminfo ${initrd_addr}; then "\
+-					   "booti ${loadaddr} ${initrd_addr} ${fdt_addr};"\
++					   "booti ${loadaddr} ${initrd_addr} ${fdt_addr_r};"\
+ 					"else echo \"Run fastboot ...\"; fastboot 0; fi\0" \
+ 
+ #define ENV_CONSOLE console=ttymxc2,115200 earlycon=ec_imx6q,0x30880000,115200
+@@ -102,10 +102,10 @@
+ 	"kernel_addr_r=" __stringify(CONFIG_SYS_LOAD_ADDR) "\0" \
+ 	"image=Image\0" \
+ 	"console=ttymxc2,115200 earlycon=ec_imx6q,0x30880000,115200\0" \
+-	"fdt_addr=0x43000000\0"			\
++	"fdt_addr_r=0x43000000\0"			\
+ 	"fdt_high=0xffffffffffffffff\0"		\
+ 	"boot_fdt=yes\0" \
+-	"fdt_file="CONFIG_DEFAULT_FDT"\0" \
++	"fdtfile="CONFIG_DEFAULT_FDT"\0" \
+ 	"initrd_addr=0x43800000\0"		\
+ 	"initrd_high=0xffffffffffffffff\0" \
+ 	"mmcautodetect=yes\0" \
+@@ -120,7 +120,7 @@
+ 	"ulbootscript=load ${iface} ${dev}:${part} ${loadaddr} ${script};\0" \
+ 	"ulimage=load ${iface} ${dev}:${part} ${loadaddr} ${image}\0" \
+ 	"ulfdt=if test ${boot_fdt} = yes || test ${boot_fdt} = try; then " \
+-		"load ${iface} ${dev}:${part} ${fdt_addr} ${fdt_file}; fi;\0" \
++		"load ${iface} ${dev}:${part} ${fdt_addr_r} ${fdtfile}; fi;\0" \
+ 	"bootscript=echo Running bootscript from mmc ...; " \
+ 		"source\0" \
+ 	"netargs=setenv bootargs console=${console} " \
+@@ -135,8 +135,8 @@
+ 		"fi; " \
+ 		"${get_cmd} ${loadaddr} ${image}; " \
+ 		"if test ${boot_fdt} = yes || test ${boot_fdt} = try; then " \
+-			"if ${get_cmd} ${fdt_addr} ${fdt_file}; then " \
+-				"booti ${loadaddr} - ${fdt_addr}; " \
++			"if ${get_cmd} ${fdt_addr_r} ${fdtfile}; then " \
++				"booti ${loadaddr} - ${fdt_addr_r}; " \
+ 			"else " \
+ 				"echo WARN: Cannot load the DT; " \
+ 			"fi; " \
+-- 
+2.34.1
+
