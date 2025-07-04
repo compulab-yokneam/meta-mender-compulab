@@ -1,1 +1,3 @@
-require u-boot-mender.inc
+PR = "1.0"
+require recipes-bsp/u-boot/u-boot-mender.inc
+require u-boot-mender-compulab.inc

@@ -1,0 +1,41 @@
+From 80871afb6513a12f70ffcec5e2971742c6610bbb Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Thu, 3 Jul 2025 15:49:23 +0300
+Subject: [PATCH] Integration of Mender boot code into U-Boot.
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ include/env_default.h     | 2 ++
+ scripts/Makefile.autoconf | 3 ++-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/include/env_default.h b/include/env_default.h
+index c0df39d62f..b27308709c 100644
+--- a/include/env_default.h
++++ b/include/env_default.h
+@@ -14,6 +14,8 @@
+ #include <generated/environment.h>
+ #endif
+ 
++#include <env_mender.h>
++
+ #ifdef DEFAULT_ENV_INSTANCE_EMBEDDED
+ env_t embedded_environment __UBOOT_ENV_SECTION__(environment) = {
+ 	ENV_CRC,	/* CRC Sum */
+diff --git a/scripts/Makefile.autoconf b/scripts/Makefile.autoconf
+index 0ade91642a..c653f1afaa 100644
+--- a/scripts/Makefile.autoconf
++++ b/scripts/Makefile.autoconf
+@@ -116,7 +116,8 @@ define filechk_config_h
+ 	echo \#include \<configs/$(CONFIG_SYS_CONFIG_NAME).h\>;		\
+ 	echo \#include \<asm/config.h\>;				\
+ 	echo \#include \<linux/kconfig.h\>;				\
+-	echo \#include \<config_fallbacks.h\>;)
++	echo \#include \<config_fallbacks.h\>;				\
++	echo \#include \<config_mender.h\>;)
+ endef
+ 
+ include/config.h: scripts/Makefile.autoconf create_symlink FORCE
+-- 
+2.34.1
+
