@@ -1,7 +1,7 @@
-From e47ced0752d2065552bda4a540db47486aa6df61 Mon Sep 17 00:00:00 2001
+From b538eb0d0efd8f77be51e395538feb834ea900a6 Mon Sep 17 00:00:00 2001
 From: Valentin Raevsky <valentin@compulab.co.il>
-Date: Fri, 4 Jul 2025 11:30:31 +0300
-Subject: [PATCH] mender: imx8mp: Add fw_env.conf redundent layout
+Date: Fri, 4 Jul 2025 23:08:37 +0300
+Subject: [PATCH 6/6] mender: imx8mp: Add fw_env.conf redundent layout
 
 Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
 ---

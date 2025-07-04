@@ -1,0 +1,26 @@
+From 8c49186989d2edfedd02bc0f3b63255fa5baa3e2 Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Sat, 5 Jul 2025 00:35:26 +0300
+Subject: [PATCH] compulab: imx8mm: Integration of Mender boot code into
+ U-Boot.
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ include/configs/cpl-imx8m-mini.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/include/configs/cpl-imx8m-mini.h b/include/configs/cpl-imx8m-mini.h
+index 5f9037b999..35405811dc 100644
+--- a/include/configs/cpl-imx8m-mini.h
++++ b/include/configs/cpl-imx8m-mini.h
+@@ -97,6 +97,7 @@
+ 	BOOTENV \
+ 	MACHINE_EXTRA_ENV_SETTINGS \
+ 	BSP_BOOTCOMMAND \
++	MENDER_ENV_SETTINGS \
+ 	"autoload=off\0" \
+ 	"script=boot.scr\0" \
+ 	"kernel_addr_r=" __stringify(CONFIG_SYS_LOAD_ADDR) "\0" \
+-- 
+2.34.1
+
