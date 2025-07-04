@@ -212,7 +212,7 @@ EOF
         ) | fdisk ${outimgname}
     fi
 
-    if ${@bb.utils.contains('MENDER_FEATURES', 'mender-partuuid', 'true', 'false', d)}; then
+    if ${@bb.utils.contains('MENDER_FEATURES', 'mender-partuuid', 'true', 'true', d)}; then
         if [ "$ptable_type" = "gpt" ]; then
             # Set Fixed PARTUUID for all devices
             sgdisk -u ${MENDER_BOOT_PART_NUMBER}:${@mender_get_partuuid_from_device(d, '${MENDER_BOOT_PART}')} "$outimgname"
@@ -226,15 +226,8 @@ EOF
 	    done
 
         else
-            diskIdent=$(echo ${@mender_get_partuuid_from_device(d, '${MENDER_ROOTFS_PART_A}')} | cut -d- -f1)
-            # For MBR Set the Disk Identifier.  Drives follow the pattern of <Disk Identifier>-<Part Number>
-            (
-                echo x                              # Enter expert mode
-                echo i                              # Set disk identifier
-                echo 0x${diskIdent}                 # Identifier
-                echo r                              # Exit expert mode
-                echo w                              # Write changes
-            ) | fdisk ${outimgname}
+            diskIdent=$(echo ${MENDER_ROOTFS_PART_A} | cut -d- -f1)
+            sfdisk --disk-id ${outimgname} 0x${diskIdent}
         fi
     fi
 }
