@@ -16,8 +16,8 @@ MENDER_BOOT_PART_SIZE_MB = "64"
 IMAGE_FSTYPES:remove = "tar.gz ext4 wic.gz wic.bmap multiubi mender.bmap"
 
 # Build sdimg file rather than uefiimg
-MENDER_FEATURES_ENABLE:append = " mender-image-sd mender-partuuid "
-MENDER_FEATURES_DISABLE:append = " mender-image-uefi "
+MENDER_FEATURES_ENABLE:append = " mender-uboot mender-image-sd "
+MENDER_FEATURES_DISABLE:append = " mender-grub mender-image-uefi"
 
 # Make sure we don't include u-boot-fw-utils; we are using grub-mender-grubenv instead
 MACHINE_EXTRA_RDEPENDS:remove = "u-boot-fw-utils"
