@@ -1,14 +1,23 @@
 # Append fragment from meta-mender-compulab
 # CompuLab imx8m[m,q,p] modules
 
+MENDER_UBOOT_STORAGE_INTERFACE = "mmc"
 MENDER_IMAGE_BOOTLOADER_FILE = "imx-boot"
+
+# imx8
 MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET:mx8mq-nxp-bsp = "66"
 MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET:mx8mm-nxp-bsp = "66"
 MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET:mx8mp-nxp-bsp = "64"
+MENDER_UBOOT_STORAGE_DEVICE:mx8mq-nxp-bsp = "2"
+MENDER_UBOOT_STORAGE_DEVICE:mx8mm-nxp-bsp = "2"
+MENDER_UBOOT_STORAGE_DEVICE:mx8mp-nxp-bsp = "2"
 # imx9x
 MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET:mx91-nxp-bsp = "64"
 MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET:mx93-nxp-bsp = "64"
 MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET:mx95-nxp-bsp = "64"
+MENDER_UBOOT_STORAGE_DEVICE:mx91-nxp-bsp = "0"
+MENDER_UBOOT_STORAGE_DEVICE:mx93-nxp-bsp = "0"
+MENDER_UBOOT_STORAGE_DEVICE:mx95-nxp-bsp = "0"
 
 MENDER_BOOT_PART_SIZE_MB = "64"
 #
@@ -19,8 +28,9 @@ IMAGE_FSTYPES:remove = "tar.gz ext4 wic.gz wic.bmap multiubi mender.bmap"
 MENDER_FEATURES_ENABLE:append = " mender-uboot mender-image-sd "
 MENDER_FEATURES_DISABLE:append = " mender-grub mender-image-uefi"
 
-# Make sure we don't include u-boot-fw-utils; we are using grub-mender-grubenv instead
-MACHINE_EXTRA_RDEPENDS:remove = "u-boot-fw-utils"
+# Remove a legacy and a conflicting package
+MACHINE_EXTRA_RDEPENDS:remove = " u-boot-fw-utils "
+CORE_IMAGE_EXTRA_INSTALL:remove = " u-boot-compulab-env "
 
 MENDER_STORAGE_TOTAL_SIZE_MB = "4096"
 MENDER_STORAGE_DEVICE = ""
@@ -29,3 +39,6 @@ MENDER_BOOT_PART = "##UUID##-01"
 MENDER_DATA_PART = "##UUID##-04"
 MENDER_ROOTFS_PART_A = "##UUID##-02"
 MENDER_ROOTFS_PART_B = "##UUID##-03"
+
+# Update boot files
+IMAGE_BOOT_FILES:append = "boot.scr"

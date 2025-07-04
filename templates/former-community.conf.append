@@ -1,3 +1,5 @@
+# former-community.conf.append
+
 MENDER_ARTIFACT_NAME = "release-1"
 
 INHERIT += "mender-full"
