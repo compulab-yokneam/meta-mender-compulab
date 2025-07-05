@@ -32,7 +32,7 @@ MENDER_FEATURES_DISABLE:append = " mender-grub mender-image-uefi"
 
 # Remove a legacy and a conflicting package
 MACHINE_EXTRA_RDEPENDS:remove = " u-boot-fw-utils "
-CORE_IMAGE_EXTRA_INSTALL:remove = " u-boot-compulab-env "
+CORE_IMAGE_EXTRA_INSTALL:remove = " u-boot-compulab-env u-boot-script "
 
 MENDER_STORAGE_TOTAL_SIZE_MB = "4096"
 MENDER_STORAGE_DEVICE = ""
