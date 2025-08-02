@@ -14,7 +14,7 @@ Follow the instructions of the specific machine and prepare the Yocto Build envi
 NXP SoC | Build Environment Manual|
 --- | --- |
 `i.MX8MM` | [meta-bsp-imx8mm](https://github.com/compulab-yokneam/meta-bsp-imx8mm/tree/rel_imx_6.6.3_1.0.0)
-`i.MX8MP` | ~~[meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mp/tree/scarthgap-2.2.0)~~
+`i.MX8MP` | [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mp/tree/scarthgap-2.2.0)
 ~~`i.MX93`~~ | ~~[meta-bsp-imx9](https://github.com/compulab-yokneam/meta-bsp-imx9/tree/EVAL-UCM-iMX93-3.0)~~
 ~~`i.MX95`~~ | ~~[meta-bsp-imx95](https://github.com/compulab-yokneam/meta-bsp-imx95/tree/scarthgap-6.6.52-EVAL-UCM-iMX95-2.0)~~
 
