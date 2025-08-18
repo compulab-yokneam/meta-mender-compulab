@@ -7,6 +7,8 @@ DEPENDS = "u-boot-mkimage-native"
 SRC_URI = "file://boot.cmd"
 
 do_compile() {
+	autodeploy_trig="${@bb.utils.contains('CL_DEPLOY_AUTO', '1','usb', 'DONT_AUTODEPLOY', d)}"
+	sed -i -e "/^setenv AD_SRC / s/[^[:blank:]]*$/$autodeploy_trig/" ${WORKDIR}/boot.cmd
 	mkimage -C none -A arm -T script -d ${WORKDIR}/boot.cmd boot.scr
 }
 
