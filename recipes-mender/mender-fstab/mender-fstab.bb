@@ -11,7 +11,7 @@ SRC_URI = " \
 
 do_install() {
     install -d ${D}/etc
-    install -m 0644 ${WORKDIR}/fstab ${D}/etc/
+    install -m 0644 ${UNPACKDIR}/fstab ${D}/etc/
 }
 
 FILES:${PN} += "/etc/"

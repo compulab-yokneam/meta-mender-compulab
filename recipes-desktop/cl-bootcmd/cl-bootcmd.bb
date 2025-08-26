@@ -17,7 +17,7 @@ FILES:${PN}:append = " \
     ${systemd_unitdir}/* \
 "
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 do_configure() {
 	:
@@ -30,10 +30,10 @@ do_compile() {
 do_install() {
 
     install -d -m 755 ${D}${bindir}
-    install -m 0755 ${WORKDIR}/cl-bootcmd.sh ${D}/${bindir}/cl-bootcmd.sh
+    install -m 0755 ${UNPACKDIR}/cl-bootcmd.sh ${D}/${bindir}/cl-bootcmd.sh
 
     install -d ${D}/${systemd_unitdir}/system
-    install -m 644 ${WORKDIR}/${BPN}.service ${D}/${systemd_unitdir}/system/
+    install -m 644 ${UNPACKDIR}/${BPN}.service ${D}/${systemd_unitdir}/system/
 
     install -d ${D}${systemd_unitdir}/system/multi-user.target.wants
     ln -sf ../${BPN}.service ${D}${systemd_unitdir}/system/multi-user.target.wants/${BPN}.service

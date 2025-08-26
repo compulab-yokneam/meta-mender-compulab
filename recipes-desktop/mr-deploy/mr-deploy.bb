@@ -1,5 +1,5 @@
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${WORKDIR}/README;md5=9f3e9717b35d0dea0c634e9529ad509d"
+LIC_FILES_CHKSUM = "file://${UNPACKDIR}/README;md5=9f3e9717b35d0dea0c634e9529ad509d"
 
 SRC_URI = "file://mr-deploy \
 	file://README \
@@ -11,7 +11,7 @@ do_compile() {
 
 do_install() {
 	install -d ${D}/usr/local/bin
-	install -m 0755 ${WORKDIR}/mr-deploy ${D}/usr/local/bin/mr-deploy
+	install -m 0755 ${UNPACKDIR}/mr-deploy ${D}/usr/local/bin/mr-deploy
 }
 
 FILES:${PN} += "/usr/local/bin/"

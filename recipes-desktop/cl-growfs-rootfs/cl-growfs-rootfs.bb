@@ -8,4 +8,4 @@ SRC_URI = " \
 
 ALLOW_EMPTY:${PN} = "1"
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"

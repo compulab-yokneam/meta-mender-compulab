@@ -29,3 +29,6 @@ MENDER_BOOT_PART = "##UUID##-01"
 MENDER_DATA_PART = "##UUID##-04"
 MENDER_ROOTFS_PART_A = "##UUID##-02"
 MENDER_ROOTFS_PART_B = "##UUID##-03"
+
+# A Walnascar case for the fsl-image-network-full-cmdline build
+IMAGE_FEATURES:remove = " debug-tweaks "

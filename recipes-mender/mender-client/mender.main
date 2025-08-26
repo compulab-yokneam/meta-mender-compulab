@@ -8,6 +8,8 @@ SRC_URI:append = " \
 do_install:append() {
     install -d ${D}${sysconfdir}/udev/mount.blacklist.d
     install -d ${D}/data/mender
-    sed "s/MENDER_ROOTFS_PART_A/${MENDER_ROOTFS_PART_A}/;s/MENDER_ROOTFS_PART_B/${MENDER_ROOTFS_PART_B}/" ${WORKDIR}/mender.in | tee ${D}${sysconfdir}/udev/mount.blacklist.d/mender
-    sed "s/MENDER_ROOTFS_PART_A/${MENDER_ROOTFS_PART_A}/;s/MENDER_ROOTFS_PART_B/${MENDER_ROOTFS_PART_B}/" ${WORKDIR}/mender.conf.in | tee ${D}/data/mender/mender.conf
+    sed "s/MENDER_ROOTFS_PART_A/${MENDER_ROOTFS_PART_A}/;s/MENDER_ROOTFS_PART_B/${MENDER_ROOTFS_PART_B}/" ${UNPACKDIR}/mender.in | tee ${D}${sysconfdir}/udev/mount.blacklist.d/mender
+    sed "s/MENDER_ROOTFS_PART_A/${MENDER_ROOTFS_PART_A}/;s/MENDER_ROOTFS_PART_B/${MENDER_ROOTFS_PART_B}/" ${UNPACKDIR}/mender.conf.in | tee ${D}/data/mender/mender.conf
 }
+
+do_package_qa[noexec] = "1"

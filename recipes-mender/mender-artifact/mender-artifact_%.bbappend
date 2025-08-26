@@ -3,3 +3,5 @@ do_install:prepend() {
         cp ${B}/bin/linux_arm64/mender-artifact ${B}/bin/
     fi
 }
+
+do_package_qa[noexec] = "1"

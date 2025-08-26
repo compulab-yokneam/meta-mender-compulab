@@ -50,20 +50,20 @@ mender_part_image() {
 
     set -ex
 
-    mkdir -p "${WORKDIR}"
+    mkdir -p "${UNPACKDIR}"
 
     if ${@bb.utils.contains('MENDER_FEATURES', 'mender-uboot', 'true', 'false', d)}; then
-        # Copy the files to embed in the WIC image into ${WORKDIR} for exclusive access
-        install -m 0644 "${DEPLOY_DIR_IMAGE}/uboot.env" "${WORKDIR}/"
+        # Copy the files to embed in the WIC image into ${UNPACKDIR} for exclusive access
+        install -m 0644 "${DEPLOY_DIR_IMAGE}/uboot.env" "${UNPACKDIR}/"
     fi
 
     ondisk_dev="$(basename "${MENDER_STORAGE_DEVICE}")"
 
-    wks="${WORKDIR}/mender-$suffix.wks"
+    wks="${UNPACKDIR}/mender-$suffix.wks"
     rm -f "$wks"
     if [ -n "${MENDER_IMAGE_BOOTLOADER_FILE}" ]; then
-        # Copy the files to embed in the WIC image into ${WORKDIR} for exclusive access
-        install -m 0644 "${DEPLOY_DIR_IMAGE}/${MENDER_IMAGE_BOOTLOADER_FILE}" "${WORKDIR}/"
+        # Copy the files to embed in the WIC image into ${UNPACKDIR} for exclusive access
+        install -m 0644 "${DEPLOY_DIR_IMAGE}/${MENDER_IMAGE_BOOTLOADER_FILE}" "${UNPACKDIR}/"
 
         if [ $(expr ${MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET} % 2) -ne 0 ]; then
             # wic doesn't support fractions of kiB, so we need to do some tricks
@@ -72,11 +72,11 @@ mender_part_image() {
             # which coincides with a whole kiB, and then write the missing
             # sector manually afterwards.
             bootloader_sector=$(expr ${MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET} + 1)
-            bootloader_file=${WORKDIR}/${MENDER_IMAGE_BOOTLOADER_FILE}-partial
-            dd if=${WORKDIR}/${MENDER_IMAGE_BOOTLOADER_FILE} of=$bootloader_file skip=1
+            bootloader_file=${UNPACKDIR}/${MENDER_IMAGE_BOOTLOADER_FILE}-partial
+            dd if=${UNPACKDIR}/${MENDER_IMAGE_BOOTLOADER_FILE} of=$bootloader_file skip=1
         else
             bootloader_sector=${MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET}
-            bootloader_file=${WORKDIR}/${MENDER_IMAGE_BOOTLOADER_FILE}
+            bootloader_file=${UNPACKDIR}/${MENDER_IMAGE_BOOTLOADER_FILE}
         fi
         bootloader_align_kb=$(expr $(expr $bootloader_sector \* 512) / 1024)
         bootloader_size=$(stat -c '%s' "$bootloader_file")
@@ -96,7 +96,7 @@ EOF
     if ${@bb.utils.contains('MENDER_FEATURES', 'mender-uboot', 'true', 'false', d)} && [ -n "${MENDER_UBOOT_ENV_STORAGE_DEVICE_OFFSET}" ]; then
         boot_env_align_kb=$(expr ${MENDER_UBOOT_ENV_STORAGE_DEVICE_OFFSET} / 1024)
         cat >> "$wks" <<EOF
-part --source rawcopy --sourceparams="file=${WORKDIR}/uboot.env" --ondisk "$ondisk_dev" --align $boot_env_align_kb --no-table
+part --source rawcopy --sourceparams="file=${UNPACKDIR}/uboot.env" --ondisk "$ondisk_dev" --align $boot_env_align_kb --no-table
 EOF
     fi
 
@@ -168,7 +168,7 @@ EOF
     if [ -n "${MENDER_IMAGE_BOOTLOADER_FILE}" ] && [ ${MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET} -ne $bootloader_sector ]; then
         # We need to write the first sector of the bootloader. See comment above
         # where bootloader_sector is set.
-        dd if=${WORKDIR}/${MENDER_IMAGE_BOOTLOADER_FILE} of="$outimgname" seek=${MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET} count=1 conv=notrunc
+        dd if=${UNPACKDIR}/${MENDER_IMAGE_BOOTLOADER_FILE} of="$outimgname" seek=${MENDER_IMAGE_BOOTLOADER_BOOTSECTOR_OFFSET} count=1 conv=notrunc
     fi
 
     if [ -n "${MENDER_MBR_BOOTLOADER_FILE}" ]; then
