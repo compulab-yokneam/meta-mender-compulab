@@ -1,5 +1,8 @@
 # Configuring the build
 
+NOTE | Demo Version |
+--- | --- |
+
 ## Setup Yocto environment
 
 * WorkDir
