@@ -4,8 +4,6 @@ CORE_IMAGE_EXTRA_INSTALL += " mender-artifact "
 
 PACKAGE_CLASSES = "package_deb"
 
-BBMASK += "meta-mender-core/recipes-bsp/grub/grub_%.bbappend"
-
 # CL_DEPLOY_AUTO = "1"
 CORE_IMAGE_EXTRA_INSTALL:append:mx8mm-nxp-bsp = "${@bb.utils.contains('CL_DEPLOY_AUTO', '1', 'u-boot-ai-script' , '', d)}"
 IMAGE_BOOT_FILES:append:mx8mm-nxp-bsp = "${@bb.utils.contains('CL_DEPLOY_AUTO', '1', 'boot.ai.scr' , '', d)}"
