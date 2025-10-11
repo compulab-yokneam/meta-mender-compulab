@@ -1,7 +1,3 @@
-SRC_URI:append:compulab-mx8mp = " \
-	file://mender.cfg \
-"
-
-SRC_URI:append:compulab-mx8mm = " \
+SRC_URI:append = " \
 	file://mender.cfg \
 "
