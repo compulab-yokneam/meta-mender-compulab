@@ -11,3 +11,5 @@ do_install:append() {
     sed "s/MENDER_ROOTFS_PART_A/${MENDER_ROOTFS_PART_A}/;s/MENDER_ROOTFS_PART_B/${MENDER_ROOTFS_PART_B}/" ${WORKDIR}/mender.in | tee ${D}${sysconfdir}/udev/mount.blacklist.d/mender
     sed "s/MENDER_ROOTFS_PART_A/${MENDER_ROOTFS_PART_A}/;s/MENDER_ROOTFS_PART_B/${MENDER_ROOTFS_PART_B}/" ${WORKDIR}/mender.conf.in | tee ${D}/data/mender/mender.conf
 }
+
+RDEPENDS:mender-update:append = " bash "
