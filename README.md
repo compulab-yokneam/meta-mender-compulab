@@ -15,7 +15,7 @@ NXP SoC | Build Environment Manual|
 --- | --- |
 `i.MX8MM` | [meta-bsp-imx8mm](https://github.com/compulab-yokneam/meta-bsp-imx8mm/tree/rel_imx_6.6.3_1.0.0)
 `i.MX8MP` | [meta-bsp-imx8mp](https://github.com/compulab-yokneam/meta-bsp-imx8mp/tree/scarthgap-2.2.0)
-`i.MX93` | [meta-bsp-imx9](https://github.com/compulab-yokneam/meta-bsp-imx9/blob/scarthgap)
+`i.MX91, i.MX93` | [meta-bsp-imx9](https://github.com/compulab-yokneam/meta-bsp-imx9/blob/scarthgap)
 `i.MX95` | [meta-bsp-imx95](https://github.com/compulab-yokneam/meta-bsp-imx95/tree/scarthgap-6.6.52-EVAL-UCM-iMX95-2.0)
 
 * Initialize and sync CompuLab Mender repo manifest:
@@ -36,6 +36,7 @@ NXP SoC | CompuLab Machine | Environment variable |
 `i.MX8MP`|`som-imx8m-plus`|`export MACHINE=som-imx8m-plus`
 `i.MX8MP`|`ucm-imx8m-plus`|`export MACHINE=ucm-imx8m-plus`
 `i.MX8MP`|`ucm-imx8m-plus-sbev`|`export MACHINE=ucm-imx8m-plus-sbev`
+`i.MX91`|`ucm-imx91`|`export MACHINE=ucm-imx91`
 `i.MX93`|`ucm-imx93`|`export MACHINE=ucm-imx93`
 `i.MX93`|`mcm-imx93`|`export MACHINE=mcm-imx93`
 `i.MX95`|`ucm-imx95`|`export MACHINE=ucm-imx95`
