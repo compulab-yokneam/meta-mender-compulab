@@ -1,0 +1,25 @@
+From 621e9d0a138e91b9d83e2c433062f9b2b25c02ec Mon Sep 17 00:00:00 2001
+From: Valentin Raevsky <valentin@compulab.co.il>
+Date: Tue, 1 Sep 2026 16:50:32 +0300
+Subject: [PATCH] Add 85_mender_load_dtb_grub.cfg
+
+Signed-off-by: Valentin Raevsky <valentin@compulab.co.il>
+---
+ 85_mender_load_dtb_grub.cfg | 5 +++++
+ 1 file changed, 5 insertions(+)
+ create mode 100644 85_mender_load_dtb_grub.cfg
+
+diff --git a/85_mender_load_dtb_grub.cfg b/85_mender_load_dtb_grub.cfg
+new file mode 100644
+index 0000000..d9e4041
+--- /dev/null
++++ b/85_mender_load_dtb_grub.cfg
+@@ -0,0 +1,5 @@
++if devicetree ${mender_kernel_path}/${kernel_devicetree}; then
++    echo "Using ${mender_boot_part}:${mender_kernel_path}/${kernel_devicetree} device tree"
++else
++    echo "!!! Using the boot partition device tree"
++fi
+-- 
+2.34.1
+
